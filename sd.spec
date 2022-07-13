@@ -37,7 +37,7 @@ mkdir -p %{buildroot}%{_docdir}/%{name}
 install -pm 0755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
 # manpage
-install -Dm644 doc/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+install -Dm644 target/release/build/%{name}-*/out/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 
 # doc
 install -Dm644 README.md %{buildroot}%{_docdir}/%{name}/README.md
