@@ -8,6 +8,7 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
 
 ### Packages
 
+- [exa](https://github.com/ogham/exa)
 - [fd](https://github.com/sharkdp/fd)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [sd](https://github.com/chmln/sd)
