@@ -49,7 +49,7 @@ install -Dm644 exa_colors.5 %{buildroot}%{_mandir}/man5/exa_colors.5
 
 # doc
 install -Dm644 README.md %{buildroot}%{_docdir}/%{name}/README.md
-install -Dm644 LICENSE %{buildroot}%{_docdir}/%{name}/LICENSE
+install -Dm644 LICEN?E %{buildroot}%{_docdir}/%{name}/LICENSE
 
 # completions
 install -Dm644 completions/completions.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
