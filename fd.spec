@@ -3,14 +3,14 @@
 
 Name:    fd
 Version: 8.4.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: fd is a simple, fast and user-friendly alternative to find.
 
 License: MIT/Apache-2.0
 URL: https://github.com/sharkdp/fd
 Source0: https://github.com/sharkdp/fd/archive/v%{version}.tar.gz
 
-BuildRequires: cargo gzip rust
+BuildRequires: cargo rust
 
 %description
 fd is a program to find entries in your filesystem.
@@ -42,7 +42,6 @@ install -pm 0755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
 # manpage
 install -Dm644 doc/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
-gzip --best %{buildroot}%{_mandir}/man1/%{name}.1
 
 # doc
 install -Dm644 README.md %{buildroot}%{_docdir}/%{name}/README.md
@@ -55,15 +54,17 @@ install -Dm644 target/release/build/fd-find-*/out/%{name}.fish %{buildroot}%{_da
 install -Dm644  contrib/completion/_%{name} %{buildroot}%{_datadir}/zsh/vendor-completions/_%{name}
 
 %files
-%defattr(-,root,root,-)
 %{_bindir}/%{name}
-%{_docdir}/fd/*
-%{_mandir}/man1/fd.1.gz
-%{_datadir}/bash-completion/completions/fd
-%{_datadir}/fish/completions/fd.fish
-%{_datadir}/zsh/vendor-completions/_fd
+%{_docdir}/%{name}/*
+%{_mandir}/man1/%{name}.1*
+%{_datadir}/bash-completion/completions/%{name}
+%{_datadir}/fish/completions/%{name}.fish
+%{_datadir}/zsh/vendor-completions/_%{name}
 
 %changelog
+* Wed Jul 13 2022 cyqsimon - 8.4.0-2
+- Auto-gzip man page
+
 * Wed Jul 13 2022 cyqsimon - 8.4.0-1
 - Forked from recteurlp/fd
 - Release 8.4.0
