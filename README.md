@@ -10,4 +10,5 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
 
 - [fd](https://github.com/sharkdp/fd)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [sd](https://github.com/chmln/sd)
 - More to come
