@@ -36,7 +36,7 @@ cargo test
 %license COPYING LICENSE-MIT UNLICENSE
 %doc README.md CHANGELOG.md GUIDE.md FAQ.md
 %{_bindir}/rg
-%{_mandir}/man1/rg.1
+%{_mandir}/man1/rg.1*
 %{_datadir}/bash-completion/completions/rg
 %{_datadir}/fish/vendor_completions.d/rg.fish
 %{_datadir}/zsh/site-functions/_rg
