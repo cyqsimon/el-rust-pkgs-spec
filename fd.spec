@@ -53,7 +53,7 @@ install -Dm644 LICENSE-APACHE %{buildroot}%{_docdir}/%{name}/LICENSE-APACHE
 # completions
 install -Dm644 target/release/build/fd-find-*/out/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
 install -Dm644 target/release/build/fd-find-*/out/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
-install -Dm644  target/release/build/fd-find-*/out/_%{name} %{buildroot}%{_datadir}/zsh/vendor-completions/_%{name}
+install -Dm644  contrib/completion/_%{name} %{buildroot}%{_datadir}/zsh/vendor-completions/_%{name}
 
 %files
 %defattr(-,root,root,-)
