@@ -1,3 +1,5 @@
+%global debug_package %{nil}
+
 Name: ripgrep
 Version: 13.0.0
 Release: 1%{?dist}
