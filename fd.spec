@@ -2,68 +2,73 @@
 %global _disable_source_fetch 0
 
 Name:    fd
-Version: 7.4.0
+Version: 8.4.0
 Release: 1%{?dist}
 Summary: fd is a simple, fast and user-friendly alternative to find.
+
 License: MIT/Apache-2.0
 Group:   Applications/System
 URL: https://github.com/sharkdp/fd
 Source0: https://github.com/sharkdp/fd/archive/v%{version}.tar.gz
 
-BuildRequires: gzip
-BuildRequires: cargo
+BuildRequires: cargo gzip rust
 
 %description
-fd is a simple, fast and user-friendly alternative to find.
+fd is a program to find entries in your filesystem.
+It is a simple, fast and user-friendly alternative to find.
 
-While it does not seek to mirror all of find's powerful functionality,
-it provides sensible (opinionated) defaults for 80% of the use cases.
+While it does not aim to support all of find's powerful functionality,
+it provides sensible (opinionated) defaults for a majority of use cases.
 
 %prep
 %setup -q -n %{name}-%{version}
 
 %build
-cargo build --release
+RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 cargo test
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p ${RPM_BUILD_ROOT}/usr/bin/
-mkdir -p ${RPM_BUILD_ROOT}/usr/share/bash-completion/completions/
-mkdir -p ${RPM_BUILD_ROOT}/usr/share/fish/completions/
-mkdir -p ${RPM_BUILD_ROOT}/usr/share/zsh/vendor-completions/
-mkdir -p ${RPM_BUILD_ROOT}/usr/share/man/man1/
-mkdir -p ${RPM_BUILD_ROOT}/usr/share/doc/%{name}/
+rm -rf %{buildroot}
+mkdir -p %{buildroot}%{_bindir}
+mkdir -p %{buildroot}%{_datadir}/bash-completion/completions
+mkdir -p %{buildroot}%{_datadir}/fish/completions
+mkdir -p %{buildroot}%{_datadir}/zsh/vendor-completions
+mkdir -p %{buildroot}%{_mandir}/man1
+mkdir -p %{buildroot}%{_docdir}/%{name}
 
 # Bin
-install -pm 0755 target/release/%{name} ${RPM_BUILD_ROOT}/usr/bin/%{name}
+install -pm 0755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
 # manpage
-install -Dm644 doc/%{name}.1 ${RPM_BUILD_ROOT}/usr/share/man/man1/%{name}.1
-gzip --best ${RPM_BUILD_ROOT}/usr/share/man/man1/%{name}.1
+install -Dm644 doc/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+gzip --best %{buildroot}%{_mandir}/man1/%{name}.1
 
 # doc
-install -Dm644 README.md ${RPM_BUILD_ROOT}/usr/share/doc/%{name}/README.md
-install -Dm644 LICENSE-MIT ${RPM_BUILD_ROOT}/usr/share/doc/%{name}/LICENSE-MIT
-install -Dm644 LICENSE-APACHE ${RPM_BUILD_ROOT}/usr/share/doc/%{name}/LICENSE-APACHE
+install -Dm644 README.md %{buildroot}%{_docdir}/%{name}/README.md
+install -Dm644 LICENSE-MIT %{buildroot}%{_docdir}/%{name}/LICENSE-MIT
+install -Dm644 LICENSE-APACHE %{buildroot}%{_docdir}/%{name}/LICENSE-APACHE
 
 # completions
-install -Dm644 target/release/build/fd-find-*/out/%{name}.bash ${RPM_BUILD_ROOT}/usr/share/bash-completion/completions/%{name}
-install -Dm644 target/release/build/fd-find-*/out/%{name}.fish ${RPM_BUILD_ROOT}/usr/share/fish/completions/%{name}.fish
-install -Dm644  target/release/build/fd-find-*/out/_%{name} ${RPM_BUILD_ROOT}/usr/share/zsh/vendor-completions/_%{name}
+install -Dm644 target/release/build/fd-find-*/out/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dm644 target/release/build/fd-find-*/out/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
+install -Dm644  target/release/build/fd-find-*/out/_%{name} %{buildroot}%{_datadir}/zsh/vendor-completions/_%{name}
 
 %files
 %defattr(-,root,root,-)
-/usr/bin/%{name}
-/usr/share/doc/fd/*
-/usr/share/man/man1/fd.1.gz
-/usr/share/bash-completion/completions/fd
-/usr/share/fish/completions/fd.fish
-/usr/share/zsh/vendor-completions/_fd
+%{_bindir}/%{name}
+%{_docdir}/fd/*
+%{_mandir}/man1/fd.1.gz
+%{_datadir}/bash-completion/completions/fd
+%{_datadir}/fish/completions/fd.fish
+%{_datadir}/zsh/vendor-completions/_fd
 
 %changelog
+* Wed Jul 13 2022 cyqsimon - 8.4.0-1
+- Forked from recteurlp/fd
+- Release 8.4.0
+
 * Fri Oct 04 2019 recteurlp <recteurlp@pyrmin.io> - 7.4.0-1
 - Release 7.4.0
 * Sun Mar 31 2019 recteurlp <recteurlp@pyrmin.io> - 7.3.0-1
