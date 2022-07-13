@@ -7,7 +7,6 @@ Release: 1%{?dist}
 Summary: fd is a simple, fast and user-friendly alternative to find.
 
 License: MIT/Apache-2.0
-Group:   Applications/System
 URL: https://github.com/sharkdp/fd
 Source0: https://github.com/sharkdp/fd/archive/v%{version}.tar.gz
 
