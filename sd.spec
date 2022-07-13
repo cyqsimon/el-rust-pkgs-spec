@@ -58,5 +58,5 @@ install -Dm644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_datadi
 %{_datadir}/zsh/vendor-completions/_%{name}
 
 %changelog
-* Wed Jul 13 2022 cyqsimon - 0.7.6
+* Wed Jul 13 2022 cyqsimon - 0.7.6-1
 - Release 0.7.6
