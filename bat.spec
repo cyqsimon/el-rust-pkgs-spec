@@ -22,24 +22,32 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %install
 %if 0%{?el7}
+mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_mandir}/man1
 mkdir -p %{buildroot}%{_datadir}/bash-completion/completions
 mkdir -p %{buildroot}%{_datadir}/fish/vendor_completions.d
 mkdir -p %{buildroot}%{_datadir}/zsh/site-functions
 %endif
 
-install -Dm644 -t %{buildroot}%{_mandir}/man1 target/release/build/%{name}-*/out/assets/manual/%{name}.1
-install -Dm644 target/release/build/%{name}-*/out/assets/completions/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dm644 target/release/build/%{name}-*/out/assets/completions/%{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
-install -Dm644 target/release/build/%{name}-*/out/assets/completions/%{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
+# bin
+install -Dm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
+
+# manpage
+install -Dm 644 -t %{buildroot}%{_mandir}/man1 target/release/build/%{name}-*/out/assets/manual/%{name}.1
+
+# completions
+install -Dm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
+install -Dm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
 %license LICENSE-MIT LICENSE-APACHE
 %doc README.md
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
+%{_datadir}/bash-completion/completions/%{name}
 %{_datadir}/fish/vendor_completions.d/%{name}.fish
-%{_datadir}/zsh/vendor-completions/_%{name}
+%{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
 * Thu Jul 14 2022 cyqsimon - 0.21.0-2
