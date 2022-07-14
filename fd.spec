@@ -8,7 +8,7 @@ Summary: fd is a simple, fast and user-friendly alternative to find.
 
 License: MIT/Apache-2.0
 URL: https://github.com/sharkdp/fd
-Source0: https://github.com/sharkdp/fd/archive/v%{version}.tar.gz
+Source0: %{url}/archive/v%{version}.tar.gz
 
 BuildRequires: cargo rust
 

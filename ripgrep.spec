@@ -7,7 +7,7 @@ Summary: A search tool that combines the usability of ag with the raw speed of g
 
 License: MIT or Unlicense
 URL: https://github.com/BurntSushi/ripgrep
-Source0: https://github.com/BurntSushi/ripgrep/archive/%{version}/ripgrep-%{version}.tar.gz
+Source0: %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: asciidoc cargo rust
 

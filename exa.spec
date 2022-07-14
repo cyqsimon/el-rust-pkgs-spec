@@ -7,7 +7,7 @@ Summary: A modern replacement for ‘ls’.
 
 License: MIT
 URL: https://github.com/ogham/exa
-Source0: https://github.com/ogham/exa/archive/v%{version}.tar.gz
+Source0: %{url}/archive/v%{version}.tar.gz
 
 # on EL7, EPEL's build of rust 1.62.0 cannot successfully
 # compile exa for unknown reasons, so we need to use rustup

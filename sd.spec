@@ -7,7 +7,7 @@ Summary: Intuitive find & replace CLI (sed alternative)
 
 License: MIT
 URL: https://github.com/chmln/sd
-Source0: https://github.com/chmln/sd/archive/v%{version}.tar.gz
+Source0: %{url}/archive/v%{version}.tar.gz
 
 BuildRequires: cargo rust
 
