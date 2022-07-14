@@ -9,7 +9,11 @@ License: MIT
 URL: https://github.com/ogham/exa
 Source0: https://github.com/ogham/exa/archive/v%{version}.tar.gz
 
+# on EL7, EPEL's build of rust 1.62.0 cannot successfully
+# compile exa for unknown reasons, so we need to use rustup
+%if ! 0%{?el7}
 BuildRequires: cargo rust
+%endif
 # for some inexplicable reason, EL9 doesn't have pandoc
 # so we need to grab the statically-linked binary
 %if 0%{?el9}
@@ -31,6 +35,14 @@ And it’s small, fast, and just one single binary.
 %autosetup
 
 %build
+# if EL7, use rustup
+%if 0%{?el7}
+    _R_VER="1.62.0"
+    curl -Lfo "rustup.sh" "https://sh.rustup.rs"
+    chmod +x "rustup.sh"
+    ./rustup.sh --default-toolchain "${_R_VER}" -y
+    source ~/.cargo/env
+%endif
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
 # if EL9, get the static binary and add its directory to PATH
@@ -57,6 +69,10 @@ pandoc --standalone -f markdown -t man man/%{name}.1.md > %{name}.1
 pandoc --standalone -f markdown -t man man/exa_colors.5.md > exa_colors.5
 
 %check
+# if EL7, use rustup
+%if 0%{?el7}
+    source ~/.cargo/env
+%endif
 cargo test
 
 %install
