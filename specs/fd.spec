@@ -46,7 +46,7 @@ install -Dpm 644 contrib/completion/_%{name} %{buildroot}%{_datadir}/zsh/site-fu
 %{_mandir}/man1/%{name}.1*
 %{_datadir}/bash-completion/completions/%{name}
 %{_datadir}/fish/completions/%{name}.fish
-%{_datadir}/zsh/vendor-completions/_%{name}
+%{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
 * Thu Jul 14 2022 cyqsimon - 8.4.0-3
