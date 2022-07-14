@@ -76,35 +76,27 @@ pandoc --standalone -f markdown -t man man/exa_colors.5.md > exa_colors.5
 cargo test
 
 %install
-rm -rf %{buildroot}
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_datadir}/bash-completion/completions
-mkdir -p %{buildroot}%{_datadir}/fish/completions
-mkdir -p %{buildroot}%{_datadir}/zsh/vendor-completions
-mkdir -p %{buildroot}%{_mandir}/{man1,man5}
-mkdir -p %{buildroot}%{_docdir}/%{name}
-
-# Bin
-install -Dm755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
+# bin
+install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
 # manpage
-install -Dm644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
-install -Dm644 exa_colors.5 %{buildroot}%{_mandir}/man5/exa_colors.5
+install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+install -Dpm 644 exa_colors.5 %{buildroot}%{_mandir}/man5/exa_colors.5
 
 # doc
-install -Dm644 README.md %{buildroot}%{_docdir}/%{name}/README.md
-install -Dm644 LICEN?E %{buildroot}%{_docdir}/%{name}/LICENSE
+install -Dpm 644 LICEN?E %{buildroot}%{_docdir}/%{name}/LICENSE
 
 # completions
-install -Dm644 completions/completions.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dm644 completions/completions.fish  %{buildroot}%{_datadir}/fish/completions/%{name}.fish
-install -Dm644 completions/completions.zsh  %{buildroot}%{_datadir}/zsh/vendor-completions/_%{name}
+install -Dpm 644 completions/completions.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dpm 644 completions/completions.fish  %{buildroot}%{_datadir}/fish/completions/%{name}.fish
+install -Dpm 644 completions/completions.zsh  %{buildroot}%{_datadir}/zsh/vendor-completions/_%{name}
 
 %files
+%doc README.md
 %{_bindir}/%{name}
-%{_docdir}/%{name}/*
 %{_mandir}/man1/%{name}.1*
 %{_mandir}/man5/exa_colors.5*
+%{_docdir}/%{name}/*
 %{_datadir}/bash-completion/completions/%{name}
 %{_datadir}/fish/completions/%{name}.fish
 %{_datadir}/zsh/vendor-completions/_%{name}

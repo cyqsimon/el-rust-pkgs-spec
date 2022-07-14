@@ -21,27 +21,19 @@ programming and markup languages. It has git integration and automatic paging.
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %install
-%if 0%{?el7}
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_mandir}/man1
-mkdir -p %{buildroot}%{_datadir}/bash-completion/completions
-mkdir -p %{buildroot}%{_datadir}/fish/vendor_completions.d
-mkdir -p %{buildroot}%{_datadir}/zsh/site-functions
-%endif
-
 # bin
-install -Dm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
+install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
 # manpage
-install -Dm 644 -t %{buildroot}%{_mandir}/man1 target/release/build/%{name}-*/out/assets/manual/%{name}.1
+install -Dpm 644 target/release/build/%{name}-*/out/assets/manual/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 
 # completions
-install -Dm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
-install -Dm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
+install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
+install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
-%license LICENSE-MIT LICENSE-APACHE
+%license LICENSE-APACHE LICENSE-MIT
 %doc README.md
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*

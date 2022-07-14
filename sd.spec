@@ -2,7 +2,7 @@
 
 Name:    sd
 Version: 0.7.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Intuitive find & replace CLI (sed alternative)
 
 License: MIT
@@ -25,38 +25,29 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 cargo test
 
 %install
-rm -rf %{buildroot}
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_datadir}/bash-completion/completions
-mkdir -p %{buildroot}%{_datadir}/fish/completions
-mkdir -p %{buildroot}%{_datadir}/zsh/vendor-completions
-mkdir -p %{buildroot}%{_mandir}/man1
-mkdir -p %{buildroot}%{_docdir}/%{name}
-
-# Bin
-install -pm 0755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
+# bin
+install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
 # manpage
-install -Dm644 target/release/build/%{name}-*/out/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
-
-# doc
-install -Dm644 README.md %{buildroot}%{_docdir}/%{name}/README.md
-install -Dm644 CHANGELOG.md %{buildroot}%{_docdir}/%{name}/CHANGELOG.md
-install -Dm644 LICENSE %{buildroot}%{_docdir}/%{name}/LICENSE
+install -Dpm 644 target/release/build/%{name}-*/out/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 
 # completions
-install -Dm644 target/release/build/%{name}-*/out/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dm644 target/release/build/%{name}-*/out/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
-install -Dm644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_datadir}/zsh/vendor-completions/_%{name}
+install -Dpm 644 target/release/build/%{name}-*/out/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dpm 644 target/release/build/%{name}-*/out/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
+install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
+%license LICENSE
+%doc CHANGELOG.md README.md
 %{_bindir}/%{name}
-%{_docdir}/%{name}/*
 %{_mandir}/man1/%{name}.1*
 %{_datadir}/bash-completion/completions/%{name}
 %{_datadir}/fish/completions/%{name}.fish
-%{_datadir}/zsh/vendor-completions/_%{name}
+%{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Thu Jul 14 2022 cyqsimon - 0.7.6-2
+- Move Zsh completions to site-functions dir
+
 * Wed Jul 13 2022 cyqsimon - 0.7.6-1
 - Release 0.7.6

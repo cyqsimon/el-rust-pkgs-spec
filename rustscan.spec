@@ -37,20 +37,13 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 cargo test
 
 %install
-rm -rf %{buildroot}
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_docdir}/%{name}
-
-# Bin
-install -pm 0755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
-
-# doc
-install -Dm644 README.md %{buildroot}%{_docdir}/%{name}/README.md
-install -Dm644 LICENSE %{buildroot}%{_docdir}/%{name}/LICENSE
+# bin
+install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
 %files
+%license LICENSE
+%doc README.md
 %{_bindir}/%{name}
-%{_docdir}/%{name}/*
 
 %changelog
 * Thu Jul 14 2022 cyqsimon - 2.1.0-1

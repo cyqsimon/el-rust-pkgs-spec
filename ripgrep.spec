@@ -25,8 +25,13 @@ ack and grep.
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %install
+# bin
 install -Dpm 755 target/release/rg %{buildroot}%{_bindir}/rg
+
+# manpage
 install -Dpm 644 target/release/build/ripgrep-*/out/rg.1 %{buildroot}%{_mandir}/man1/rg.1
+
+# completions
 install -Dpm 644 target/release/build/ripgrep-*/out/rg.bash %{buildroot}%{_datadir}/bash-completion/completions/rg
 install -Dpm 644 target/release/build/ripgrep-*/out/rg.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/rg.fish
 install -Dpm 644 complete/_rg %{buildroot}%{_datadir}/zsh/site-functions/_rg
@@ -36,7 +41,7 @@ cargo test
 
 %files
 %license COPYING LICENSE-MIT UNLICENSE
-%doc README.md CHANGELOG.md GUIDE.md FAQ.md
+%doc CHANGELOG.md FAQ.md GUIDE.md README.md
 %{_bindir}/rg
 %{_mandir}/man1/rg.1*
 %{_datadir}/bash-completion/completions/rg
