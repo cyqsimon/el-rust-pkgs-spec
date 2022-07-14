@@ -2,48 +2,50 @@
 
 Name:           bat
 Version:        0.21.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A cat(1) clone with syntax highlighting and Git integration
-License:        ASL 2.0
-URL:            https://github.com/sharkdp/%{name}
-Source0:        https://github.com/sharkdp/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+License:        Apache 2.0 or MIT
+URL:            https://github.com/sharkdp/bat
+Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  cargo
-BuildRequires:  clang
-BuildRequires:  cmake
-BuildRequires:  rust
-BuildRequires:  rust-std-static
-BuildRequires:  zlib-devel
+BuildRequires:  cargo rust zlib-devel
 
 %description
 A cat(1) clone which supports syntax highlighting for a large number of
 programming and markup languages. It has git integration and automatic paging.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup
 
 %build
+RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %install
-cargo install --no-track --root=%{buildroot}%{_prefix} --path .
-%if 0%{?rhel} == 7
+%if 0%{?el7}
 mkdir -p %{buildroot}%{_mandir}/man1
+mkdir -p %{buildroot}%{_datadir}/bash-completion/completions
 mkdir -p %{buildroot}%{_datadir}/fish/vendor_completions.d
-mkdir -p %{buildroot}%{_datadir}/zsh/vendor-completions
+mkdir -p %{buildroot}%{_datadir}/zsh/site-functions
 %endif
-install -v -Dpm0644 -t %{buildroot}%{_mandir}/man1 target/release/build/%{name}-*/out/assets/manual/bat.1
-install -v -Dpm0644 -t %{buildroot}%{_datadir}/fish/vendor_completions.d target/release/build/%{name}-*/out/assets/completions/bat.fish
-install -v -Dpm0644 -t %{buildroot}%{_datadir}/zsh/vendor-completions target/release/build/%{name}-*/out/assets/completions/bat.zsh
+
+install -Dm644 -t %{buildroot}%{_mandir}/man1 target/release/build/%{name}-*/out/assets/manual/%{name}.1
+install -Dm644 target/release/build/%{name}-*/out/assets/completions/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dm644 target/release/build/%{name}-*/out/assets/completions/%{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
+install -Dm644 target/release/build/%{name}-*/out/assets/completions/%{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
 %license LICENSE-MIT LICENSE-APACHE
 %doc README.md
-%{_bindir}/bat
-%{_mandir}/man1/bat.1*
-%{_datadir}/fish/vendor_completions.d/bat.fish
-%{_datadir}/zsh/vendor-completions/bat.zsh
+%{_bindir}/%{name}
+%{_mandir}/man1/%{name}.1*
+%{_datadir}/fish/vendor_completions.d/%{name}.fish
+%{_datadir}/zsh/vendor-completions/_%{name}
 
 %changelog
+* Thu Jul 14 2022 cyqsimon - 0.21.0-2
+- Install Bash completion
+- Follow Zsh completion conventions
+
 * Thu May 12 2022 Alex <redhat@att.org.ru> - 0.21.0-1
 - Update to 0.21.0
 
