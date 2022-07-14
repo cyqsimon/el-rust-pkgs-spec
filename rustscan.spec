@@ -11,6 +11,17 @@ Source0: %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 Requires: nmap
 BuildRequires: cargo rust
+# python & perl are required to test scripting
+%if 0%{?el7}
+BuildRequires: python36
+%endif
+%if 0%{?el8}
+BuildRequires: python39
+%endif
+%if 0%{?el9}
+BuildRequires: python3
+%endif
+BuildRequires: perl
 
 %description
 The Modern Port Scanner. Find ports quickly (3 seconds at its fastest).
