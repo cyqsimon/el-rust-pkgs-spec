@@ -9,7 +9,8 @@ License: MIT
 URL: https://github.com/thecoshman/http
 Source0: %{url}/archive/v%{version}.tar.gz
 
-BuildRequires: cargo rust
+Requires: bzip2-libs openssl
+BuildRequires: bzip2-devel cargo openssl-devel rust
 # for some inexplicable reason, EL9 doesn't have pandoc
 # so we need to grab the statically-linked binary
 %if 0%{?el9}
