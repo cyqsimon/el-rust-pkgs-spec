@@ -79,7 +79,7 @@ install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 
 %files
 %license LICENSE
-%doc CHANGELOG.md
+%doc README.md
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
 
