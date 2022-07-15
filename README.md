@@ -14,4 +14,5 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [rustscan](https://github.com/RustScan/RustScan)
 - [sd](https://github.com/chmln/sd)
+- [tealdeer](https://github.com/dbrgn/tealdeer)
 - More to come
