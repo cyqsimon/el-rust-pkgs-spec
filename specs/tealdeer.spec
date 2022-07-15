@@ -33,9 +33,9 @@ cargo test
 install -Dpm 755 target/release/tldr %{buildroot}%{_bindir}/tldr
 
 # completions
-install -Dpm 644 completion/bash_%{name} %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dpm 644 completion/fish_%{name} %{buildroot}%{_datadir}/fish/completions/%{name}.fish
-install -Dpm 644 completion/zsh_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
+install -Dpm 644 bash_%{name} %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dpm 644 fish_%{name} %{buildroot}%{_datadir}/fish/completions/%{name}.fish
+install -Dpm 644 zsh_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
 %license LICENSE-APACHE LICENSE-MIT
