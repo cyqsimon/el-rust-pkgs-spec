@@ -24,7 +24,7 @@ the current directory and serve it. Everything has sensible defaults
 such that you do not have to pass parameters like what port to use.
 
 %prep
-%autosetup
+%autosetup -n http-%{version}
 
 %build
 # only build and install the `httplz` binary
