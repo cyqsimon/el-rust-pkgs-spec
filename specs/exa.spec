@@ -89,7 +89,7 @@ install -Dpm 644 LICEN?E %{buildroot}%{_docdir}/%{name}/LICENSE
 # completions
 install -Dpm 644 completions/completions.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
 install -Dpm 644 completions/completions.fish  %{buildroot}%{_datadir}/fish/completions/%{name}.fish
-install -Dpm 644 completions/completions.zsh  %{buildroot}%{_datadir}/zsh/vendor-completions/_%{name}
+install -Dpm 644 completions/completions.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
 %doc README.md
@@ -99,8 +99,11 @@ install -Dpm 644 completions/completions.zsh  %{buildroot}%{_datadir}/zsh/vendor
 %{_docdir}/%{name}/*
 %{_datadir}/bash-completion/completions/%{name}
 %{_datadir}/fish/completions/%{name}.fish
-%{_datadir}/zsh/vendor-completions/_%{name}
+%{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Jul 16 2022 cyqsimon - 0.10.1-2
+- Follow Zsh completion conventions
+
 * Wed Jul 13 2022 cyqsimon - 0.10.1-1
 - Release 0.10.1

@@ -2,7 +2,7 @@
 
 Name:           bat
 Version:        0.21.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A cat(1) clone with syntax highlighting and Git integration
 License:        Apache 2.0 or MIT
 URL:            https://github.com/sharkdp/bat
@@ -29,7 +29,7 @@ install -Dpm 644 target/release/build/%{name}-*/out/assets/manual/%{name}.1 %{bu
 
 # completions
 install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
+install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
 install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
@@ -38,10 +38,13 @@ install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.z
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
 %{_datadir}/bash-completion/completions/%{name}
-%{_datadir}/fish/vendor_completions.d/%{name}.fish
+%{_datadir}/fish/completions/%{name}.fish
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Jul 16 2022 cyqsimon - 0.21.0-3
+- Follow Fish completion conventions
+
 * Thu Jul 14 2022 cyqsimon - 0.21.0-2
 - Install Bash completion
 - Follow Zsh completion conventions

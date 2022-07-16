@@ -2,7 +2,7 @@
 
 Name: ripgrep
 Version: 13.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: A search tool that combines the usability of ag with the raw speed of grep
 
 License: MIT or Unlicense
@@ -33,7 +33,7 @@ install -Dpm 644 target/release/build/ripgrep-*/out/rg.1 %{buildroot}%{_mandir}/
 
 # completions
 install -Dpm 644 target/release/build/ripgrep-*/out/rg.bash %{buildroot}%{_datadir}/bash-completion/completions/rg
-install -Dpm 644 target/release/build/ripgrep-*/out/rg.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/rg.fish
+install -Dpm 644 target/release/build/ripgrep-*/out/rg.fish %{buildroot}%{_datadir}/fish/completions/rg.fish
 install -Dpm 644 complete/_rg %{buildroot}%{_datadir}/zsh/site-functions/_rg
 
 %check
@@ -45,10 +45,13 @@ cargo test
 %{_bindir}/rg
 %{_mandir}/man1/rg.1*
 %{_datadir}/bash-completion/completions/rg
-%{_datadir}/fish/vendor_completions.d/rg.fish
+%{_datadir}/fish/completions/rg.fish
 %{_datadir}/zsh/site-functions/_rg
 
 %changelog
+* Sat Jul 16 2022 cyqsimon - 13.0.0-2
+- Follow Fish completion conventions
+
 * Wed Jul 13 2022 cyqsimon - 13.0.0-1
 - Forked from carlwgeorge/ripgrep
 - Release 13.0.0
