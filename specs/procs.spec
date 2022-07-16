@@ -46,7 +46,7 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
 # completions
 install -Dpm 644 %{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dpm 644 %{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
+install -Dpm 644 %{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
 install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
