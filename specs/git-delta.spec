@@ -20,7 +20,7 @@ it allows you to make extensive changes to the layout and styling of diffs,
 as well as allowing you to stay arbitrarily close to the default git/diff output.
 
 %prep
-%autosetup -n %{_bin_name}
+%autosetup -n %{_bin_name}-%{version}
 
 %build
 RUSTFLAGS="-C strip=symbols" cargo build --release
