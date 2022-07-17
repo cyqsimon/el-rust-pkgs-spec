@@ -3,14 +3,14 @@
 
 Name:           ripgrep
 Version:        13.0.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A search tool that combines the usability of ag with the raw speed of grep
 
 License:        MIT or Unlicense
 URL:            https://github.com/BurntSushi/ripgrep
 Source0:        %{url}/archive/%{version}.tar.gz
 
-BuildRequires:  asciidoc cargo rust
+BuildRequires:  asciidoc gcc
 
 %description
 ripgrep is a line-oriented search tool that recursively searches your current
@@ -22,8 +22,18 @@ ack and grep.
 %prep
 %autosetup
 
+# use latest stable version from rustup
+curl -Lfo "rustup.sh" "https://sh.rustup.rs"
+chmod +x "rustup.sh"
+./rustup.sh --profile minimal -y
+
 %build
+source ~/.cargo/env
 RUSTFLAGS="-C strip=symbols" cargo build --release
+
+%check
+source ~/.cargo/env
+cargo test
 
 %install
 # bin
@@ -37,9 +47,6 @@ install -Dpm 644 target/release/build/ripgrep-*/out/%{_bin_name}.bash %{buildroo
 install -Dpm 644 target/release/build/ripgrep-*/out/%{_bin_name}.fish %{buildroot}%{_datadir}/fish/completions/%{_bin_name}.fish
 install -Dpm 644 complete/_%{_bin_name} %{buildroot}%{_datadir}/zsh/site-functions/_%{_bin_name}
 
-%check
-cargo test
-
 %files
 %license COPYING LICENSE-MIT UNLICENSE
 %doc CHANGELOG.md FAQ.md GUIDE.md README.md
@@ -50,6 +57,9 @@ cargo test
 %{_datadir}/zsh/site-functions/_%{_bin_name}
 
 %changelog
+* Sun Jul 17 2022 cyqsimon - 13.0.0-3
+- Always prefer toolchain from rustup
+
 * Sat Jul 16 2022 cyqsimon - 13.0.0-2
 - Follow Fish completion conventions
 

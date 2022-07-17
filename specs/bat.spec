@@ -2,13 +2,13 @@
 
 Name:           bat
 Version:        0.21.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A cat(1) clone with syntax highlighting and Git integration
 License:        Apache-2.0 or MIT
 URL:            https://github.com/sharkdp/bat
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  cargo rust zlib-devel
+BuildRequires:  gcc zlib-devel
 
 %description
 A cat(1) clone which supports syntax highlighting for a large number of
@@ -17,8 +17,18 @@ programming and markup languages. It has git integration and automatic paging.
 %prep
 %autosetup
 
+# use latest stable version from rustup
+curl -Lfo "rustup.sh" "https://sh.rustup.rs"
+chmod +x "rustup.sh"
+./rustup.sh --profile minimal -y
+
 %build
+source ~/.cargo/env
 RUSTFLAGS="-C strip=symbols" cargo build --release
+
+%check
+source ~/.cargo/env
+cargo test
 
 %install
 # bin
@@ -42,6 +52,10 @@ install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.z
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sun Jul 17 2022 cyqsimon - 0.21.0-4
+- Always prefer toolchain from rustup
+- Add check
+
 * Sat Jul 16 2022 cyqsimon - 0.21.0-3
 - Follow Fish completion conventions
 

@@ -31,7 +31,7 @@ each command separately and allows to interact with processes
 # use latest stable version from rustup
 curl -Lfo "rustup.sh" "https://sh.rustup.rs"
 chmod +x "rustup.sh"
-./rustup.sh -y
+./rustup.sh --profile minimal -y
 
 %build
 source ~/.cargo/env

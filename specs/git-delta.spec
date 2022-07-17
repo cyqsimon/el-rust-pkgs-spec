@@ -3,14 +3,14 @@
 
 Name:           git-delta
 Version:        0.13.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A syntax-highlighting pager for git, diff, and grep output
 
 License:        MIT
 URL:            https://github.com/dandavison/delta
 Source0:        %{url}/archive/%{version}.tar.gz
 
-BuildRequires:  cargo git rust
+BuildRequires:  gcc git
 
 %description
 Code evolves, and we all spend time studying diffs.
@@ -22,10 +22,17 @@ as well as allowing you to stay arbitrarily close to the default git/diff output
 %prep
 %autosetup -n %{_bin_name}-%{version}
 
+# use latest stable version from rustup
+curl -Lfo "rustup.sh" "https://sh.rustup.rs"
+chmod +x "rustup.sh"
+./rustup.sh --profile minimal -y
+
 %build
+source ~/.cargo/env
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
+source ~/.cargo/env
 cargo test
 
 %install
@@ -44,5 +51,8 @@ install -Dpm 644 etc/completion/completion.zsh %{buildroot}%{_datadir}/zsh/site-
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sun Jul 17 2022 cyqsimon - 0.13.0-2
+- Always prefer toolchain from rustup
+
 * Sun Jul 17 2022 cyqsimon - 0.13.0-1
 - Release 0.13.0

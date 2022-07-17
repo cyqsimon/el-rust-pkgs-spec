@@ -2,14 +2,14 @@
 
 Name:           fd
 Version:        8.4.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        fd is a simple, fast and user-friendly alternative to find.
 
 License:        Apache-2.0 or MIT
 URL:            https://github.com/sharkdp/fd
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  cargo rust
+BuildRequires:  gcc
 
 %description
 fd is a program to find entries in your filesystem.
@@ -21,10 +21,17 @@ it provides sensible (opinionated) defaults for a majority of use cases.
 %prep
 %autosetup
 
+# use latest stable version from rustup
+curl -Lfo "rustup.sh" "https://sh.rustup.rs"
+chmod +x "rustup.sh"
+./rustup.sh --profile minimal -y
+
 %build
+source ~/.cargo/env
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
+source ~/.cargo/env
 cargo test
 
 %install
@@ -49,6 +56,9 @@ install -Dpm 644 contrib/completion/_%{name} %{buildroot}%{_datadir}/zsh/site-fu
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sun Jul 17 2022 cyqsimon - 8.4.0-4
+- Always prefer toolchain from rustup
+
 * Thu Jul 14 2022 cyqsimon - 8.4.0-3
 - Move Zsh completion to site-functions dir
 

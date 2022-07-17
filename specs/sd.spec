@@ -2,14 +2,14 @@
 
 Name:           sd
 Version:        0.7.6
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Intuitive find & replace CLI (sed alternative)
 
 License:        MIT
 URL:            https://github.com/chmln/sd
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  cargo rust
+BuildRequires:  gcc
 
 %description
 sd is an intuitive find & replace CLI written in Rust that makes
@@ -18,10 +18,17 @@ find and replace using regular expressions fast and easy.
 %prep
 %autosetup
 
+# use latest stable version from rustup
+curl -Lfo "rustup.sh" "https://sh.rustup.rs"
+chmod +x "rustup.sh"
+./rustup.sh --profile minimal -y
+
 %build
+source ~/.cargo/env
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
+source ~/.cargo/env
 cargo test
 
 %install
@@ -46,6 +53,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_data
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sun Jul 17 2022 cyqsimon - 0.7.6-3
+- Always prefer toolchain from rustup
+
 * Thu Jul 14 2022 cyqsimon - 0.7.6-2
 - Move Zsh completions to site-functions dir
 

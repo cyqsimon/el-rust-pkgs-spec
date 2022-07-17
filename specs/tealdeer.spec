@@ -3,14 +3,14 @@
 
 Name:           tealdeer
 Version:        1.5.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A very fast implementation of tldr in Rust
 
 License:        Apache-2.0 or MIT
 URL:            https://github.com/dbrgn/tealdeer
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  cargo rust
+BuildRequires:  gcc
 # tldr from EPEL uses the same binary name.
 # I know it's not recommended to declare Conflicts, but
 # I can't be arsed to patch the completion files.
@@ -23,10 +23,17 @@ Simplified, example based and community-driven man pages.
 %prep
 %autosetup
 
+# use latest stable version from rustup
+curl -Lfo "rustup.sh" "https://sh.rustup.rs"
+chmod +x "rustup.sh"
+./rustup.sh --profile minimal -y
+
 %build
+source ~/.cargo/env
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
+source ~/.cargo/env
 cargo test
 
 %install
@@ -47,5 +54,8 @@ install -Dpm 644 zsh_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sun Jul 17 2022 cyqsimon - 1.5.0-2
+- Always prefer toolchain from rustup
+
 * Fri Jul 15 2022 cyqsimon - 1.5.0-1
 - Release 1.5.0

@@ -3,7 +3,7 @@
 
 Name:           httplz
 Version:        1.12.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A basic HTTP server for hosting a folder fast and simply
 
 License:        MIT
@@ -11,12 +11,10 @@ URL:            https://github.com/thecoshman/http
 Source0:        %{url}/archive/v%{version}.tar.gz
 
 Requires:       bzip2-libs openssl
-BuildRequires:  bzip2-devel cargo openssl-devel rust
+BuildRequires:  bzip2-devel gcc openssl-devel
 # for some inexplicable reason, EL9 doesn't have pandoc
 # so we need to grab the statically-linked binary
-%if 0%{?el9}
-BuildRequires:  curl tar
-%else
+%if ! 0%{?el9}
 BuildRequires:  pandoc
 %endif
 
@@ -28,7 +26,13 @@ such that you do not have to pass parameters like what port to use.
 %prep
 %autosetup -n %{_prj_name}-%{version}
 
+# use latest stable version from rustup
+curl -Lfo "rustup.sh" "https://sh.rustup.rs"
+chmod +x "rustup.sh"
+./rustup.sh --profile minimal -y
+
 %build
+source ~/.cargo/env
 # only build and install the `httplz` binary
 RUSTFLAGS="-C strip=symbols" cargo build --release --bin %{name}
 
@@ -69,6 +73,7 @@ sed -Ei '1i % %{name}(1) v%{version}\n\n## NAME\n' %{name}.md
 pandoc --standalone --from markdown --to man %{name}.md > %{name}.1
 
 %check
+source ~/.cargo/env
 cargo test
 
 %install
@@ -85,5 +90,8 @@ install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Sun Jul 17 2022 cyqsimon - 1.12.5-2
+- Always prefer toolchain from rustup
+
 * Fri Jul 15 2022 cyqsimon - 1.12.5-1
 - Release 1.12.5
