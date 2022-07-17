@@ -8,7 +8,7 @@ Summary: The Modern Port Scanner
 
 License: GPLv3+
 URL: https://github.com/RustScan/RustScan
-Source0: %{url}/archive/%{version}/%{name}-%{version}.tar.gz
+Source0: %{url}/archive/%{version}.tar.gz
 
 Requires: nmap
 BuildRequires: cargo rust
