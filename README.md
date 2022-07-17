@@ -9,6 +9,7 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
 ### Packages
 
 - [bat](https://github.com/sharkdp/bat)
+- [diskus](https://github.com/sharkdp/diskus)
 - [exa](https://github.com/ogham/exa)
 - [fd](https://github.com/sharkdp/fd)
 - [httplz](https://github.com/thecoshman/http)
