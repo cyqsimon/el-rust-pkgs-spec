@@ -1,20 +1,20 @@
 %global debug_package %{nil}
 %global _bin_name tldr
 
-Name:    tealdeer
-Version: 1.5.0
-Release: 1%{?dist}
-Summary: A very fast implementation of tldr in Rust
+Name:           tealdeer
+Version:        1.5.0
+Release:        1%{?dist}
+Summary:        A very fast implementation of tldr in Rust
 
-License: Apache 2.0 or MIT
-URL: https://github.com/dbrgn/tealdeer
-Source0: %{url}/archive/v%{version}.tar.gz
+License:        Apache-2.0 or MIT
+URL:            https://github.com/dbrgn/tealdeer
+Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires: cargo rust
+BuildRequires:  cargo rust
 # tldr from EPEL uses the same binary name.
 # I know it's not recommended to declare Conflicts, but
 # I can't be arsed to patch the completion files.
-Conflicts: tldr
+Conflicts:      tldr
 
 %description
 A very fast implementation of tldr in Rust:

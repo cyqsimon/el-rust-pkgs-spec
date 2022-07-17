@@ -1,15 +1,15 @@
 %global debug_package %{nil}
 
-Name:    garbage
-Version: 0.3.3
-Release: 1%{?dist}
-Summary: Soft-deletion CLI tool with FreeDesktop Trash compatibility
+Name:           garbage
+Version:        0.3.3
+Release:        1%{?dist}
+Summary:        Soft-deletion CLI tool with FreeDesktop Trash compatibility
 
-License: GPLv3
-URL: https://git.sr.ht/~mzhang/garbage
-Source0: %{url}/archive/v%{version}.tar.gz
+License:        GPLv3
+URL:            https://git.sr.ht/~mzhang/garbage
+Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires: cargo git rust
+BuildRequires:  cargo git rust
 
 %description
 Soft-deletion CLI tool with FreeDesktop Trash compatibility.

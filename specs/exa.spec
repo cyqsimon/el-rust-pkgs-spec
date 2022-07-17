@@ -1,25 +1,25 @@
 %global debug_package %{nil}
 
-Name:    exa
-Version: 0.10.1
-Release: 2%{?dist}
-Summary: A modern replacement for ‘ls’.
+Name:           exa
+Version:        0.10.1
+Release:        2%{?dist}
+Summary:        A modern replacement for ‘ls’.
 
-License: MIT
-URL: https://github.com/ogham/exa
-Source0: %{url}/archive/v%{version}.tar.gz
+License:        MIT
+URL:            https://github.com/ogham/exa
+Source0:        %{url}/archive/v%{version}.tar.gz
 
 # on EL7, EPEL's build of rust 1.62.0 cannot successfully
 # compile exa for unknown reasons, so we need to use rustup
 %if ! 0%{?el7}
-BuildRequires: cargo rust
+BuildRequires:  cargo rust
 %endif
 # for some inexplicable reason, EL9 doesn't have pandoc
 # so we need to grab the statically-linked binary
 %if 0%{?el9}
-BuildRequires: curl tar
+BuildRequires:  curl tar
 %else
-BuildRequires: pandoc
+BuildRequires:  pandoc
 %endif
 
 %description

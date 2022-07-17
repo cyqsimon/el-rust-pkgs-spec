@@ -1,16 +1,16 @@
 %global debug_package %{nil}
 %global _bin_name delta
 
-Name:    git-delta
-Version: 0.13.0
-Release: 1%{?dist}
-Summary: A syntax-highlighting pager for git, diff, and grep output
+Name:           git-delta
+Version:        0.13.0
+Release:        1%{?dist}
+Summary:        A syntax-highlighting pager for git, diff, and grep output
 
-License: MIT
-URL: https://github.com/dandavison/delta
-Source0: %{url}/archive/%{version}.tar.gz
+License:        MIT
+URL:            https://github.com/dandavison/delta
+Source0:        %{url}/archive/%{version}.tar.gz
 
-BuildRequires: cargo git rust
+BuildRequires:  cargo git rust
 
 %description
 Code evolves, and we all spend time studying diffs.

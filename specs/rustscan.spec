@@ -1,28 +1,28 @@
 %global debug_package %{nil}
 %global _prj_name RustScan
 
-Name:    rustscan
-Version: 2.1.0
-Release: 1%{?dist}
-Summary: The Modern Port Scanner
+Name:           rustscan
+Version:        2.1.0
+Release:        1%{?dist}
+Summary:        The Modern Port Scanner
 
-License: GPLv3+
-URL: https://github.com/RustScan/RustScan
-Source0: %{url}/archive/%{version}.tar.gz
+License:        GPLv3+
+URL:            https://github.com/RustScan/RustScan
+Source0:        %{url}/archive/%{version}.tar.gz
 
-Requires: nmap
-BuildRequires: cargo rust
+Requires:       nmap
+BuildRequires:  cargo rust
 # python & perl are required to test scripting
 %if 0%{?el7}
-BuildRequires: python36
+BuildRequires:  python36
 %endif
 %if 0%{?el8}
-BuildRequires: python39
+BuildRequires:  python39
 %endif
 %if 0%{?el9}
-BuildRequires: python3
+BuildRequires:  python3
 %endif
-BuildRequires: perl
+BuildRequires:  perl
 
 %description
 The Modern Port Scanner. Find ports quickly (3 seconds at its fastest).

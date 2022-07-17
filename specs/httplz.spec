@@ -1,23 +1,23 @@
 %global debug_package %{nil}
 %global _prj_name http
 
-Name:    httplz
-Version: 1.12.5
-Release: 1%{?dist}
-Summary: A basic HTTP server for hosting a folder fast and simply
+Name:           httplz
+Version:        1.12.5
+Release:        1%{?dist}
+Summary:        A basic HTTP server for hosting a folder fast and simply
 
-License: MIT
-URL: https://github.com/thecoshman/http
-Source0: %{url}/archive/v%{version}.tar.gz
+License:        MIT
+URL:            https://github.com/thecoshman/http
+Source0:        %{url}/archive/v%{version}.tar.gz
 
-Requires: bzip2-libs openssl
-BuildRequires: bzip2-devel cargo openssl-devel rust
+Requires:       bzip2-libs openssl
+BuildRequires:  bzip2-devel cargo openssl-devel rust
 # for some inexplicable reason, EL9 doesn't have pandoc
 # so we need to grab the statically-linked binary
 %if 0%{?el9}
-BuildRequires: curl tar
+BuildRequires:  curl tar
 %else
-BuildRequires: pandoc
+BuildRequires:  pandoc
 %endif
 
 %description

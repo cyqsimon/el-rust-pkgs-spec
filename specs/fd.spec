@@ -1,15 +1,15 @@
 %global debug_package %{nil}
 
-Name:    fd
-Version: 8.4.0
-Release: 3%{?dist}
-Summary: fd is a simple, fast and user-friendly alternative to find.
+Name:           fd
+Version:        8.4.0
+Release:        3%{?dist}
+Summary:        fd is a simple, fast and user-friendly alternative to find.
 
-License: MIT/Apache-2.0
-URL: https://github.com/sharkdp/fd
-Source0: %{url}/archive/v%{version}.tar.gz
+License:        Apache-2.0 or MIT
+URL:            https://github.com/sharkdp/fd
+Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires: cargo rust
+BuildRequires:  cargo rust
 
 %description
 fd is a program to find entries in your filesystem.

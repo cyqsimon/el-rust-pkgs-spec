@@ -1,15 +1,15 @@
 %global debug_package %{nil}
 
-Name:    sd
-Version: 0.7.6
-Release: 2%{?dist}
-Summary: Intuitive find & replace CLI (sed alternative)
+Name:           sd
+Version:        0.7.6
+Release:        2%{?dist}
+Summary:        Intuitive find & replace CLI (sed alternative)
 
-License: MIT
-URL: https://github.com/chmln/sd
-Source0: %{url}/archive/v%{version}.tar.gz
+License:        MIT
+URL:            https://github.com/chmln/sd
+Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires: cargo rust
+BuildRequires:  cargo rust
 
 %description
 sd is an intuitive find & replace CLI written in Rust that makes

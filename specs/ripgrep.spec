@@ -1,16 +1,16 @@
 %global debug_package %{nil}
 %global _bin_name rg
 
-Name: ripgrep
-Version: 13.0.0
-Release: 2%{?dist}
-Summary: A search tool that combines the usability of ag with the raw speed of grep
+Name:           ripgrep
+Version:        13.0.0
+Release:        2%{?dist}
+Summary:        A search tool that combines the usability of ag with the raw speed of grep
 
-License: MIT or Unlicense
-URL: https://github.com/BurntSushi/ripgrep
-Source0: %{url}/archive/%{version}.tar.gz
+License:        MIT or Unlicense
+URL:            https://github.com/BurntSushi/ripgrep
+Source0:        %{url}/archive/%{version}.tar.gz
 
-BuildRequires: asciidoc cargo rust
+BuildRequires:  asciidoc cargo rust
 
 %description
 ripgrep is a line-oriented search tool that recursively searches your current

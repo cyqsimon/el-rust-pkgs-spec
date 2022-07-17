@@ -1,15 +1,15 @@
 %global debug_package %{nil}
 
-Name:    procs
-Version: 0.12.3
-Release: 1%{?dist}
-Summary: A modern replacement for ps written in Rust
+Name:           procs
+Version:        0.12.3
+Release:        1%{?dist}
+Summary:        A modern replacement for ps written in Rust
 
-License: MIT
-URL: https://github.com/dalance/procs
-Source0: %{url}/archive/v%{version}.tar.gz
+License:        MIT
+URL:            https://github.com/dalance/procs
+Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires: cargo rust
+BuildRequires:  cargo rust
 
 %description
 procs is a replacement for ps written in Rust.

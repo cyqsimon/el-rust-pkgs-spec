@@ -1,15 +1,15 @@
 %global debug_package %{nil}
 
-Name:    diskus
-Version: 0.7.0
-Release: 1%{?dist}
-Summary: A minimal, fast alternative to 'du -sh'
+Name:           diskus
+Version:        0.7.0
+Release:        1%{?dist}
+Summary:        A minimal, fast alternative to 'du -sh'
 
-License: Apache 2.0 or MIT
-URL: https://github.com/sharkdp/diskus
-Source0: %{url}/archive/v%{version}.tar.gz
+License:        Apache-2.0 or MIT
+URL:            https://github.com/sharkdp/diskus
+Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires: cargo rust
+BuildRequires:  cargo rust
 
 %description
 diskus is a very simple program that computes the total size
