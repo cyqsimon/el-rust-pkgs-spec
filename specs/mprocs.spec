@@ -9,7 +9,7 @@ License:        MIT
 URL:            https://github.com/pvolok/mprocs
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  cargo rust
+BuildRequires:  gcc
 
 %description
 mprocs runs multiple commands in parallel and shows output of
@@ -28,10 +28,17 @@ each command separately and allows to interact with processes
 %prep
 %autosetup
 
+# use latest stable version from rustup
+curl -Lfo "rustup.sh" "https://sh.rustup.rs"
+chmod +x "rustup.sh"
+./rustup.sh -y
+
 %build
+source ~/.cargo/env
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
+source ~/.cargo/env
 cargo test
 
 %install
