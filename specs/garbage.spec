@@ -17,7 +17,7 @@ Soft-deletion CLI tool with FreeDesktop Trash compatibility.
 Rust version of 'trash-cli'.
 
 %prep
-%autosetup
+%autosetup -n %{name}-v%{version}
 
 %build
 RUSTFLAGS="-C strip=symbols" cargo build --release
