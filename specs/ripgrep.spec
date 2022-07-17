@@ -1,4 +1,5 @@
 %global debug_package %{nil}
+%global _bin_name rg
 
 Name: ripgrep
 Version: 13.0.0
@@ -26,15 +27,15 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %install
 # bin
-install -Dpm 755 target/release/rg %{buildroot}%{_bindir}/rg
+install -Dpm 755 target/release/%{_bin_name} %{buildroot}%{_bindir}/%{_bin_name}
 
 # manpage
-install -Dpm 644 target/release/build/ripgrep-*/out/rg.1 %{buildroot}%{_mandir}/man1/rg.1
+install -Dpm 644 target/release/build/ripgrep-*/out/%{_bin_name}.1 %{buildroot}%{_mandir}/man1/%{_bin_name}.1
 
 # completions
-install -Dpm 644 target/release/build/ripgrep-*/out/rg.bash %{buildroot}%{_datadir}/bash-completion/completions/rg
-install -Dpm 644 target/release/build/ripgrep-*/out/rg.fish %{buildroot}%{_datadir}/fish/completions/rg.fish
-install -Dpm 644 complete/_rg %{buildroot}%{_datadir}/zsh/site-functions/_rg
+install -Dpm 644 target/release/build/ripgrep-*/out/%{_bin_name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{_bin_name}
+install -Dpm 644 target/release/build/ripgrep-*/out/%{_bin_name}.fish %{buildroot}%{_datadir}/fish/completions/%{_bin_name}.fish
+install -Dpm 644 complete/_%{_bin_name} %{buildroot}%{_datadir}/zsh/site-functions/_%{_bin_name}
 
 %check
 cargo test
@@ -42,11 +43,11 @@ cargo test
 %files
 %license COPYING LICENSE-MIT UNLICENSE
 %doc CHANGELOG.md FAQ.md GUIDE.md README.md
-%{_bindir}/rg
-%{_mandir}/man1/rg.1*
-%{_datadir}/bash-completion/completions/rg
-%{_datadir}/fish/completions/rg.fish
-%{_datadir}/zsh/site-functions/_rg
+%{_bindir}/%{_bin_name}
+%{_mandir}/man1/%{_bin_name}.1*
+%{_datadir}/bash-completion/completions/%{_bin_name}
+%{_datadir}/fish/completions/%{_bin_name}.fish
+%{_datadir}/zsh/site-functions/_%{_bin_name}
 
 %changelog
 * Sat Jul 16 2022 cyqsimon - 13.0.0-2

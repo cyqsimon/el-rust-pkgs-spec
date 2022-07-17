@@ -1,4 +1,5 @@
 %global debug_package %{nil}
+%global _prj_name http
 
 Name:    httplz
 Version: 1.12.5
@@ -25,23 +26,23 @@ the current directory and serve it. Everything has sensible defaults
 such that you do not have to pass parameters like what port to use.
 
 %prep
-%autosetup -n http-%{version}
+%autosetup -n %{_prj_name}-%{version}
 
 %build
 # only build and install the `httplz` binary
 RUSTFLAGS="-C strip=symbols" cargo build --release --bin %{name}
 
 # rename man page markdown
-mv http.md %{name}.md
+mv %{_prj_name}.md %{name}.md
 # patch man page markdown
 ## rename all instances of `http` to `httplz`
-sed -Ei 's/http\(1\)/httplz(1)/g' %{name}.md
-sed -Ei 's/`http`/`httplz`/g' %{name}.md
-sed -Ei 's/`http /`httplz /g' %{name}.md
+sed -Ei 's/%{_prj_name}\(1\)/%{name}(1)/g' %{name}.md
+sed -Ei 's/`%{_prj_name}`/`%{name}`/g' %{name}.md
+sed -Ei 's/`%{_prj_name} /`%{name} /g' %{name}.md
 ## remove opening header
 sed -Ei '/={3,}$/d' %{name}.md
 ## add header in a format acceptable to pandoc
-sed -Ei '1i % httplz(1) v%{version}\n\n## NAME\n' %{name}.md
+sed -Ei '1i % %{name}(1) v%{version}\n\n## NAME\n' %{name}.md
 
 # if EL9, get the static binary and add its directory to PATH
 %if 0%{?el9}

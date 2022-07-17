@@ -1,4 +1,5 @@
 %global debug_package %{nil}
+%global _bin_name tldr
 
 Name:    tealdeer
 Version: 1.5.0
@@ -30,7 +31,7 @@ cargo test
 
 %install
 # bin
-install -Dpm 755 target/release/tldr %{buildroot}%{_bindir}/tldr
+install -Dpm 755 target/release/%{_bin_name} %{buildroot}%{_bindir}/%{_bin_name}
 
 # completions
 install -Dpm 644 bash_%{name} %{buildroot}%{_datadir}/bash-completion/completions/%{name}
@@ -40,7 +41,7 @@ install -Dpm 644 zsh_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %files
 %license LICENSE-APACHE LICENSE-MIT
 %doc CHANGELOG.md README.md RELEASING.md
-%{_bindir}/tldr
+%{_bindir}/%{_bin_name}
 %{_datadir}/bash-completion/completions/%{name}
 %{_datadir}/fish/completions/%{name}.fish
 %{_datadir}/zsh/site-functions/_%{name}

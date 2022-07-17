@@ -1,4 +1,5 @@
 %global debug_package %{nil}
+%global _prj_name RustScan
 
 Name:    rustscan
 Version: 2.1.0
@@ -28,7 +29,7 @@ The Modern Port Scanner. Find ports quickly (3 seconds at its fastest).
 Run scripts through our scripting engine (Python, Lua, Shell supported).
 
 %prep
-%autosetup -n RustScan-%{version}
+%autosetup -n %{_prj_name}-%{version}
 
 %build
 RUSTFLAGS="-C strip=symbols" cargo build --release
