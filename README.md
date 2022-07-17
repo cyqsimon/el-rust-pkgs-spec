@@ -19,15 +19,15 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
     <tr>
         <td align="center"><a href="https://github.com/dandavison/delta">git-delta</a></td>
         <td align="center"><a href="https://github.com/thecoshman/http">httplz</a></td>
+        <td align="center"><a href="https://github.com/pvolok/mprocs">mprocs</a></td>
         <td align="center"><a href="https://github.com/dalance/procs">procs</a></td>
         <td align="center"><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a></td>
-        <td align="center"><a href="https://github.com/RustScan/RustScan">rustscan</a></td>
     </tr>
     <tr>
+        <td align="center"><a href="https://github.com/RustScan/RustScan">rustscan</a></td>
         <td align="center"><a href="https://github.com/chmln/sd">sd</a></td>
         <td align="center"><a href="https://github.com/dbrgn/tealdeer">tealdeer</a></td>
         <td align="center">More to come</td>
-        <td align="center"></td>
         <td align="center"></td>
     </tr>
     <tr>
