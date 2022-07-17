@@ -45,7 +45,7 @@ target/release/%{name} --completion zsh
 
 %check
 source ~/.cargo/env
-cargo test
+cargo test --release
 
 %install
 # bin

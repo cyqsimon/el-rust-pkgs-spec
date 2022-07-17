@@ -62,7 +62,7 @@ pandoc --standalone -f markdown -t man man/exa_colors.5.md > exa_colors.5
 
 %check
 source ~/.cargo/env
-cargo test
+cargo test --release
 
 %install
 # bin

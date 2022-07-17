@@ -74,7 +74,7 @@ pandoc --standalone --from markdown --to man %{name}.md > %{name}.1
 
 %check
 source ~/.cargo/env
-cargo test
+cargo test --release
 
 %install
 # bin

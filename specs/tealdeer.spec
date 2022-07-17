@@ -34,7 +34,7 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test
+cargo test --release
 
 %install
 # bin
