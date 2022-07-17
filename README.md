@@ -12,6 +12,7 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
 - [diskus](https://github.com/sharkdp/diskus)
 - [exa](https://github.com/ogham/exa)
 - [fd](https://github.com/sharkdp/fd)
+- [git-delta](https://github.com/dandavison/delta)
 - [httplz](https://github.com/thecoshman/http)
 - [procs](https://github.com/dalance/procs)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
