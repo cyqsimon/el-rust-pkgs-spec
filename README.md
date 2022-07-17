@@ -8,7 +8,7 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
 
 ### Packages
 
-<table width="100%">
+<table>
     <tr>
         <td align="center"><a href="https://github.com/sharkdp/bat">bat</a></td>
         <td align="center"><a href="https://github.com/sharkdp/diskus">diskus</a></td>
@@ -25,14 +25,19 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
     </tr>
     <tr>
         <td align="center"><a href="https://github.com/dbrgn/tealdeer">tealdeer</a></td>
-        <td align="center"></td>
+        <td align="center">More to come</td>
         <td align="center"></td>
         <td align="center"></td>
         <td align="center"></td>
     </tr>
+    <tr>
+        <td align="center"><img width=200/></td>
+        <td align="center"><img width=200/></td>
+        <td align="center"><img width=200/></td>
+        <td align="center"><img width=200/></td>
+        <td align="center"><img width=200/></td>
+    </tr>
 </table>
-
-More to come
 
 ### Package requests
 
