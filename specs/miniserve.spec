@@ -46,7 +46,13 @@ target/release/%{name} --print-completions zsh > %{name}.zsh
 
 %check
 source ~/.cargo/env
-cargo test --release
+%if 0%{?el7}
+    # this test fails on EL7 because its curl does not have
+    # the `--path-as-is` argument
+    cargo test --release -- --skip cant_navigate_up_the_root
+%else
+    cargo test --release
+%endif
 
 %install
 # bin
