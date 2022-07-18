@@ -11,7 +11,7 @@ URL:            https://github.com/thecoshman/http
 Source0:        %{url}/archive/v%{version}.tar.gz
 
 Requires:       bzip2-libs openssl
-BuildRequires:  bzip2-devel gcc openssl-devel
+BuildRequires:  gcc pkgconfig(bzip2) pkgconfig(openssl)
 # for some inexplicable reason, EL9 doesn't have pandoc
 # so we need to grab the statically-linked binary
 %if ! 0%{?el9}

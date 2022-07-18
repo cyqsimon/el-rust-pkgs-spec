@@ -8,7 +8,7 @@ License:        Apache-2.0 or MIT
 URL:            https://github.com/sharkdp/bat
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  gcc zlib-devel
+BuildRequires:  gcc pkgconfig(zlib)
 
 %description
 A cat(1) clone which supports syntax highlighting for a large number of
