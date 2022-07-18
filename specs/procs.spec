@@ -31,7 +31,7 @@ Features:
 %autosetup
 
 # use latest stable version from rustup
-curl -Lfo "https://sh.rustup.rs" | sh -s -- --profile minimal -y
+curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env

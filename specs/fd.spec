@@ -22,7 +22,7 @@ it provides sensible (opinionated) defaults for a majority of use cases.
 %autosetup
 
 # use latest stable version from rustup
-curl -Lfo "https://sh.rustup.rs" | sh -s -- --profile minimal -y
+curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env

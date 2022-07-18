@@ -27,7 +27,7 @@ such that you do not have to pass parameters like what port to use.
 %autosetup -n %{_prj_name}-%{version}
 
 # use latest stable version from rustup
-curl -Lfo "https://sh.rustup.rs" | sh -s -- --profile minimal -y
+curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
