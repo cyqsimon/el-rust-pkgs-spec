@@ -1,8 +1,9 @@
 %global debug_package %{nil}
+%global _unitdir %{_prefix}/lib/systemd/system
 
 Name:           miniserve
 Version:        0.20.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CLI tool to serve files and dirs over HTTP
 
 License:        MIT
@@ -45,6 +46,9 @@ cargo test --release
 # bin
 install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
+# unit
+install -Dpm 644 packaging/%{name}@.service %{buildroot}%{_unitdir}/%{name}@.service
+
 # manpage
 install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 
@@ -57,11 +61,15 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %license LICENSE
 %doc CHANGELOG.md README.md
 %{_bindir}/%{name}
+%{_unitdir}/%{name}@.service
 %{_mandir}/man1/%{name}.1*
 %{_datadir}/bash-completion/completions/%{name}
 %{_datadir}/fish/completions/%{name}.fish
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Jul 19 2022 cyqsimon - 0.20.0-2
+- Install unit file
+
 * Mon Jul 18 2022 cyqsimon - 0.20.0-1
 - Release 0.20.0
