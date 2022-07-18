@@ -11,7 +11,13 @@ URL:            https://github.com/svenstaro/miniserve
 Source0:        %{url}/archive/v%{version}.tar.gz
 
 Requires:       bzip2-libs
-BuildRequires:  gcc pkgconfig(bzip2)
+BuildRequires:  gcc
+# pkpconfig(bzip2) fails on EL7 for unknown reasons
+%if 0%{?el7}
+BuildRequires: bzip2-devel
+%else
+BuildRequires: pkgconfig(bzip2)
+%endif
 
 %description
 For when you really just want to serve some files over HTTP right now!
