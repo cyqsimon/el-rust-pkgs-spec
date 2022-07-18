@@ -19,9 +19,7 @@ find and replace using regular expressions fast and easy.
 %autosetup
 
 # use latest stable version from rustup
-curl -Lfo "rustup.sh" "https://sh.rustup.rs"
-chmod +x "rustup.sh"
-./rustup.sh --profile minimal -y
+curl -Lfo "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env

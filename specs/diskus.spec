@@ -22,9 +22,7 @@ cold disk cache and more than three times faster with a warm disk cache.
 %autosetup
 
 # use latest stable version from rustup
-curl -Lfo "rustup.sh" "https://sh.rustup.rs"
-chmod +x "rustup.sh"
-./rustup.sh --profile minimal -y
+curl -Lfo "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
