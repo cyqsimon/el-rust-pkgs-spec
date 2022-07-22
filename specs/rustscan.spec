@@ -13,14 +13,11 @@ Source0:        %{url}/archive/%{version}.tar.gz
 Requires:       nmap
 BuildRequires:  gcc
 # python & perl are required to test scripting
-%if 0%{?el7}
-BuildRequires:  python36
+%if 0%{?el7} || 0%{?el9}
+BuildRequires:  python3
 %endif
 %if 0%{?el8}
 BuildRequires:  python39
-%endif
-%if 0%{?el9}
-BuildRequires:  python3
 %endif
 BuildRequires:  perl
 
