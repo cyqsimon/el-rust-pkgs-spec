@@ -9,6 +9,7 @@ License:        MIT
 URL:            https://github.com/ouch-org/ouch
 Source0:        %{url}/archive/%{version}.tar.gz
 
+BuildRequires:  pkgconfig(bzip2) pkgconfig(libzstd) pkgconfig(xz) pkgconfig(zlib)
 BuildRequires:  gcc
 # See https://github.com/ouch-org/ouch/issues/256
 %if 0%{?el8}
