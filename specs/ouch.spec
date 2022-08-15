@@ -64,7 +64,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/completions/_%{name} %{build
 
 %files
 %license LICENSE
-%doc CHANGELOG.md README.md
+# CHANGELOG.md created after v0.3.1
+#%doc CHANGELOG.md README.md
+%doc README.md
 %{_bindir}/%{name}
 %{_datadir}/bash-completion/completions/%{name}
 %{_datadir}/fish/completions/%{name}.fish
