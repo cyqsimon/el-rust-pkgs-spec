@@ -9,11 +9,19 @@ License:        MIT
 URL:            https://github.com/ouch-org/ouch
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 
-BuildRequires:  pkgconfig(bzip2) pkgconfig(libzstd) pkgconfig(xz) pkgconfig(zlib)
-BuildRequires:  gcc
 # See https://github.com/ouch-org/ouch/issues/256
 %if 0%{?el8}
 BuildRequires:  gcc-toolset-11
+%else
+BuildRequires:  gcc
+%endif
+
+BuildRequires:  pkgconfig(liblzma) pkgconfig(libzstd) pkgconfig(zlib)
+# EL7's bzip2-devel does not include bzip2.pc
+%if 0%{?rhel} >= 8
+BuildRequires:  pkgconfig(bzip2)
+%else
+BuildRequires:  bzip2-devel
 %endif
 
 %description
