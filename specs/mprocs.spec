@@ -37,7 +37,9 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test --release
+# see https://github.com/pvolok/mprocs/issues/50
+#cargo test --release
+cargo test --release --workspace --exclude mprocs-vt100
 
 %install
 # bin
