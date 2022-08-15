@@ -7,7 +7,7 @@ Summary:        Painless compression and decompression for your terminal
 
 License:        MIT
 URL:            https://github.com/ouch-org/ouch
-Source0:        %{url}/archive/%{version}.tar.gz
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 
 BuildRequires:  pkgconfig(bzip2) pkgconfig(libzstd) pkgconfig(xz) pkgconfig(zlib)
 BuildRequires:  gcc
