@@ -5,7 +5,7 @@ Version:        0.7.0
 Release:        2%{?dist}
 Summary:        A minimal, fast alternative to 'du -sh'
 
-License:        Apache-2.0 or MIT
+License:        ASL 2.0 or MIT
 URL:            https://github.com/sharkdp/diskus
 Source0:        %{url}/archive/v%{version}.tar.gz
 

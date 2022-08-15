@@ -6,7 +6,7 @@ Version:        1.5.0
 Release:        2%{?dist}
 Summary:        A very fast implementation of tldr in Rust
 
-License:        Apache-2.0 or MIT
+License:        ASL 2.0 or MIT
 URL:            https://github.com/dbrgn/tealdeer
 Source0:        %{url}/archive/v%{version}.tar.gz
 

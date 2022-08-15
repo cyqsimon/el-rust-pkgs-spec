@@ -4,7 +4,7 @@ Name:           bat
 Version:        0.21.0
 Release:        4%{?dist}
 Summary:        A cat(1) clone with syntax highlighting and Git integration
-License:        Apache-2.0 or MIT
+License:        ASL 2.0 or MIT
 URL:            https://github.com/sharkdp/bat
 Source0:        %{url}/archive/v%{version}.tar.gz
 

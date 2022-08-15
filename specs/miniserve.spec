@@ -3,16 +3,15 @@
 
 Name:           miniserve
 Version:        0.20.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        CLI tool to serve files and dirs over HTTP
 
 License:        MIT
 URL:            https://github.com/svenstaro/miniserve
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-Requires:       bzip2-libs
 BuildRequires:  gcc
-# pkpconfig(bzip2) fails on EL7 for unknown reasons
+# EL7's bzip2-devel does not include bzip2.pc
 %if 0%{?el7}
 BuildRequires: bzip2-devel
 %else
@@ -22,9 +21,9 @@ BuildRequires: pkgconfig(bzip2)
 %description
 For when you really just want to serve some files over HTTP right now!
 
-miniserve is a small, self-contained cross-platform CLI tool
-that allows you to just grab the binary and serve some file(s) via HTTP.
-Sometimes this is just a more practical and quick way than doing things properly.
+miniserve is a small, self-contained cross-platform CLI tool that allows you
+to just grab the binary and serve some file(s) via HTTP. Sometimes this is
+just a more practical and quick way than doing things properly.
 
 %prep
 %autosetup
@@ -80,6 +79,9 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Aug 16 2022 cyqsimon - 0.20.0-3
+- Undeclare explicit Requires: bzip2-libs
+
 * Tue Jul 19 2022 cyqsimon - 0.20.0-2
 - Install unit file
 

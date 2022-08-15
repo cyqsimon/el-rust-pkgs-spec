@@ -3,7 +3,7 @@
 Name:           exa
 Version:        0.10.1
 Release:        3%{?dist}
-Summary:        A modern replacement for ‘ls’.
+Summary:        A modern replacement for ‘ls’
 
 License:        MIT
 URL:            https://github.com/ogham/exa

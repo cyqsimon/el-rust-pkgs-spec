@@ -3,16 +3,16 @@
 
 Name:           httplz
 Version:        1.12.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A basic HTTP server for hosting a folder fast and simply
 
 License:        MIT
 URL:            https://github.com/thecoshman/http
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-Requires:       bzip2-libs openssl
+Requires:       openssl
 BuildRequires:  gcc pkgconfig(openssl)
-# pkpconfig(bzip2) fails on EL7 for unknown reasons
+# EL7's bzip2-devel does not include bzip2.pc
 %if 0%{?el7}
 BuildRequires: bzip2-devel
 %else
@@ -94,6 +94,9 @@ install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Tue Aug 16 2022 cyqsimon - 1.12.5-3
+- Undeclare explicit Requires: bzip2-libs
+
 * Sun Jul 17 2022 cyqsimon - 1.12.5-2
 - Always prefer toolchain from rustup
 

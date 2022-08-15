@@ -3,9 +3,9 @@
 Name:           fd
 Version:        8.4.0
 Release:        4%{?dist}
-Summary:        fd is a simple, fast and user-friendly alternative to find.
+Summary:        A simple, fast and user-friendly alternative to find
 
-License:        Apache-2.0 or MIT
+License:        ASL 2.0 or MIT
 URL:            https://github.com/sharkdp/fd
 Source0:        %{url}/archive/v%{version}.tar.gz
 
