@@ -1,5 +1,4 @@
 %global debug_package %{nil}
-%global _unitdir %{_prefix}/lib/systemd/system
 
 Name:           miniserve
 Version:        0.20.0
