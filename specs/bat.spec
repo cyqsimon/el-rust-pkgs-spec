@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           bat
-Version:        0.21.0
-Release:        4%{?dist}
+Version:        0.22.0
+Release:        1%{?dist}
 Summary:        A cat(1) clone with syntax highlighting and Git integration
 License:        ASL 2.0 or MIT
 URL:            https://github.com/sharkdp/bat
@@ -50,6 +50,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.z
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Thu Sep 08 2022 cyqsimon - 0.22.0-1
+- Release 0.22.0
+
 * Sun Jul 17 2022 cyqsimon - 0.21.0-4
 - Always prefer toolchain from rustup
 - Add check
