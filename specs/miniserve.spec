@@ -9,7 +9,7 @@ License:        MIT
 URL:            https://github.com/svenstaro/miniserve
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  gcc
+BuildRequires:  gcc systemd-rpm-macros
 # EL7's bzip2-devel does not include bzip2.pc
 %if 0%{?el7}
 BuildRequires: bzip2-devel
