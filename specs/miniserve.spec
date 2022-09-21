@@ -2,7 +2,7 @@
 
 Name:           miniserve
 Version:        0.22.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CLI tool to serve files and dirs over HTTP
 
 License:        MIT
@@ -45,9 +45,14 @@ target/release/%{name} --print-completions zsh > %{name}.zsh
 %check
 source ~/.cargo/env
 %if 0%{?el7}
-    # this test fails on EL7 because its curl does not have
-    # the `--path-as-is` argument
-    cargo test --release -- --skip cant_navigate_up_the_root
+    # some tests fail on EL7
+    # cant_navigate_up_the_root: EL7 curl lacks `--path-as-is` argument
+    # qrcode_shown_in_tty_when_enabled: `fake-tty` timeout
+    # qrcode_hidden_in_tty_when_disabled: `fake-tty` timeout
+    cargo test --release -- \
+        --skip cant_navigate_up_the_root \
+        --skip qrcode_shown_in_tty_when_enabled \
+        --skip qrcode_hidden_in_tty_when_disabled
 %else
     cargo test --release
 %endif
@@ -78,6 +83,9 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Sep 21 2022 cyqsimon - 0.22.0-2
+- Disable broken qrcode tests for EL7
+
 * Wed Sep 21 2022 cyqsimon - 0.22.0-1
 - Release 0.22.0
 
