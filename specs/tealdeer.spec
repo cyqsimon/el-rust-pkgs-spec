@@ -2,8 +2,8 @@
 %global _bin_name tldr
 
 Name:           tealdeer
-Version:        1.5.0
-Release:        2%{?dist}
+Version:        1.6.0
+Release:        1%{?dist}
 Summary:        A very fast implementation of tldr in Rust
 
 License:        ASL 2.0 or MIT
@@ -39,9 +39,9 @@ cargo test --release
 install -Dpm 755 target/release/%{_bin_name} %{buildroot}%{_bindir}/%{_bin_name}
 
 # completions
-install -Dpm 644 bash_%{name} %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dpm 644 fish_%{name} %{buildroot}%{_datadir}/fish/completions/%{name}.fish
-install -Dpm 644 zsh_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
+install -Dpm 644 completion/bash_%{name} %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dpm 644 completion/fish_%{name} %{buildroot}%{_datadir}/fish/completions/%{name}.fish
+install -Dpm 644 completion/zsh_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
 %license LICENSE-APACHE LICENSE-MIT
@@ -52,6 +52,9 @@ install -Dpm 644 zsh_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Oct 05 2022 cyqsimon - 1.6.0-1
+- Release 1.6.0
+
 * Sun Jul 17 2022 cyqsimon - 1.5.0-2
 - Always prefer toolchain from rustup
 
