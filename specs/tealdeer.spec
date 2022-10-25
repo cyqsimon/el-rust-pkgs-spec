@@ -2,7 +2,7 @@
 %global _bin_name tldr
 
 Name:           tealdeer
-Version:        1.6.0
+Version:        1.6.1
 Release:        1%{?dist}
 Summary:        A very fast implementation of tldr in Rust
 
@@ -52,6 +52,9 @@ install -Dpm 644 completion/zsh_%{name} %{buildroot}%{_datadir}/zsh/site-functio
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Oct 25 2022 cyqsimon - 1.6.1-1
+- Release 1.6.1
+
 * Wed Oct 05 2022 cyqsimon - 1.6.0-1
 - Release 1.6.0
 
