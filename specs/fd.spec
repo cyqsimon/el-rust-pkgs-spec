@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           fd
-Version:        8.4.0
-Release:        4%{?dist}
+Version:        8.5.0
+Release:        1%{?dist}
 Summary:        A simple, fast and user-friendly alternative to find
 
 License:        ASL 2.0 or MIT
@@ -28,6 +28,10 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 source ~/.cargo/env
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
+# generate completions
+target/release/%{name} --gen-completions bash > %{name}.bash
+target/release/%{name} --gen-completions fish > %{name}.fish
+
 %check
 source ~/.cargo/env
 cargo test --release
@@ -40,8 +44,8 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 install -Dpm 644 doc/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 
 # completions
-install -Dpm 644 target/release/build/fd-find-*/out/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dpm 644 target/release/build/fd-find-*/out/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
+install -Dpm 644 %{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dpm 644 %{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
 install -Dpm 644 contrib/completion/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
@@ -54,6 +58,9 @@ install -Dpm 644 contrib/completion/_%{name} %{buildroot}%{_datadir}/zsh/site-fu
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Nov 02 2022 cyqsimon - 8.5.0-1
+- Release 8.5.0
+
 * Sun Jul 17 2022 cyqsimon - 8.4.0-4
 - Always prefer toolchain from rustup
 
