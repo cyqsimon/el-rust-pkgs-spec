@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           garbage
-Version:        0.4.0
+Version:        0.4.1
 Release:        1%{?dist}
 Summary:        Soft-deletion CLI tool with FreeDesktop Trash compatibility
 
@@ -53,6 +53,9 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Thu Nov 03 2022 cyqsimon - 0.4.1-1
+- Release 0.4.1
+
 * Sun Oct 30 2022 cyqsimon - 0.4.0-1
 - Release 0.4.0
 - Install shell completions
