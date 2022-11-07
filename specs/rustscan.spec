@@ -2,8 +2,8 @@
 %global _prj_name RustScan
 
 Name:           rustscan
-Version:        2.1.0
-Release:        2%{?dist}
+Version:        2.1.1
+Release:        1%{?dist}
 Summary:        The Modern Port Scanner
 
 License:        GPLv3+
@@ -49,6 +49,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Mon Nov 07 2022 cyqsimon - 2.1.1-1
+- Release 2.1.1
+
 * Sun Jul 17 2022 cyqsimon - 2.1.0-2
 - Always prefer toolchain from rustup
 
