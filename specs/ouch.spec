@@ -58,21 +58,23 @@ cargo test --release
 # bin
 install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
+cd %{artifact_dir}
+
 # man pages
 mkdir -pm 755 %{buildroot}%{_mandir}/man1
-install -Dpm 644 -t %{buildroot}%{_mandir}/man1 %{artifact_dir}/%{name}{,-compress,-decompress,-list}.1
+install -Dpm 644 -t %{buildroot}%{_mandir}/man1 %{name}{,-compress,-decompress,-list}.1
 
 # completions
-install -Dpm 644 %{artifact_dir}/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dpm 644 %{artifact_dir}/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
-install -Dpm 644 %{artifact_dir}/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
+install -Dpm 644 %{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dpm 644 %{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
+install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
 %license LICENSE
 %doc CHANGELOG.md README.md
 %{_bindir}/%{name}
-%{_mandir}/man1/%{name}.1
-%{_mandir}/man1/%{name}-*.1
+%{_mandir}/man1/%{name}.1*
+%{_mandir}/man1/%{name}-*.1*
 %{_datadir}/bash-completion/completions/%{name}
 %{_datadir}/fish/completions/%{name}.fish
 %{_datadir}/zsh/site-functions/_%{name}
