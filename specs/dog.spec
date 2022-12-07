@@ -11,11 +11,11 @@ Source0:        %{url}/archive/v%{version}.tar.gz
 
 BuildRequires:  gcc
 %if 0%{?rhel} >= 9
-BuildRequires:  rubygem-ronn-ng
+BuildRequires:  compat-openssl11 rubygem-ronn-ng
 %else
 # rubygem-ronn on EL7 is provided by Springdale Computational
 # this repository is added to the EL7 chroot on Copr
-BuildRequires:  rubygem-ronn
+BuildRequires:  pkgconfig(openssl) rubygem-ronn
 %endif
 
 %description
