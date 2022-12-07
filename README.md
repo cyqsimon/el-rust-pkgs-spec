@@ -34,8 +34,8 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
         <td align="center"><a href="https://github.com/RustScan/RustScan">rustscan</a></td>
         <td align="center"><a href="https://github.com/chmln/sd">sd</a></td>
         <td align="center"><a href="https://github.com/dbrgn/tealdeer">tealdeer</a></td>
+        <td align="center"><a href="https://github.com/XAMPPRocky/tokei">tokei</a></td>
         <td align="center">More to come</td>
-        <td align="center"></td>
     </tr>
     <tr>
         <td align="center"><img width=200/></td>
