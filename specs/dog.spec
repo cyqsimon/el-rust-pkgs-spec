@@ -7,15 +7,16 @@ Summary:        A command-line DNS client
 
 License:        EUPL 1.2
 URL:            https://github.com/ogham/dog
-Source0:        %{url}/archive/v%{version}.tar.gz
+# Temporarily using my patched fork since the sole owner/maintainer is MIA
+Source0:        https://github.com/cyqsimon/dog/archive/v0.1.0-patched.tar.gz
 
-BuildRequires:  gcc
+BuildRequires:  gcc pkgconfig(openssl)
 %if 0%{?rhel} >= 9
-BuildRequires:  compat-openssl11 rubygem-ronn-ng
+BuildRequires:  rubygem-ronn-ng
 %else
 # rubygem-ronn on EL7 is provided by Springdale Computational
 # this repository is added to the EL7 chroot on Copr
-BuildRequires:  pkgconfig(openssl) rubygem-ronn
+BuildRequires:  rubygem-ronn
 %endif
 
 %description
@@ -26,7 +27,8 @@ understands normal command-line argument syntax, supports the DNS-over-TLS
 and DNS-over-HTTPS protocols, and can emit JSON.
 
 %prep
-%autosetup
+# TEMP: remove `-n` when personal fork is no longer used
+%autosetup -n "dog-0.1.0-patched"
 
 # use latest stable version from rustup
 curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
