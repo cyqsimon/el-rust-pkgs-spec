@@ -14,7 +14,12 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
         <td align="center"><a href="https://github.com/imsnif/bandwhich">bandwhich</a></td>
         <td align="center"><a href="https://github.com/sharkdp/bat">bat</a></td>
         <td align="center"><a href="https://github.com/sharkdp/diskus">diskus</a></td>
-        <td align="center"><a href="https://github.com/ogham/dog">dog</a></td>
+        <td align="center">
+            <a href="https://github.com/ogham/dog">dog</a>
+            <span>(</span>
+            <a href="https://github.com/cyqsimon/dog/releases/tag/v0.1.0-patched">patched</a>
+            <span>)</span>
+        </td>
     </tr>
     <tr>
         <td align="center"><a href="https://github.com/ogham/exa">exa</a></td>
