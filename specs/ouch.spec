@@ -2,7 +2,7 @@
 %global artifact_dir artifacts
 
 Name:           ouch
-Version:        0.4.0
+Version:        0.4.1
 Release:        1%{?dist}
 Summary:        Painless compression and decompression for your terminal
 
@@ -80,6 +80,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Fri Jan 06 2023 cyqsimon - 0.4.1-1
+- Release 0.4.1
+
 * Fri Nov 25 2022 cyqsimon - 0.4.0-1
 - Release 0.4.0
 - Use GCC12 on EL8
