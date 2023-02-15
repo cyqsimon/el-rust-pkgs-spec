@@ -9,7 +9,7 @@ License:        MIT OR Unlicense
 URL:            https://github.com/sstadick/hck
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  gcc
+BuildRequires:  cmake gcc
 
 %description
 hck is a shortening of hack, a rougher form of cut.
