@@ -44,7 +44,7 @@ cargo test --release
 install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
 %files
-%license LICENSE UNLICENSE
+%license LICENSE-MIT UNLICENSE
 %doc README.md
 %{_bindir}/%{name}
 
