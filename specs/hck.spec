@@ -9,7 +9,12 @@ License:        MIT OR Unlicense
 URL:            https://github.com/sstadick/hck
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  cmake gcc
+BuildRequires:  gcc
+%if 0%{?rhel} >= 8
+BuildRequires:  cmake
+%else
+BuildRequires:  cmake3
+%endif
 
 %description
 hck is a shortening of hack, a rougher form of cut.
@@ -27,6 +32,12 @@ filling a gap between cut and awk.
 
 %prep
 %autosetup
+
+%if 0%{?rhel} < 8
+# symlink cmake3 to cmake
+mkdir -p "$HOME/.local/bin"
+ln -s "/usr/bin/cmake3" "$HOME/.local/bin/cmake"
+%endif
 
 # use latest stable version from rustup
 curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
