@@ -33,7 +33,10 @@ done
 
 %check
 source ~/.cargo/env
-cargo test --release
+# these tests should be disabled; see https://github.com/ellie/atuin/pull/736
+cargo test --release -- \
+    --skip index_of_panics_on_out_of_bounds \
+    --skip pos_of_panics_on_out_of_bounds
 
 %install
 # bin
