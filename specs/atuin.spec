@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           atuin
-Version:        13.0.0
+Version:        13.0.1
 Release:        1%{?dist}
 Summary:        Magical shell history
 
@@ -33,10 +33,7 @@ done
 
 %check
 source ~/.cargo/env
-# these tests should be disabled; see https://github.com/ellie/atuin/pull/736
-cargo test --release -- \
-    --skip index_of_panics_on_out_of_bounds \
-    --skip pos_of_panics_on_out_of_bounds
+cargo test --release
 
 %install
 # bin
@@ -56,6 +53,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Mar 01 2023 cyqsimon - 13.0.1-1
+- Release 13.0.1
+
 * Mon Feb 27 2023 cyqsimon - 13.0.0-1
 - Release 13.0.0
 
