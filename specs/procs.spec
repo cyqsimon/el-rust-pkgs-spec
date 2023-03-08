@@ -37,9 +37,9 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 source ~/.cargo/env
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
-target/release/%{name} --completion bash
-target/release/%{name} --completion fish
-target/release/%{name} --completion zsh
+target/release/%{name} --gen-completion bash
+target/release/%{name} --gen-completion fish
+target/release/%{name} --gen-completion zsh
 
 %check
 source ~/.cargo/env
