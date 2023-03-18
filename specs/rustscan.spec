@@ -3,7 +3,7 @@
 
 Name:           rustscan
 Version:        2.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The Modern Port Scanner
 
 License:        GPLv3+
@@ -37,7 +37,7 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -49,6 +49,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 2.1.1-2
+- Run tests in debug mode
+
 * Mon Nov 07 2022 cyqsimon - 2.1.1-1
 - Release 2.1.1
 

@@ -2,7 +2,7 @@
 
 Name:           garbage
 Version:        0.4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Soft-deletion CLI tool with FreeDesktop Trash compatibility
 
 License:        GPLv3
@@ -33,7 +33,7 @@ target/release/%{name} generate-completions zsh > %{name}.zsh
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test --workspace
 
 %install
 # bin
@@ -53,6 +53,10 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 0.4.1-2
+- Run tests in debug mode
+- Enable tests for workspace members
+
 * Thu Nov 03 2022 cyqsimon - 0.4.1-1
 - Release 0.4.1
 

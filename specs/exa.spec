@@ -2,7 +2,7 @@
 
 Name:           exa
 Version:        0.10.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A modern replacement for ‘ls’
 
 License:        MIT
@@ -60,7 +60,7 @@ pandoc --standalone -f markdown -t man man/exa_colors.5.md > exa_colors.5
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -89,6 +89,9 @@ install -Dpm 644 completions/completions.zsh  %{buildroot}%{_datadir}/zsh/site-f
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 0.10.1-4
+- Run tests in debug mode
+
 * Sun Jul 17 2022 cyqsimon - 0.10.1-3
 - Always prefer toolchain from rustup
 

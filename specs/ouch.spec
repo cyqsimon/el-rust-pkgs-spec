@@ -3,7 +3,7 @@
 
 Name:           ouch
 Version:        0.4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Painless compression and decompression for your terminal
 
 License:        MIT
@@ -52,7 +52,7 @@ RUSTFLAGS="-C strip=symbols" OUCH_ARTIFACTS_FOLDER=%{artifact_dir} cargo build -
 %endif
 
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -80,6 +80,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 0.4.1-2
+- Run tests in debug mode
+
 * Fri Jan 06 2023 cyqsimon - 0.4.1-1
 - Release 0.4.1
 

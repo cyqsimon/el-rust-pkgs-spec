@@ -3,7 +3,7 @@
 
 Name:           ripgrep
 Version:        13.0.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A search tool that combines the usability of ag with the raw speed of grep
 
 License:        MIT or Unlicense
@@ -31,7 +31,7 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test --workspace
 
 %install
 # bin
@@ -55,6 +55,10 @@ install -Dpm 644 complete/_%{_bin_name} %{buildroot}%{_datadir}/zsh/site-functio
 %{_datadir}/zsh/site-functions/_%{_bin_name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 13.0.0-4
+- Run tests in debug mode
+- Enable tests for workspace members
+
 * Sun Jul 17 2022 cyqsimon - 13.0.0-3
 - Always prefer toolchain from rustup
 

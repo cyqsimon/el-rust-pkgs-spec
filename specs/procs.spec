@@ -2,7 +2,7 @@
 
 Name:           procs
 Version:        0.14.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A modern replacement for ps written in Rust
 
 License:        MIT
@@ -43,7 +43,7 @@ target/release/%{name} --gen-completion zsh
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -63,6 +63,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 0.14.0-2
+- Run tests in debug mode
+
 * Tue Mar 07 2023 cyqsimon - 0.14.0-1
 - Release 0.14.0
 

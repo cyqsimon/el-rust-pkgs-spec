@@ -3,7 +3,7 @@
 
 Name:           tealdeer
 Version:        1.6.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A very fast implementation of tldr in Rust
 
 License:        ASL 2.0 or MIT
@@ -32,7 +32,7 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -52,6 +52,9 @@ install -Dpm 644 completion/zsh_%{name} %{buildroot}%{_datadir}/zsh/site-functio
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 1.6.1-2
+- Run tests in debug mode
+
 * Tue Oct 25 2022 cyqsimon - 1.6.1-1
 - Release 1.6.1
 

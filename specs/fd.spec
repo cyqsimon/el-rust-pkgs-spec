@@ -2,7 +2,7 @@
 
 Name:           fd
 Version:        8.7.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A simple, fast and user-friendly alternative to find
 
 License:        ASL 2.0 or MIT
@@ -34,7 +34,7 @@ target/release/%{name} --gen-completions fish > %{name}.fish
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -58,6 +58,9 @@ install -Dpm 644 contrib/completion/_%{name} %{buildroot}%{_datadir}/zsh/site-fu
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 8.7.0-2
+- Run tests in debug mode
+
 * Fri Feb 24 2023 cyqsimon - 8.7.0-1
 - Release 8.7.0
 

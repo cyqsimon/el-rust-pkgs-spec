@@ -2,7 +2,7 @@
 
 Name:           bandwhich
 Version:        0.20.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Terminal bandwidth utilization tool
 
 License:        MIT
@@ -27,7 +27,7 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -43,5 +43,8 @@ install -Dpm 644 docs/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 0.20.0-2
+- Run tests in debug mode
+
 * Mon Jul 18 2022 cyqsimon - 0.20.0-1
 - Release 0.20.0

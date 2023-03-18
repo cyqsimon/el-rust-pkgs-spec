@@ -2,7 +2,7 @@
 
 Name:           bat
 Version:        0.22.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A cat(1) clone with syntax highlighting and Git integration
 License:        ASL 2.0 or MIT
 URL:            https://github.com/sharkdp/bat
@@ -26,7 +26,7 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -50,6 +50,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.z
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 0.22.1-2
+- Run tests in debug mode
+
 * Sun Sep 11 2022 cyqsimon - 0.22.1-1
 - Release 0.22.1
 

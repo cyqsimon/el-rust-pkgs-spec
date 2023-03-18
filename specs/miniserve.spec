@@ -2,7 +2,7 @@
 
 Name:           miniserve
 Version:        0.23.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CLI tool to serve files and dirs over HTTP
 
 License:        MIT
@@ -49,12 +49,12 @@ source ~/.cargo/env
     # cant_navigate_up_the_root: EL7 curl lacks `--path-as-is` argument
     # qrcode_shown_in_tty_when_enabled: `fake-tty` timeout
     # qrcode_hidden_in_tty_when_disabled: `fake-tty` timeout
-    cargo test --release -- \
+    cargo test -- \
         --skip cant_navigate_up_the_root \
         --skip qrcode_shown_in_tty_when_enabled \
         --skip qrcode_hidden_in_tty_when_disabled
 %else
-    cargo test --release
+    cargo test
 %endif
 
 %install
@@ -83,6 +83,9 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 0.23.0-2
+- Run tests in debug mode
+
 * Wed Mar 01 2023 cyqsimon - 0.23.0-1
 - Release 0.23.0
 

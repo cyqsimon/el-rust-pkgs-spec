@@ -3,7 +3,7 @@
 
 Name:           httplz
 Version:        1.12.5
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A basic HTTP server for hosting a folder fast and simply
 
 License:        MIT
@@ -78,7 +78,7 @@ pandoc --standalone --from markdown --to man %{name}.md > %{name}.1
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -94,6 +94,9 @@ install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 1.12.5-4
+- Run tests in debug mode
+
 * Tue Aug 16 2022 cyqsimon - 1.12.5-3
 - Undeclare explicit Requires: bzip2-libs
 

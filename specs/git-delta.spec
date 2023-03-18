@@ -3,7 +3,7 @@
 
 Name:           git-delta
 Version:        0.15.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A syntax-highlighting pager for git, diff, and grep output
 
 License:        MIT
@@ -31,7 +31,7 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -49,6 +49,9 @@ install -Dpm 644 etc/completion/completion.zsh %{buildroot}%{_datadir}/zsh/site-
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 0.15.1-2
+- Run tests in debug mode
+
 * Sun Dec 04 2022 cyqsimon - 0.15.1-1
 - Release 0.15.1
 

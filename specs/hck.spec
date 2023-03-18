@@ -2,7 +2,7 @@
 
 Name:           hck
 Version:        0.9.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A sharp cut(1) clone
 
 License:        MIT OR Unlicense
@@ -48,7 +48,7 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -60,5 +60,8 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 0.9.1-2
+- Run tests in debug mode
+
 * Wed Feb 15 2023 cyqsimon - 0.9.1-1
 - Release 0.9.1

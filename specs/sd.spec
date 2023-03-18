@@ -2,7 +2,7 @@
 
 Name:           sd
 Version:        0.7.6
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Intuitive find & replace CLI (sed alternative)
 
 License:        MIT
@@ -27,7 +27,7 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -51,6 +51,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_data
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 0.7.6-4
+- Run tests in debug mode
+
 * Sun Jul 17 2022 cyqsimon - 0.7.6-3
 - Always prefer toolchain from rustup
 

@@ -2,7 +2,7 @@
 
 Name:           mprocs
 Version:        0.6.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Run multiple commands in parallel
 
 License:        MIT
@@ -38,8 +38,8 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 %check
 source ~/.cargo/env
 # see https://github.com/pvolok/mprocs/issues/50
-#cargo test --release
-cargo test --release --workspace --exclude mprocs-pty --exclude mprocs-vt100
+#cargo test --workspace
+cargo test --workspace --exclude mprocs-pty --exclude mprocs-vt100
 
 %install
 # bin
@@ -51,6 +51,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 0.6.3-2
+- Run tests in debug mode
+
 * Sun Aug 21 2022 cyqsimon - 0.6.3-1
 - Release 0.6.3
 

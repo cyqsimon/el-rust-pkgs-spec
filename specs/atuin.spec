@@ -2,7 +2,7 @@
 
 Name:           atuin
 Version:        13.0.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Magical shell history
 
 License:        MIT
@@ -33,7 +33,7 @@ done
 
 %check
 source ~/.cargo/env
-cargo test --release --workspace
+cargo test --workspace
 
 %install
 # bin
@@ -53,6 +53,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 13.0.1-3
+- Run tests in debug mode
+
 * Thu Mar 02 2023 cyqsimon - 13.0.1-2
 - Run all tests in workspace
 

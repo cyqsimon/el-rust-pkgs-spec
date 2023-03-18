@@ -2,7 +2,7 @@
 
 Name:           dog
 Version:        0.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A command-line DNS client
 
 License:        EUPL 1.2
@@ -41,7 +41,7 @@ ronn --roff man/%{name}.1.md
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test --workspace
 
 %install
 # bin
@@ -65,5 +65,9 @@ install -Dpm 644 completions/%{name}.zsh %{buildroot}%{_datadir}/zsh/site-functi
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 0.1.0-2
+- Run tests in debug mode
+- Enable tests for workspace members
+
 * Wed Dec 07 2022 cyqsimon - 0.1.0-1
 - Release 0.1.0

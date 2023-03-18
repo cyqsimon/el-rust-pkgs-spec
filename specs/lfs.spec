@@ -2,7 +2,7 @@
 
 Name:           lfs
 Version:        2.6.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A linux utility listing your filesystems
 
 License:        MIT
@@ -26,7 +26,7 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test --release
+cargo test
 
 %install
 # bin
@@ -38,5 +38,8 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Sat Mar 18 2023 cyqsimon - 2.6.0-2
+- Run tests in debug mode
+
 * Thu Dec 08 2022 cyqsimon - 2.6.0-1
 - Release 2.6.0
