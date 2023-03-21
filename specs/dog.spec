@@ -10,7 +10,7 @@ URL:            https://github.com/ogham/dog
 # Temporarily using my patched fork since the sole owner/maintainer is MIA
 Source0:        https://github.com/cyqsimon/dog/archive/v0.1.0-patched.tar.gz
 
-BuildRequires:  gcc pkgconfig(openssl)
+BuildRequires:  gcc git pkgconfig(openssl)
 %if 0%{?rhel} >= 9
 BuildRequires:  rubygem-ronn-ng
 %else
