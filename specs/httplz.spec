@@ -2,8 +2,8 @@
 %global _prj_name http
 
 Name:           httplz
-Version:        1.12.5
-Release:        4%{?dist}
+Version:        1.12.6
+Release:        1%{?dist}
 Summary:        A basic HTTP server for hosting a folder fast and simply
 
 License:        MIT
@@ -94,7 +94,8 @@ install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
-* Sat Mar 18 2023 cyqsimon - 1.12.5-4
+* Wed Mar 22 2023 cyqsimon - 1.12.6-1
+- Release 1.12.6
 - Run tests in debug mode
 
 * Tue Aug 16 2022 cyqsimon - 1.12.5-3
