@@ -10,7 +10,7 @@ License:        GPLv3
 URL:            https://github.com/hisbaan/didyoumean
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  gcc pkgconfig(openssl)
+BuildRequires:  gcc pkgconfig(openssl) pkgconfig(xcb)
 
 %description
 DidYouMean (or dym) is a command-line spelling corrector written in rust
