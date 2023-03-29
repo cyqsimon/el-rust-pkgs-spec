@@ -30,7 +30,8 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test
+# X11 is not running in build environment
+cargo test -- --skip yank_test
 
 %install
 # bin
