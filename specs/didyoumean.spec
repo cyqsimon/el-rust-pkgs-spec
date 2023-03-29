@@ -47,7 +47,7 @@ install -Dpm 644 completions/_%{bin_name} %{buildroot}%{_datadir}/zsh/site-funct
 
 %files
 %license LICENSE
-%doc README.md
+%doc docs/README.md
 %{_bindir}/%{bin_name}
 %{_mandir}/man1/%{bin_name}.1*
 %{_datadir}/bash-completion/completions/%{bin_name}
