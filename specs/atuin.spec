@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           atuin
-Version:        13.0.1
-Release:        3%{?dist}
+Version:        14.0.0
+Release:        1%{?dist}
 Summary:        Magical shell history
 
 License:        MIT
@@ -53,6 +53,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sun Apr 02 2023 cyqsimon - 14.0.0-1
+- Release 14.0.0
+
 * Sat Mar 18 2023 cyqsimon - 13.0.1-3
 - Run tests in debug mode
 
