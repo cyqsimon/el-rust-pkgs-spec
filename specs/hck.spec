@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           hck
-Version:        0.9.1
-Release:        2%{?dist}
+Version:        0.9.2
+Release:        1%{?dist}
 Summary:        A sharp cut(1) clone
 
 License:        MIT OR Unlicense
@@ -60,6 +60,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Thu Apr 13 2023 cyqsimon - 0.9.2-1
+- Release 0.9.2
+
 * Sat Mar 18 2023 cyqsimon - 0.9.1-2
 - Run tests in debug mode
 
