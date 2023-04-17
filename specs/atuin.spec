@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           atuin
-Version:        14.0.0
+Version:        14.0.1
 Release:        1%{?dist}
 Summary:        Magical shell history
 
@@ -53,6 +53,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Apr 18 2023 cyqsimon - 14.0.1-1
+- Release 14.0.1
+
 * Sun Apr 02 2023 cyqsimon - 14.0.0-1
 - Release 14.0.0
 
