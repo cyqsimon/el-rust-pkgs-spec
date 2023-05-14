@@ -38,15 +38,15 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
     <tr>
         <td align="center"><a href="https://github.com/ouch-org/ouch">ouch</a></td>
         <td align="center"><a href="https://github.com/dalance/procs">procs</a></td>
+        <td align="center"><a href="https://github.com/Nukesor/pueue">pueue</a></td>
         <td align="center"><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a></td>
         <td align="center"><a href="https://github.com/RustScan/RustScan">rustscan</a></td>
-        <td align="center"><a href="https://github.com/chmln/sd">sd</a></td>
     </tr>
     <tr>
+        <td align="center"><a href="https://github.com/chmln/sd">sd</a></td>
         <td align="center"><a href="https://github.com/dbrgn/tealdeer">tealdeer</a></td>
         <td align="center"><a href="https://github.com/XAMPPRocky/tokei">tokei</a></td>
         <td align="center">More to come</td>
-        <td align="center"></td>
         <td align="center"></td>
     </tr>
     <tr>
