@@ -9,7 +9,7 @@ License:        MIT
 URL:            https://github.com/Nukesor/pueue
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  gcc
+BuildRequires:  gcc systemd-rpm-macros
 
 %description
 Pueue is a command-line task management tool for sequential and parallel
