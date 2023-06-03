@@ -2,8 +2,8 @@
 %global _bin_name delta
 
 Name:           git-delta
-Version:        0.15.1
-Release:        2%{?dist}
+Version:        0.16.4
+Release:        1%{?dist}
 Summary:        A syntax-highlighting pager for git, diff, and grep output
 
 License:        MIT
@@ -49,6 +49,9 @@ install -Dpm 644 etc/completion/completion.zsh %{buildroot}%{_datadir}/zsh/site-
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Jun 03 2023 cyqsimon - 0.16.4-1
+- Relaese 0.16.4
+
 * Sat Mar 18 2023 cyqsimon - 0.15.1-2
 - Run tests in debug mode
 
