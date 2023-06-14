@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           pueue
-Version:        3.1.2
-Release:        2%{?dist}
+Version:        3.2.0
+Release:        1%{?dist}
 Summary:        CLI task manager for long-running tasks
 
 License:        MIT
@@ -36,9 +36,6 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 for SHELL_NAME in bash fish zsh; do
     target/release/pueue completions $SHELL_NAME utils/
 done
-# workaronud for clap bug
-# see https://github.com/Nukesor/pueue/issues/426
-sed -i 's/Pueue client/pueue/' utils/%{name}.bash utils/_%{name}
 
 %check
 source ~/.cargo/env
@@ -68,6 +65,10 @@ install -Dpm 644 utils/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{na
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Thu Jun 15 2023 cyqsimon - 3.2.0-1
+- Release 3.2.0
+- Remove completion file patch
+
 * Mon May 15 2023 cyqsimon - 3.1.2-2
 - Temporary patch for broken completion files
 
