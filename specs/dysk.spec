@@ -1,12 +1,14 @@
 %global debug_package %{nil}
 
-Name:           lfs
-Version:        2.6.0
-Release:        2%{?dist}
-Summary:        A linux utility listing your filesystems
+Name:           dysk
+Version:        2.6.1
+Release:        1%{?dist}
+Summary:        A linux utility listing your filesystems (previously lfs)
+Provides:       lfs = %{version}-%{release}
+Obsoletes:      lfs <= 2.6.0
 
 License:        MIT
-URL:            https://github.com/Canop/lfs
+URL:            https://github.com/Canop/dysk
 Source0:        %{url}/archive/v%{version}.tar.gz
 
 BuildRequires:  gcc
@@ -32,12 +34,20 @@ cargo test
 # bin
 install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
+# compatibility symlink
+ln -sf %{_bindir}/%{name} %{buildroot}%{_bindir}/lfs
+
 %files
 %license LICENSE
 %doc CHANGELOG.md README.md
-%{_bindir}/%{name}
+%{_bindir}/*
 
 %changelog
+* Tue Jul 04 2023 cyqsimon - 2.6.1-1
+- Release 2.6.1
+- Project renamed from `lfs` to `dysk`
+- Create compatibility symlink from `lfs` to `dysk`
+
 * Sat Mar 18 2023 cyqsimon - 2.6.0-2
 - Run tests in debug mode
 
