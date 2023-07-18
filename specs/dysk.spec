@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           dysk
-Version:        2.6.1
+Version:        2.7.1
 Release:        1%{?dist}
 Summary:        A linux utility listing your filesystems (previously lfs)
 Provides:       lfs = %{version}-%{release}
@@ -37,12 +37,28 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 # compatibility symlink
 ln -sf %{_bindir}/%{name} %{buildroot}%{_bindir}/lfs
 
+# manpage
+install -Dpm 644 target/release/build/%{name}-*/out/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+
+# completions
+install -Dpm 644 target/release/build/%{name}-*/out/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dpm 644 target/release/build/%{name}-*/out/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
+install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
+
 %files
 %license LICENSE
 %doc CHANGELOG.md README.md
 %{_bindir}/*
+%{_mandir}/man1/%{name}.1*
+%{_datadir}/bash-completion/completions/%{name}
+%{_datadir}/fish/completions/%{name}.fish
+%{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Jul 18 2023 cyqsimon - 2.7.1-1
+- Relaese 2.7.1
+- Install man page && shell completion
+
 * Tue Jul 04 2023 cyqsimon - 2.6.1-1
 - Release 2.6.1
 - Project renamed from `lfs` to `dysk`
