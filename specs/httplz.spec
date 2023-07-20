@@ -12,7 +12,7 @@ Source0:        %{url}/archive/v%{version}.tar.gz
 
 Requires:       openssl
 BuildRequires:  gcc pkgconfig(openssl)
-# EL7's bzip2-devel does not include bzip2.pc
+# EL7's bzip2-devel does not provide `pkgconfig(bzip2)`
 %if 0%{?el7}
 BuildRequires: bzip2-devel
 %else

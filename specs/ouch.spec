@@ -18,11 +18,11 @@ BuildRequires:  gcc
 %endif
 
 BuildRequires:  pkgconfig(liblzma) pkgconfig(libzstd) pkgconfig(zlib)
-# EL7's bzip2-devel does not include bzip2.pc
-%if 0%{?rhel} >= 8
-BuildRequires:  pkgconfig(bzip2)
-%else
+# EL7's bzip2-devel does not provide `pkgconfig(bzip2)`
+%if 0%{?el7}
 BuildRequires:  bzip2-devel
+%else
+BuildRequires:  pkgconfig(bzip2)
 %endif
 
 %description
