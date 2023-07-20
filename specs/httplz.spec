@@ -3,7 +3,7 @@
 
 Name:           httplz
 Version:        1.13.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A basic HTTP server for hosting a folder fast and simply
 
 License:        MIT
@@ -11,17 +11,12 @@ URL:            https://github.com/thecoshman/http
 Source0:        %{url}/archive/v%{version}.tar.gz
 
 Requires:       openssl
-BuildRequires:  gcc pkgconfig(openssl)
+BuildRequires:  gcc pkgconfig(openssl) pandoc
 # EL7's bzip2-devel does not provide `pkgconfig(bzip2)`
 %if 0%{?el7}
 BuildRequires: bzip2-devel
 %else
 BuildRequires: pkgconfig(bzip2)
-%endif
-# for some inexplicable reason, EL9 doesn't have pandoc
-# so we need to grab the statically-linked binary
-%if ! 0%{?el9}
-BuildRequires:  pandoc
 %endif
 
 %description
@@ -52,27 +47,6 @@ sed -Ei '/={3,}$/d' %{name}.md
 ## add header in a format acceptable to pandoc
 sed -Ei '1i % %{name}(1) v%{version}\n\n## NAME\n' %{name}.md
 
-# if EL9, get the static binary and add its directory to PATH
-%if 0%{?el9}
-    _PD_VER="2.18"
-    _PD_PKG="pandoc-${_PD_VER}"
-    %ifarch x86_64
-        _ARCH=amd64
-    %elifarch aarch64
-        _ARCH=arm64
-    %else
-        echo "Unsupported architecture!"
-        exit 1
-    %endif
-    _PD_URL="https://github.com/jgm/pandoc/releases/download/${_PD_VER}/${_PD_PKG}-linux-${_ARCH}.tar.gz"
-
-    curl -Lfo "${_PD_PKG}.tar.gz" "${_PD_URL}"
-    tar -xf "${_PD_PKG}.tar.gz"
-
-    _PD_BIN_DIR=$(realpath "${_PD_PKG}/bin")
-    export PATH="${_PD_BIN_DIR}:${PATH}"
-%endif
-
 # generate man page to ./httplz.1
 pandoc --standalone --from markdown --to man %{name}.md > %{name}.1
 
@@ -94,6 +68,9 @@ install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Thu Jul 20 2023 cyqsimon - 1.13.0-2
+- Use `pandoc` from EPEL for manpage generation on EL9
+
 * Sat Jul 15 2023 cyqsimon - 1.13.0-1
 - Relaese 1.13.0
 
