@@ -3,14 +3,13 @@
 
 Name:           httplz
 Version:        1.13.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A basic HTTP server for hosting a folder fast and simply
 
 License:        MIT
 URL:            https://github.com/thecoshman/http
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-Requires:       openssl
 BuildRequires:  gcc pkgconfig(openssl) pandoc
 # EL7's bzip2-devel does not provide `pkgconfig(bzip2)`
 %if 0%{?el7}
@@ -68,6 +67,9 @@ install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Thu Jul 20 2023 cyqsimon - 1.13.0-3
+- Undeclare `openssl` as a runtime dependency
+
 * Thu Jul 20 2023 cyqsimon - 1.13.0-2
 - Use `pandoc` from EPEL for manpage generation on EL9
 
