@@ -33,7 +33,9 @@ done
 
 %check
 source ~/.cargo/env
-cargo test --workspace
+# skip postgres test
+cargo test --workspace -- \
+    --skip registration
 
 %install
 # bin
