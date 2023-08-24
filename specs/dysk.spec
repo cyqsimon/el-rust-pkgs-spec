@@ -2,7 +2,7 @@
 
 Name:           dysk
 Version:        2.8.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A linux utility listing your filesystems (previously lfs)
 Provides:       lfs = %{version}-%{release}
 Obsoletes:      lfs <= 2.6.0
@@ -26,6 +26,15 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 source ~/.cargo/env
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
+# create compatibility script
+cat >lfs <<EOF
+#!/usr/bin/env bash
+set -e
+NC='\033[0m'; YELLOW='\033[0;33m'
+echo -e "${YELLOW}[WARN]${NC} \`lfs\` is the deprecated old name for this binary and will be removed in the future. Use \`dysk\` instead."
+/usr/bin/dysk "$@"
+EOF
+
 %check
 source ~/.cargo/env
 cargo test
@@ -34,8 +43,8 @@ cargo test
 # bin
 install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
-# compatibility symlink
-ln -sf %{_bindir}/%{name} %{buildroot}%{_bindir}/lfs
+# compatibility script
+install -Dpm 755 lfs %{buildroot}%{_bindir}/lfs
 
 # manpage
 install -Dpm 644 target/release/build/%{name}-*/out/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
@@ -55,6 +64,10 @@ install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_data
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Thu Aug 24 2023 cyqsimon - 2.8.0-2
+- Use compatibility script instead of symlink for `lfs` executable
+- Add deprecation warning in `lfs` executable
+
 * Tue Aug 22 2023 cyqsimon - 2.8.0-1
 - Release 2.8.0
 
