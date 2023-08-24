@@ -2,7 +2,7 @@
 
 Name:           dysk
 Version:        2.8.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A linux utility listing your filesystems (previously lfs)
 Provides:       lfs = %{version}-%{release}
 Obsoletes:      lfs <= 2.6.0
@@ -27,11 +27,11 @@ source ~/.cargo/env
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
 # create compatibility script
-cat >lfs <<EOF
+cat >lfs <<"EOF"
 #!/usr/bin/env bash
 set -e
 NC='\033[0m'; YELLOW='\033[0;33m'
-echo -e "${YELLOW}[WARN]${NC} \`lfs\` is the deprecated old name for this binary and will be removed in the future. Use \`dysk\` instead."
+echo -e "${YELLOW}[WARN]${NC} \"lfs\" is the deprecated old name for this binary and will be removed in the future. Use \"dysk\" instead."
 /usr/bin/dysk "$@"
 EOF
 
@@ -64,6 +64,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_data
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Thu Aug 24 2023 cyqsimon - 2.8.0-3
+- Fix `lfs` script
+
 * Thu Aug 24 2023 cyqsimon - 2.8.0-2
 - Use compatibility script instead of symlink for `lfs` executable
 - Add deprecation warning in `lfs` executable
