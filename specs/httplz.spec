@@ -2,8 +2,8 @@
 %global _prj_name http
 
 Name:           httplz
-Version:        1.13.0
-Release:        3%{?dist}
+Version:        1.13.1
+Release:        1%{?dist}
 Summary:        A basic HTTP server for hosting a folder fast and simply
 
 License:        MIT
@@ -67,6 +67,9 @@ install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Fri Aug 25 2023 cyqsimon - 1.13.1-1
+- Release 1.13.1
+
 * Thu Jul 20 2023 cyqsimon - 1.13.0-3
 - Undeclare `openssl` as a runtime dependency
 
