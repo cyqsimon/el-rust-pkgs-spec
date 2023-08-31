@@ -2,7 +2,7 @@
 %global _prj_name http
 
 Name:           httplz
-Version:        1.13.1
+Version:        1.13.2
 Release:        1%{?dist}
 Summary:        A basic HTTP server for hosting a folder fast and simply
 
@@ -67,6 +67,9 @@ install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Thu Aug 31 2023 cyqsimon - 1.13.2-2
+- Release 1.13.2
+
 * Fri Aug 25 2023 cyqsimon - 1.13.1-1
 - Release 1.13.1
 
