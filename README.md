@@ -27,7 +27,12 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
             <a href="https://github.com/Canop/dysk">dysk</a>
             <span>(previously lfs)</span>
         </td>
-        <td align="center"><a href="https://github.com/eza-community/eza">eza</a></td>
+        <td align="center">
+            <a href="https://github.com/eza-community/eza">eza</a>
+            <span>(deprecating </span>
+            <a href="https://github.com/ogham/exa">exa</a>
+            <span>)</span>
+        </td>
         <td align="center"><a href="https://github.com/sharkdp/fd">fd</a></td>
         <td align="center"><a href="https://git.sr.ht/~mzhang/garbage">garbage</a></td>
     </tr>
