@@ -65,7 +65,7 @@ install -Dpm 644 completions/zsh/_%{name} %{buildroot}%{_datadir}/zsh/site-funct
 
 %files
 %doc CHANGELOG.md README.md
-%{_bindir}/%{name}
+%{_bindir}/*
 %{_mandir}/man1/*
 %{_mandir}/man5/*
 %{_docdir}/%{name}/*
