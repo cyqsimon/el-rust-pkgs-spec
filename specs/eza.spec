@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           eza
-Version:        0.14.0
+Version:        0.14.1
 Release:        1%{?dist}
 Summary:        A modern, maintained replacement for ‘ls’
 Provides:       exa = %{version}-%{release}
@@ -74,6 +74,9 @@ install -Dpm 644 completions/zsh/_%{name} %{buildroot}%{_datadir}/zsh/site-funct
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sun Oct 08 2023 cyqsimon - 0.14.1-1
+- Release 0.14.1
+
 * Tue Oct 03 2023 cyqsimon - 0.14.0-1
 - Release 0.14.0
 
@@ -91,4 +94,3 @@ install -Dpm 644 completions/zsh/_%{name} %{buildroot}%{_datadir}/zsh/site-funct
 
 * Sun Sep 10 2023 cyqsimon - 0.11.0-1
 - Release 0.11.0
-
