@@ -16,4 +16,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # TODO
+      - name: Get modified .spec files
+        id: spec-modified
+        uses: tj-actions/changed-files@v39
+        with:
+          files: specs/*.spec
+
+      - name: Send rebuild request to COPR
+        env:
+          # URL: ${{ secrets.COPR_WEBHOOK_URL }}
+          URL: https://example.org/id
+        run: |
+          for FILE in ${{ steps.spec-modified.outputs.modified_files }}; do
+            echo "$FILE changed"
+            echo "Webhook URL: $URL/$FILE"
+          done
