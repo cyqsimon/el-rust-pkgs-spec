@@ -29,8 +29,7 @@ jobs:
       - name: Send rebuild request to COPR
         if: ${{ steps.spec-modified.outputs.modified_files_count }} != 0
         env:
-          # URL: ${{ secrets.COPR_WEBHOOK_URL }}
-          URL: https://example.org/id
+          URL: ${{ secrets.COPR_WEBHOOK_URL }}
         run: |
           for FILE in ${{ steps.spec-modified.outputs.modified_files }}; do
             PKG=$(rg '^Name:\s*([\w\d_\-]+)\s*$' --replace '$1' $FILE)
