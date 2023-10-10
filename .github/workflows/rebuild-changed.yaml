@@ -34,5 +34,6 @@ jobs:
           for FILE in ${{ steps.spec-modified.outputs.modified_files }}; do
             PKG=$(rg '^Name:\s*([\w\d_\-]+)\s*$' --replace '$1' $FILE)
             echo "Package $PKG changed (Spec file: $FILE); sending rebuild request"
-            curl -Ssf -X POST "$URL/$PKG"
+            BUILD_ID=$(curl -Ssf -X POST "$URL/$PKG")
+            echo "Build submitted: https://copr.fedorainfracloud.org/coprs/build/$BUILD_ID"
           done
