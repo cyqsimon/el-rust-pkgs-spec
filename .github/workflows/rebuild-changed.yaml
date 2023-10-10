@@ -1,0 +1,19 @@
+# This workflow gets the list of all changed .spec files,
+# and triggers a rebuild on COPR for each of them via webhook.
+
+name: Rebuild changed packages on COPR
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  trigger-rebuild-for-modified:
+    name: Trigger rebuild for modified .spec files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # TODO
