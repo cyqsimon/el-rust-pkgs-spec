@@ -12,6 +12,7 @@ jobs:
   trigger-rebuild-for-modified:
     name: Trigger rebuild for modified .spec files
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Install ripgrep
         run: sudo apt-get install -y ripgrep
