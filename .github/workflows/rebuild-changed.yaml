@@ -35,5 +35,5 @@ jobs:
           for FILE in ${{ steps.spec-modified.outputs.modified_files }}; do
             PKG=$(rg '^Name:\s*([\w\d_\-]+)\s*$' --replace '$1' $FILE)
             echo "Package $PKG changed (Spec file: $FILE); sending rebuild request"
-            echo "Webhook URL: $URL/$PKG"
+            curl -X POST "$URL/$PKG"
           done
