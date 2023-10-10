@@ -13,6 +13,9 @@ jobs:
     name: Trigger rebuild for modified .spec files
     runs-on: ubuntu-latest
     steps:
+      - name: Install ripgrep
+        run: sudo apt-get install -y ripgrep
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -28,6 +31,7 @@ jobs:
           URL: https://example.org/id
         run: |
           for FILE in ${{ steps.spec-modified.outputs.modified_files }}; do
-            echo "$FILE changed"
-            echo "Webhook URL: $URL/$FILE"
+            PKG=$(rg '^Name:\s*([\w\d_\-]+)\s*$' --replace '$1' $FILE)
+            echo "Package $PKG changed (Spec file: $FILE); sending rebuild request"
+            echo "Webhook URL: $URL/$PKG"
           done
