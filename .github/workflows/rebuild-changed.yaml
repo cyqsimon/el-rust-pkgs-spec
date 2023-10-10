@@ -27,7 +27,6 @@ jobs:
           files: specs/*.spec
 
       - name: Send rebuild request to COPR
-        if: ${{ steps.spec-modified.outputs.modified_files_count }} != 0
         env:
           URL: ${{ secrets.COPR_WEBHOOK_URL }}
         run: |
