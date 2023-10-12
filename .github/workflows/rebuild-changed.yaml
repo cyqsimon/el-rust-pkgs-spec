@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - master
+      - cicd-testing
   workflow_dispatch:
 
 jobs:
