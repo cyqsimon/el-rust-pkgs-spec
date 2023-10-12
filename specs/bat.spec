@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           bat
-Version:        0.23.0
+Version:        0.24.0
 Release:        1%{?dist}
 Summary:        A cat(1) clone with syntax highlighting and Git integration
 License:        ASL 2.0 or MIT
@@ -50,6 +50,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.z
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Thu Oct 12 2023 cyqsimon - 0.24.0-1
+- Release 0.24.0
+
 * Sat Mar 25 2023 cyqsimon - 0.23.0-1
 - Release 0.23.0
 
