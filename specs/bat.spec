@@ -51,7 +51,7 @@ install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.z
 
 %changelog
 * Sat Mar 25 2023 cyqsimon - 0.23.0-1
-Release 0.23.0
+- Release 0.23.0
 
 * Sat Mar 18 2023 cyqsimon - 0.22.1-2
 - Run tests in debug mode
