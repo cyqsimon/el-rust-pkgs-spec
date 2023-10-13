@@ -2,7 +2,7 @@
 
 Name:           eza
 Version:        0.14.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A modern, maintained replacement for ‘ls’
 Provides:       exa = %{version}-%{release}
 Obsoletes:      exa <= 0.10.1
@@ -33,7 +33,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+RUSTFLAGS="-C strip=symbols" cargo +stable build --release
 
 pandoc --standalone -f markdown -t man man/%{name}.1.md > %{name}.1
 pandoc --standalone -f markdown -t man man/eza_colors-explanation.5.md > eza_colors-explanation.5
@@ -41,7 +41,7 @@ pandoc --standalone -f markdown -t man man/eza_colors.5.md > eza_colors.5
 
 %check
 source ~/.cargo/env
-cargo test
+cargo +stable test
 
 %install
 # bin
@@ -74,6 +74,9 @@ install -Dpm 644 completions/zsh/_%{name} %{buildroot}%{_datadir}/zsh/site-funct
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Oct 14 2023 cyqsimon - 0.14.2-2
+- Explicitly set toolchain version `stable`
+
 * Thu Oct 12 2023 cyqsimon - 0.14.2-1
 - Release 0.14.2
 
