@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           bandwhich
-Version:        0.21.0
+Version:        0.21.1
 Release:        1%{?dist}
 Summary:        Terminal bandwidth utilization tool
 
@@ -27,8 +27,7 @@ RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-# tests are disabled temporarily due to spontaneous TUI events
-#cargo test
+cargo test
 
 %install
 # bin
@@ -44,6 +43,10 @@ install -Dpm 644 docs/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Mon Oct 16 2023 cyqsimon - 0.21.1-1
+- Release 0.21.1
+- Re-enable tests
+
 * Tue Sep 19 2023 cyqsimon - 0.21.0-1
 - Release 0.21.0
 
