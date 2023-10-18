@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           procs
-Version:        0.14.1
+Version:        0.14.2
 Release:        1%{?dist}
 Summary:        A modern replacement for ps written in Rust
 
@@ -63,6 +63,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Oct 18 2023 cyqsimon - 0.14.2-1
+- Release 0.14.2
+
 * Fri Oct 06 2023 cyqsimon - 0.14.1-1
 - Release 0.14.1
 
