@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           eza
-Version:        0.14.2
-Release:        2%{?dist}
+Version:        0.15.0
+Release:        1%{?dist}
 Summary:        A modern, maintained replacement for ‘ls’
 Provides:       exa = %{version}-%{release}
 Obsoletes:      exa <= 0.10.1
@@ -74,6 +74,9 @@ install -Dpm 644 completions/zsh/_%{name} %{buildroot}%{_datadir}/zsh/site-funct
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Fri Oct 20 2023 cyqsimon - 0.15.0-1
+- Release 0.15.0
+
 * Sat Oct 14 2023 cyqsimon - 0.14.2-2
 - Explicitly set toolchain version `stable`
 
