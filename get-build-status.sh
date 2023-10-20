@@ -14,6 +14,6 @@ curl -LsSf "$LIST_QUERY" | jq -r --arg BUILD_QUERY_BASE "$BUILD_QUERY_BASE" \
     | map({ name, last_build_id: .builds.latest.id, last_build_status: .builds.latest.state })
     | map(select(.last_build_status != "succeeded"))
     | sort_by(.name)
-    | map("Build for \"\(.name)\" \(.last_build_status).\n  URL: $BUILD_QUERY_BASE/\(.last_build_id)")
+    | map("Build for \"\(.name)\" \(.last_build_status).\n  URL: \($BUILD_QUERY_BASE)/\(.last_build_id)")
     | select(length != 0) // ["All succeeded."]
     | join("\n")'
