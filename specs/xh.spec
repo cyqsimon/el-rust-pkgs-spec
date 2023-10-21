@@ -36,7 +36,7 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
 # symlink
 # `xh` will default to HTTPS scheme if the binary name is one of `xhs`, `https`, or `xhttps`
-ln -sf %{_bindir}/%{name} %{_bindir}/%{name}s
+ln -sf %{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}s
 
 # manpage
 install -Dpm 644 doc/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
