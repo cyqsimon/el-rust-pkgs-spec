@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           fd
-Version:        8.7.0
-Release:        2%{?dist}
+Version:        8.7.1
+Release:        1%{?dist}
 Summary:        A simple, fast and user-friendly alternative to find
 
 License:        ASL 2.0 or MIT
@@ -58,6 +58,9 @@ install -Dpm 644 contrib/completion/_%{name} %{buildroot}%{_datadir}/zsh/site-fu
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Oct 21 2023 cyqsimon - 8.7.1-1
+- Release 8.7.1
+
 * Sat Mar 18 2023 cyqsimon - 8.7.0-2
 - Run tests in debug mode
 
