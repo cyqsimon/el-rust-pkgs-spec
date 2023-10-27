@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           atuin
-Version:        16.0.0
+Version:        17.0.0
 Release:        1%{?dist}
 Summary:        Magical shell history
 
@@ -9,7 +9,7 @@ License:        MIT
 URL:            https://github.com/ellie/atuin
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  gcc
+BuildRequires:  gcc iproute postgresql-server
 
 %description
 Atuin replaces your existing shell history with a SQLite database, and
@@ -24,6 +24,10 @@ machines, via an Atuin server.
 curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
+pwd
+find $HOME -name atuin-run-tests.sh 2>/dev/null
+exit 1
+
 source ~/.cargo/env
 RUSTFLAGS="-C strip=symbols" cargo build --release
 
@@ -32,10 +36,7 @@ for SHELL in "bash" "fish" "zsh"; do
 done
 
 %check
-source ~/.cargo/env
-# skip postgres test
-cargo test --workspace -- \
-    --skip registration
+../build-res/atuin-run-tests.sh
 
 %install
 # bin
@@ -55,6 +56,10 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Thu Oct 26 2023 cyqsimon - 17.0.0-1
+- Release 17.0.0
+- Re-enable postgresql tests
+
 * Tue Aug 08 2023 cyqsimon - 16.0.0-1
 - Relaese 16.0.0
 
