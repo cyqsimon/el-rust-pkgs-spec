@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           atuin
-Version:        16.0.0
+Version:        17.0.1
 Release:        1%{?dist}
 Summary:        Magical shell history
 
@@ -33,9 +33,7 @@ done
 
 %check
 source ~/.cargo/env
-# skip postgres test
-cargo test --workspace -- \
-    --skip registration
+cargo test --workspace --all-features --lib
 
 %install
 # bin
@@ -48,13 +46,16 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
 %license LICENSE
-%doc CHANGELOG.md README.md
+%doc README.md
 %{_bindir}/%{name}
 %{_datadir}/bash-completion/completions/%{name}
 %{_datadir}/fish/completions/%{name}.fish
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Oct 31 2023 cyqsimon - 17.0.1-1
+- Release 17.0.1
+
 * Tue Aug 08 2023 cyqsimon - 16.0.0-1
 - Relaese 16.0.0
 
