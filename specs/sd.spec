@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           sd
-Version:        0.7.6
-Release:        4%{?dist}
+Version:        1.0.0
+Release:        1%{?dist}
 Summary:        Intuitive find & replace CLI (sed alternative)
 
 License:        MIT
@@ -34,12 +34,12 @@ cargo test
 install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
 # manpage
-install -Dpm 644 target/release/build/%{name}-*/out/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+install -Dpm 644 gen/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 
 # completions
-install -Dpm 644 target/release/build/%{name}-*/out/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dpm 644 target/release/build/%{name}-*/out/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
-install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
+install -Dpm 644 gen/completions/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dpm 644 gen/completions/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
+install -Dpm 644 gen/completions/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
 %license LICENSE
@@ -51,6 +51,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_data
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Nov 08 2023 cyqsimon - 1.0.0-1
+- Release 1.0.0 🎉
+
 * Sat Mar 18 2023 cyqsimon - 0.7.6-4
 - Run tests in debug mode
 
