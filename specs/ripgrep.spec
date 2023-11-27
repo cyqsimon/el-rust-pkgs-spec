@@ -2,15 +2,20 @@
 %global _bin_name rg
 
 Name:           ripgrep
-Version:        13.0.0
-Release:        4%{?dist}
+Version:        14.0.1
+Release:        1%{?dist}
 Summary:        A search tool that combines the usability of ag with the raw speed of grep
 
 License:        MIT or Unlicense
 URL:            https://github.com/BurntSushi/ripgrep
 Source0:        %{url}/archive/%{version}.tar.gz
 
-BuildRequires:  asciidoc gcc
+Requires:       pcre2
+%if 0%{?el7}
+BuildRequires:  devtoolset-11
+%else
+BuildRequires:  gcc
+%endif
 
 %description
 ripgrep is a line-oriented search tool that recursively searches your current
@@ -26,10 +31,24 @@ ack and grep.
 curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
+%if 0%{?el7}
+    source /opt/rh/devtoolset-11/enable
+%endif
+
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+RUSTFLAGS="-C strip=symbols" cargo build --release --features pcre2
+
+mkdir generated
+target/release/rg --generate man > generated/man
+target/release/rg --generate complete-bash > generated/bash
+target/release/rg --generate complete-fish > generated/fish
+target/release/rg --generate complete-zsh > generated/zsh
 
 %check
+%if 0%{?el7}
+    source /opt/rh/devtoolset-11/enable
+%endif
+
 source ~/.cargo/env
 cargo test --workspace
 
@@ -38,12 +57,12 @@ cargo test --workspace
 install -Dpm 755 target/release/%{_bin_name} %{buildroot}%{_bindir}/%{_bin_name}
 
 # manpage
-install -Dpm 644 target/release/build/ripgrep-*/out/%{_bin_name}.1 %{buildroot}%{_mandir}/man1/%{_bin_name}.1
+install -Dpm 644 generated/man %{buildroot}%{_mandir}/man1/%{_bin_name}.1
 
 # completions
-install -Dpm 644 target/release/build/ripgrep-*/out/%{_bin_name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{_bin_name}
-install -Dpm 644 target/release/build/ripgrep-*/out/%{_bin_name}.fish %{buildroot}%{_datadir}/fish/completions/%{_bin_name}.fish
-install -Dpm 644 complete/_%{_bin_name} %{buildroot}%{_datadir}/zsh/site-functions/_%{_bin_name}
+install -Dpm 644 generated/bash %{buildroot}%{_datadir}/bash-completion/completions/%{_bin_name}
+install -Dpm 644 generated/fish %{buildroot}%{_datadir}/fish/completions/%{_bin_name}.fish
+install -Dpm 644 generated/zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{_bin_name}
 
 %files
 %license COPYING LICENSE-MIT UNLICENSE
@@ -55,6 +74,10 @@ install -Dpm 644 complete/_%{_bin_name} %{buildroot}%{_datadir}/zsh/site-functio
 %{_datadir}/zsh/site-functions/_%{_bin_name}
 
 %changelog
+* Mon Nov 27 2023 cyqsimon - 14.0.1-1
+- Release 14.0.1
+- Enable `pcre2` feature
+
 * Sat Mar 18 2023 cyqsimon - 13.0.0-4
 - Run tests in debug mode
 - Enable tests for workspace members
