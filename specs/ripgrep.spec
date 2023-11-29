@@ -2,7 +2,7 @@
 %global _bin_name rg
 
 Name:           ripgrep
-Version:        14.0.1
+Version:        14.0.2
 Release:        1%{?dist}
 Summary:        A search tool that combines the usability of ag with the raw speed of grep
 
@@ -74,6 +74,9 @@ install -Dpm 644 generated/zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{_bi
 %{_datadir}/zsh/site-functions/_%{_bin_name}
 
 %changelog
+* Wed Nov 29 2023 cyqsimon - 14.0.2-1
+- Release 14.0.2
+
 * Mon Nov 27 2023 cyqsimon - 14.0.1-1
 - Release 14.0.1
 - Enable `pcre2` feature
