@@ -41,7 +41,7 @@ case $MODE in
 esac
 
 SELECTED_FORMATTED=$(jq --arg BUILD_QUERY_BASE "$BUILD_QUERY_BASE" \
-    'map("\(.name)-\(.build.source_package.version): \(.build.state)
+    'map("\(.name)-\(.build.source_package.version // "<TBD>"): \(.build.state)
     URL: \($BUILD_QUERY_BASE)/\(.build.id)")' \
     <<< "$SELECTED_STATUS")
 
