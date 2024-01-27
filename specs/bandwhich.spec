@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           bandwhich
-Version:        0.21.1
+Version:        0.22.0
 Release:        1%{?dist}
 Summary:        Terminal bandwidth utilization tool
 
@@ -33,16 +33,15 @@ cargo test
 # bin
 install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
-# manpage
-install -Dpm 644 docs/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
-
 %files
 %license LICENSE.md
-%doc CHANGELOG.md demo.gif README.md
+%doc CHANGELOG.md README.md
 %{_bindir}/%{name}
-%{_mandir}/man1/%{name}.1*
 
 %changelog
+* Sun Jan 28 2024 cyqsimon - 0.22.0-1
+- Release 0.22.0
+
 * Mon Oct 16 2023 cyqsimon - 0.21.1-1
 - Release 0.21.1
 - Re-enable tests
