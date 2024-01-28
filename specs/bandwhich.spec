@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           bandwhich
-Version:        0.22.0
+Version:        0.22.2
 Release:        1%{?dist}
 Summary:        Terminal bandwidth utilization tool
 
@@ -23,7 +23,10 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+
+mkdir gen
+RUSTFLAGS="-C strip=symbols" BANDWHICH_GEN_DIR="$(pwd)/gen" \
+    cargo build --release
 
 %check
 source ~/.cargo/env
@@ -33,12 +36,28 @@ cargo test
 # bin
 install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 
+# manpage
+install -Dpm 644 gen/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+
+# completions
+install -Dpm 644 gen/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dpm 644 gen/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
+install -Dpm 644 gen/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
+
 %files
 %license LICENSE.md
 %doc CHANGELOG.md README.md
 %{_bindir}/%{name}
+%{_mandir}/man1/*
+%{_datadir}/bash-completion/completions/%{name}
+%{_datadir}/fish/completions/%{name}.fish
+%{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Mon Jan 29 2024 cyqsimon - 0.22.2-1
+- Release 0.22.2
+- Install manpage & shell completions
+
 * Sun Jan 28 2024 cyqsimon - 0.22.0-1
 - Release 0.22.0
 
