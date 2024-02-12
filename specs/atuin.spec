@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           atuin
-Version:        18.0.0
+Version:        18.0.1
 Release:        1%{?dist}
 Summary:        Magical shell history
 
@@ -53,6 +53,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Feb 13 2024 cyqsimon - 18.0.1-1
+- Release 18.0.1
+
 * Sat Feb 10 2024 cyqsimon - 18.0.0-1
 - Release 18.0.0
 
