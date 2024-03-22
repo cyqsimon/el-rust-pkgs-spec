@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           pueue
-Version:        3.3.3
+Version:        3.4.0
 Release:        1%{?dist}
 Summary:        CLI task manager for long-running tasks
 
@@ -65,6 +65,9 @@ install -Dpm 644 utils/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{na
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Fri Mar 22 2024 cyqsimon - 3.4.0-1
+- Release 3.4.0
+
 * Sat Jan 06 2024 cyqsimon - 3.3.3-1
 - Release 3.3.3
 
