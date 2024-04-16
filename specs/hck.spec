@@ -35,11 +35,11 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 source ~/.cargo/env
 
 # On EL7 `cmake` links to cmake2
-CMAKE=cmake3 cargo build --release
+CMAKE=cmake3 cargo +stable build --release
 
 %check
 source ~/.cargo/env
-CMAKE=cmake3 cargo test
+CMAKE=cmake3 cargo +stable test
 
 %install
 # bin

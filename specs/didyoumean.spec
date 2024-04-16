@@ -26,12 +26,12 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-cargo build --release
+cargo +stable build --release
 
 %check
 source ~/.cargo/env
 # X11 is not running in build environment
-cargo test -- --skip yank_test
+cargo +stable test -- --skip yank_test
 
 %install
 # bin

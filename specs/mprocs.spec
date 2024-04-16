@@ -33,13 +33,13 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-cargo build --release
+cargo +stable build --release
 
 %check
 source ~/.cargo/env
 # see https://github.com/pvolok/mprocs/issues/50
-#cargo test --workspace
-cargo test --workspace --exclude mprocs-pty --exclude mprocs-vt100
+#cargo +stable test --workspace
+cargo +stable test --workspace --exclude mprocs-pty --exclude mprocs-vt100
 
 %install
 # bin

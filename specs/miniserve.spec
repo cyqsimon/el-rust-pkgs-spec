@@ -32,7 +32,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-cargo build --release
+cargo +stable build --release
 
 # generate manpage
 target/release/%{name} --print-manpage > %{name}.1
@@ -49,12 +49,12 @@ source ~/.cargo/env
     # cant_navigate_up_the_root: EL7 curl lacks `--path-as-is` argument
     # qrcode_shown_in_tty_when_enabled: `fake-tty` timeout
     # qrcode_hidden_in_tty_when_disabled: `fake-tty` timeout
-    cargo test -- \
+    cargo +stable test -- \
         --skip cant_navigate_up_the_root \
         --skip qrcode_shown_in_tty_when_enabled \
         --skip qrcode_hidden_in_tty_when_disabled
 %else
-    cargo test
+    cargo +stable test
 %endif
 
 %install

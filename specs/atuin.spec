@@ -25,7 +25,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-cargo build --release
+cargo +stable build --release
 
 for SHELL in "bash" "fish" "zsh"; do
     target/release/%{name} gen-completions --shell $SHELL -o .
@@ -33,7 +33,7 @@ done
 
 %check
 source ~/.cargo/env
-cargo test --workspace --all-features --lib
+cargo +stable test --workspace --all-features --lib
 
 %install
 # bin

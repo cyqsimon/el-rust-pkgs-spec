@@ -44,7 +44,7 @@ rm -f rust-toolchain
 %endif
 
 source ~/.cargo/env
-OUCH_ARTIFACTS_FOLDER=%{artifact_dir} cargo build --release
+OUCH_ARTIFACTS_FOLDER=%{artifact_dir} cargo +stable build --release
 
 %check
 %if 0%{?el8}
@@ -52,7 +52,7 @@ OUCH_ARTIFACTS_FOLDER=%{artifact_dir} cargo build --release
 %endif
 
 source ~/.cargo/env
-cargo test
+cargo +stable test
 
 %install
 # bin

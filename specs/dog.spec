@@ -35,13 +35,13 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-cargo build --release
+cargo +stable build --release
 
 ronn --roff man/%{name}.1.md
 
 %check
 source ~/.cargo/env
-cargo test --workspace
+cargo +stable test --workspace
 
 %install
 # bin

@@ -36,7 +36,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 %endif
 
 source ~/.cargo/env
-cargo build --release --features pcre2
+cargo +stable build --release --features pcre2
 
 mkdir generated
 target/release/rg --generate man > generated/man
@@ -50,7 +50,7 @@ target/release/rg --generate complete-zsh > generated/zsh
 %endif
 
 source ~/.cargo/env
-cargo test --workspace
+cargo +stable test --workspace
 
 %install
 # bin

@@ -24,7 +24,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-cargo build --release
+cargo +stable build --release
 
 # generate completions
 target/release/%{name} generate-completions bash > %{name}.bash
@@ -33,7 +33,7 @@ target/release/%{name} generate-completions zsh > %{name}.zsh
 
 %check
 source ~/.cargo/env
-cargo test --workspace
+cargo +stable test --workspace
 
 %install
 # bin

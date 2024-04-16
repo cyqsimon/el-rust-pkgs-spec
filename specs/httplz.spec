@@ -32,7 +32,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 %build
 source ~/.cargo/env
 # only build and install the `httplz` binary
-cargo build --release --bin %{name}
+cargo +stable build --release --bin %{name}
 
 # rename man page markdown
 mv %{_prj_name}.md %{name}.md
@@ -51,7 +51,7 @@ pandoc --standalone --from markdown --to man %{name}.md > %{name}.1
 
 %check
 source ~/.cargo/env
-cargo test
+cargo +stable test
 
 %install
 # bin

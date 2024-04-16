@@ -35,7 +35,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-cargo build --release
+cargo +stable build --release
 
 target/release/%{name} --gen-completion bash
 target/release/%{name} --gen-completion fish
@@ -43,7 +43,7 @@ target/release/%{name} --gen-completion zsh
 
 %check
 source ~/.cargo/env
-cargo test
+cargo +stable test
 
 %install
 # bin

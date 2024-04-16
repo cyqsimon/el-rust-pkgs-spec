@@ -25,11 +25,11 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 source ~/.cargo/env
 
 mkdir gen
-BANDWHICH_GEN_DIR="$(pwd)/gen" cargo build --release
+BANDWHICH_GEN_DIR="$(pwd)/gen" cargo +stable build --release
 
 %check
 source ~/.cargo/env
-cargo test
+cargo +stable test
 
 %install
 # bin

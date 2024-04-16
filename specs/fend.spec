@@ -39,7 +39,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-cargo build --release --package %{name}
+cargo +stable build --release --package %{name}
 
 %if 0%{?rhel} >= 9
 ./documentation/build.sh
@@ -47,7 +47,7 @@ cargo build --release --package %{name}
 
 %check
 source ~/.cargo/env
-cargo test --package %{name} --package %{name}-core
+cargo +stable test --package %{name} --package %{name}-core
 
 %install
 # bin
