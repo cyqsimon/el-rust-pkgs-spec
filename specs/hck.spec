@@ -2,19 +2,14 @@
 
 Name:           hck
 Version:        0.10.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A sharp cut(1) clone
 
 License:        MIT OR Unlicense
 URL:            https://github.com/sstadick/hck
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  gcc
-%if 0%{?rhel} >= 8
-BuildRequires:  cmake
-%else
-BuildRequires:  cmake3
-%endif
+BuildRequires:  cmake3 gcc
 
 %description
 hck is a shortening of hack, a rougher form of cut.
@@ -33,22 +28,18 @@ filling a gap between cut and awk.
 %prep
 %autosetup
 
-%if 0%{?rhel} < 8
-# symlink cmake3 to cmake
-mkdir -p "$HOME/.local/bin"
-ln -s "/usr/bin/cmake3" "$HOME/.local/bin/cmake"
-%endif
-
 # use latest stable version from rustup
 curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+
+# On EL7 `cmake` links to cmake2
+CMAKE=cmake3 RUSTFLAGS="-C strip=symbols" cargo build --release
 
 %check
 source ~/.cargo/env
-cargo test
+CMAKE=cmake3 cargo test
 
 %install
 # bin
@@ -60,6 +51,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.10.0-2
+- Fix cmake config for EL7
+
 * Tue Apr 16 2024 cyqsimon - 0.10.0-1
 - Release 0.10.0
 
