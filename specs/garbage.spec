@@ -2,7 +2,7 @@
 
 Name:           garbage
 Version:        0.4.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Soft-deletion CLI tool with FreeDesktop Trash compatibility
 
 License:        GPLv3
@@ -24,7 +24,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+cargo build --release
 
 # generate completions
 target/release/%{name} generate-completions bash > %{name}.bash
@@ -53,6 +53,9 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.4.1-3
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Sat Mar 18 2023 cyqsimon - 0.4.1-2
 - Run tests in debug mode
 - Enable tests for workspace members

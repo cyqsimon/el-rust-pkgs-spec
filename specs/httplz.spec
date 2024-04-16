@@ -3,7 +3,7 @@
 
 Name:           httplz
 Version:        1.13.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A basic HTTP server for hosting a folder fast and simply
 
 License:        MIT
@@ -32,7 +32,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 %build
 source ~/.cargo/env
 # only build and install the `httplz` binary
-RUSTFLAGS="-C strip=symbols" cargo build --release --bin %{name}
+cargo build --release --bin %{name}
 
 # rename man page markdown
 mv %{_prj_name}.md %{name}.md
@@ -67,6 +67,9 @@ install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 1.13.2-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Thu Aug 31 2023 cyqsimon - 1.13.2-2
 - Release 1.13.2
 

@@ -3,7 +3,7 @@
 
 Name:           ripgrep
 Version:        14.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A search tool that combines the usability of ag with the raw speed of grep
 
 License:        MIT or Unlicense
@@ -36,7 +36,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 %endif
 
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release --features pcre2
+cargo build --release --features pcre2
 
 mkdir generated
 target/release/rg --generate man > generated/man
@@ -74,6 +74,9 @@ install -Dpm 644 generated/zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{_bi
 %{_datadir}/zsh/site-functions/_%{_bin_name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 14.1.0-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Sun Jan 07 2024 cyqsimon - 14.1.0-1
 - Release 14.1.0
 

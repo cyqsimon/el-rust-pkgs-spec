@@ -2,7 +2,7 @@
 
 Name:           sd
 Version:        1.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Intuitive find & replace CLI (sed alternative)
 
 License:        MIT
@@ -23,7 +23,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+cargo build --release
 
 %check
 source ~/.cargo/env
@@ -51,6 +51,9 @@ install -Dpm 644 gen/completions/_%{name} %{buildroot}%{_datadir}/zsh/site-funct
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 1.0.0-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Wed Nov 08 2023 cyqsimon - 1.0.0-1
 - Release 1.0.0 🎉
 

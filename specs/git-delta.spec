@@ -3,7 +3,7 @@
 
 Name:           git-delta
 Version:        0.17.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A syntax-highlighting pager for git, diff, and grep output
 
 License:        MIT
@@ -27,7 +27,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+cargo build --release
 
 %check
 source ~/.cargo/env
@@ -49,6 +49,9 @@ install -Dpm 644 etc/completion/completion.zsh %{buildroot}%{_datadir}/zsh/site-
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.17.0-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Sun Mar 17 2024 cyqsimon - 0.17.0-1
 - Release 0.17.0
 

@@ -2,7 +2,7 @@
 
 Name:           hck
 Version:        0.10.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A sharp cut(1) clone
 
 License:        MIT OR Unlicense
@@ -35,7 +35,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 source ~/.cargo/env
 
 # On EL7 `cmake` links to cmake2
-CMAKE=cmake3 RUSTFLAGS="-C strip=symbols" cargo build --release
+CMAKE=cmake3 cargo build --release
 
 %check
 source ~/.cargo/env
@@ -51,6 +51,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.10.0-3
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Tue Apr 16 2024 cyqsimon - 0.10.0-2
 - Fix cmake config for EL7
 

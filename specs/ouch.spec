@@ -3,7 +3,7 @@
 
 Name:           ouch
 Version:        0.4.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Painless compression and decompression for your terminal
 
 License:        MIT
@@ -44,7 +44,7 @@ rm -f rust-toolchain
 %endif
 
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" OUCH_ARTIFACTS_FOLDER=%{artifact_dir} cargo build --release
+cargo build --release
 
 %check
 %if 0%{?el8}
@@ -80,6 +80,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.4.1-3
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Sat Mar 18 2023 cyqsimon - 0.4.1-2
 - Run tests in debug mode
 

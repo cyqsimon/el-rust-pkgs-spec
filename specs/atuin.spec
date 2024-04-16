@@ -2,7 +2,7 @@
 
 Name:           atuin
 Version:        18.2.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Magical shell history
 
 License:        MIT
@@ -25,7 +25,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+cargo build --release
 
 for SHELL in "bash" "fish" "zsh"; do
     target/release/%{name} gen-completions --shell $SHELL -o .
@@ -53,6 +53,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 18.2.0-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Mon Apr 15 2024 cyqsimon - 18.2.0-1
 - Release 18.2.0
 

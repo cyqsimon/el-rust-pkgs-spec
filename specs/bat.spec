@@ -2,7 +2,7 @@
 
 Name:           bat
 Version:        0.24.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A cat(1) clone with syntax highlighting and Git integration
 License:        ASL 2.0 or MIT
 URL:            https://github.com/sharkdp/bat
@@ -22,7 +22,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+cargo build --release
 
 %check
 source ~/.cargo/env
@@ -50,6 +50,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/assets/completions/%{name}.z
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.24.0-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Thu Oct 12 2023 cyqsimon - 0.24.0-1
 - Release 0.24.0
 

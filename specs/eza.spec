@@ -2,7 +2,7 @@
 
 Name:           eza
 Version:        0.18.10
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A modern, maintained replacement for ‘ls’
 Provides:       exa = %{version}-%{release}
 Obsoletes:      exa <= 0.10.1
@@ -33,7 +33,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo +stable build --release
+cargo +stable build --release
 
 pandoc --standalone -f markdown -t man man/%{name}.1.md > %{name}.1
 pandoc --standalone -f markdown -t man man/eza_colors-explanation.5.md > eza_colors-explanation.5
@@ -74,6 +74,9 @@ install -Dpm 644 completions/zsh/_%{name} %{buildroot}%{_datadir}/zsh/site-funct
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.18.10-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Thu Apr 11 2024 cyqsimon - 0.18.10-1
 - Release 0.18.10
 

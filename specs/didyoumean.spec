@@ -3,7 +3,7 @@
 
 Name:           didyoumean
 Version:        1.1.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A CLI spelling corrector for when you're unsure
 
 License:        GPLv3
@@ -26,7 +26,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+cargo build --release
 
 %check
 source ~/.cargo/env
@@ -55,5 +55,8 @@ install -Dpm 644 completions/_%{bin_name} %{buildroot}%{_datadir}/zsh/site-funct
 %{_datadir}/zsh/site-functions/_%{bin_name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 1.1.4-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Wed Mar 29 2023 cyqsimon - 1.1.4-1
 - Release 1.1.4

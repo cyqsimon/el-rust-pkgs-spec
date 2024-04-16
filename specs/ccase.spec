@@ -2,7 +2,7 @@
 
 Name:           ccase
 Version:        0.4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A command line utility for converting between string cases
 
 License:        MIT
@@ -23,7 +23,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+cargo build --release
 
 %check
 source ~/.cargo/env
@@ -41,5 +41,8 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.4.1-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Fri Jan 05 2024 cyqsimon - 0.4.1-1
 - Release 0.4.1

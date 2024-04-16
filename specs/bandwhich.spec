@@ -2,7 +2,7 @@
 
 Name:           bandwhich
 Version:        0.22.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Terminal bandwidth utilization tool
 
 License:        MIT
@@ -25,8 +25,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 source ~/.cargo/env
 
 mkdir gen
-RUSTFLAGS="-C strip=symbols" BANDWHICH_GEN_DIR="$(pwd)/gen" \
-    cargo build --release
+BANDWHICH_GEN_DIR="$(pwd)/gen" cargo build --release
 
 %check
 source ~/.cargo/env
@@ -54,6 +53,9 @@ install -Dpm 644 gen/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.22.2-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Mon Jan 29 2024 cyqsimon - 0.22.2-1
 - Release 0.22.2
 - Install manpage & shell completions

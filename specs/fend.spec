@@ -2,7 +2,7 @@
 
 Name:           fend
 Version:        1.4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Arbitrary-precision unit-aware calculator
 
 License:        GPLv3+
@@ -39,7 +39,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release --package %{name}
+cargo build --release --package %{name}
 
 %if 0%{?rhel} >= 9
 ./documentation/build.sh
@@ -67,6 +67,9 @@ install -Dpm 644 documentation/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %endif
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 1.4.1-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Sun Jan 07 2024 cyqsimon - 1.4.1-1
 - Release 1.4.1
 

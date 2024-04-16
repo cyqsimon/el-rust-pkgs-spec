@@ -2,7 +2,7 @@
 
 Name:           miniserve
 Version:        0.27.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CLI tool to serve files and dirs over HTTP
 
 License:        MIT
@@ -32,7 +32,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+cargo build --release
 
 # generate manpage
 target/release/%{name} --print-manpage > %{name}.1
@@ -83,6 +83,9 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.27.1-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Sat Mar 16 2024 cyqsimon - 0.27.1-1
 - Release 0.27.1
 

@@ -2,7 +2,7 @@
 
 Name:           dysk
 Version:        2.8.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A linux utility listing your filesystems (previously lfs)
 Provides:       lfs = %{version}-%{release}
 Obsoletes:      lfs <= 2.6.0
@@ -24,7 +24,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+cargo build --release
 
 # create compatibility script
 cat >lfs <<"EOF"
@@ -64,6 +64,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_data
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 2.8.2-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Tue Oct 17 2023 cyqsimon - 2.8.2-1
 - Release 2.8.2
 

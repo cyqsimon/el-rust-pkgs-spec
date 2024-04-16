@@ -2,7 +2,7 @@
 
 Name:           dog
 Version:        0.1.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A command-line DNS client
 
 License:        EUPL 1.2
@@ -35,7 +35,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+cargo build --release
 
 ronn --roff man/%{name}.1.md
 
@@ -65,6 +65,9 @@ install -Dpm 644 completions/%{name}.zsh %{buildroot}%{_datadir}/zsh/site-functi
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.1.0-3
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Sat Mar 18 2023 cyqsimon - 0.1.0-2
 - Run tests in debug mode
 - Enable tests for workspace members

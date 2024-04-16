@@ -2,7 +2,7 @@
 
 Name:           podlet
 Version:        0.2.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Generate podman quadlet (systemd-like) files from a podman command
 
 License:        MPLv2.0
@@ -22,7 +22,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-RUSTFLAGS="-C strip=symbols" cargo build --release
+cargo build --release
 
 %check
 source ~/.cargo/env
@@ -38,6 +38,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.2.4-2
+- Remove explicit stripping (strip enabled by default since 1.77.0)
+
 * Tue Jan 30 2024 cyqsimon - 0.2.4-1
 - Release 0.2.4
 
