@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           hck
-Version:        0.9.2
+Version:        0.10.0
 Release:        1%{?dist}
 Summary:        A sharp cut(1) clone
 
@@ -60,6 +60,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Tue Apr 16 2024 cyqsimon - 0.10.0-1
+- Release 0.10.0
+
 * Thu Apr 13 2023 cyqsimon - 0.9.2-1
 - Release 0.9.2
 
