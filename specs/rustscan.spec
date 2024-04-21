@@ -2,8 +2,8 @@
 %global _prj_name RustScan
 
 Name:           rustscan
-Version:        2.1.1
-Release:        3%{?dist}
+Version:        2.2.2
+Release:        1%{?dist}
 Summary:        The Modern Port Scanner
 
 License:        GPLv3+
@@ -49,6 +49,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Sun Apr 21 2024 cyqsimon - 2.2.2-1
+- Release 2.2.2
+
 * Tue Apr 16 2024 cyqsimon - 2.1.1-3
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
