@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           fend
-Version:        1.4.1
-Release:        2%{?dist}
+Version:        1.4.8
+Release:        1%{?dist}
 Summary:        Arbitrary-precision unit-aware calculator
 
 License:        GPLv3+
@@ -67,6 +67,9 @@ install -Dpm 644 documentation/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %endif
 
 %changelog
+* Mon May 06 2024 cyqsimon - 1.4.8-1
+- Release 1.4.8
+
 * Tue Apr 16 2024 cyqsimon - 1.4.1-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
