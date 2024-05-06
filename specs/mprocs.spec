@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           mprocs
-Version:        0.6.3
-Release:        3%{?dist}
+Version:        0.6.4
+Release:        1%{?dist}
 Summary:        Run multiple commands in parallel
 
 License:        MIT
@@ -51,6 +51,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Mon May 06 2024 cyqsimon - 0.6.4-1
+- Release 0.6.4
+
 * Tue Apr 16 2024 cyqsimon - 0.6.3-3
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
