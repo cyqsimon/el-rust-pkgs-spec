@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           fd
-Version:        9.0.0
-Release:        2%{?dist}
+Version:        10.0.0
+Release:        1%{?dist}
 Summary:        A simple, fast and user-friendly alternative to find
 
 License:        ASL 2.0 or MIT
@@ -58,6 +58,9 @@ install -Dpm 644 contrib/completion/_%{name} %{buildroot}%{_datadir}/zsh/site-fu
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Mon May 06 2024 cyqsimon - 10.0.0-1
+- Release 10.0.0
+
 * Tue Apr 16 2024 cyqsimon - 9.0.0-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
