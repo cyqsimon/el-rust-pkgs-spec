@@ -2,14 +2,14 @@
 
 Name:           fend
 Version:        1.4.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Arbitrary-precision unit-aware calculator
 
 License:        GPLv3+
 URL:            https://github.com/printfn/fend
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  gcc
+BuildRequires:  gcc pkgconfig(openssl)
 # pandoc shipped by EL7/8 cannot build man page successfully
 %if 0%{?rhel} >= 9
 BuildRequires:  pandoc
@@ -67,6 +67,9 @@ install -Dpm 644 documentation/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %endif
 
 %changelog
+* Mon May 06 2024 Add - 1.4.8-2
+- Add OpenSSL build dep
+
 * Mon May 06 2024 cyqsimon - 1.4.8-1
 - Release 1.4.8
 
