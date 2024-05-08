@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           fd
-Version:        10.0.0
+Version:        10.1.0
 Release:        1%{?dist}
 Summary:        A simple, fast and user-friendly alternative to find
 
@@ -58,6 +58,9 @@ install -Dpm 644 contrib/completion/_%{name} %{buildroot}%{_datadir}/zsh/site-fu
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed May 08 2024 cyqsimon - 10.1.0-1
+- Release 10.1.0
+
 * Mon May 06 2024 cyqsimon - 10.0.0-1
 - Release 10.0.0
 
