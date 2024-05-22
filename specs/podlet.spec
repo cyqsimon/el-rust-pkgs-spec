@@ -1,12 +1,12 @@
 %global debug_package %{nil}
 
 Name:           podlet
-Version:        0.2.4
-Release:        2%{?dist}
+Version:        0.3.0
+Release:        1%{?dist}
 Summary:        Generate podman quadlet (systemd-like) files from a podman command
 
 License:        MPLv2.0
-URL:            https://github.com/k9withabone/podlet
+URL:            https://github.com/containers/podlet
 Source0:        %{url}/archive/v%{version}.tar.gz
 
 BuildRequires:  gcc
@@ -38,6 +38,10 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Wed May 22 2024 cyqsimon - 0.3.0-1
+- Release 0.3.0
+- Update repository URL
+
 * Tue Apr 16 2024 cyqsimon - 0.2.4-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
