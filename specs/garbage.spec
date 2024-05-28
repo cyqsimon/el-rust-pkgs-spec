@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           garbage
-Version:        0.4.1
-Release:        3%{?dist}
+Version:        0.4.2
+Release:        1%{?dist}
 Summary:        Soft-deletion CLI tool with FreeDesktop Trash compatibility
 
 License:        GPLv3
@@ -53,6 +53,9 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue May 28 2024 cyqsimon - 0.4.2-1
+- Release 0.4.2
+
 * Tue Apr 16 2024 cyqsimon - 0.4.1-3
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
