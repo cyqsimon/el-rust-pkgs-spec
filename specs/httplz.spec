@@ -3,7 +3,7 @@
 
 Name:           httplz
 Version:        2.0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A basic HTTP server for hosting a folder fast and simply
 
 License:        MIT
@@ -11,6 +11,10 @@ URL:            https://github.com/thecoshman/http
 Source0:        %{url}/archive/v%{version}.tar.gz
 
 BuildRequires:  gcc pkgconfig(openssl) pandoc
+# `build-ioctl.c` uses `__has_include`, which is only in gcc-5+
+%if 0%{?el7}
+BuildRequires: devtoolset-11
+%endif
 # EL7's bzip2-devel does not provide `pkgconfig(bzip2)`
 %if 0%{?el7}
 BuildRequires: bzip2-devel
@@ -31,6 +35,11 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
+
+%if 0%{?el7}
+source /opt/rh/devtoolset-11/enable
+%endif
+
 # only build and install the `httplz` binary
 cargo +stable build --release --bin %{name}
 
@@ -67,6 +76,9 @@ install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Tue Jun 04 2024 cyqsimon - 2.0.2-2
+- Use gcc-11 instead of the default gcc-4 on EL7
+
 * Mon Jun 03 2024 cyqsimon - 2.0.2-1
 - Release 2.0.2
 
