@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           dysk
-Version:        2.8.2
-Release:        2%{?dist}
+Version:        2.9.0
+Release:        1%{?dist}
 Summary:        A linux utility listing your filesystems (previously lfs)
 Provides:       lfs = %{version}-%{release}
 Obsoletes:      lfs <= 2.6.0
@@ -64,6 +64,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_data
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Jun 04 2024 cyqsimon - 2.9.0-1
+- Release 2.9.0
+
 * Tue Apr 16 2024 cyqsimon - 2.8.2-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
