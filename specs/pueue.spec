@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           pueue
-Version:        3.4.0
-Release:        2%{?dist}
+Version:        3.4.1
+Release:        1%{?dist}
 Summary:        CLI task manager for long-running tasks
 
 License:        MIT
@@ -65,6 +65,9 @@ install -Dpm 644 utils/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{na
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Jun 05 2024 cyqsimon - 3.4.1-1
+- Release 3.4.1
+
 * Tue Apr 16 2024 cyqsimon - 3.4.0-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
