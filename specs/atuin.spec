@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           atuin
-Version:        18.2.0
-Release:        2%{?dist}
+Version:        18.3.0
+Release:        1%{?dist}
 Summary:        Magical shell history
 
 License:        MIT
@@ -53,6 +53,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Jun 11 2024 cyqsimon - 18.3.0-1
+- Release 18.3.0
+
 * Tue Apr 16 2024 cyqsimon - 18.2.0-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
