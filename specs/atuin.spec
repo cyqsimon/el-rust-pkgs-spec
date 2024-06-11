@@ -9,7 +9,7 @@ License:        MIT
 URL:            https://github.com/ellie/atuin
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  gcc
+BuildRequires:  gcc pkgconfig(protobuf) protobuf-compiler
 
 %description
 Atuin replaces your existing shell history with a SQLite database, and
@@ -55,6 +55,7 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %changelog
 * Tue Jun 11 2024 cyqsimon - 18.3.0-1
 - Release 18.3.0
+- Add protobuf deps to build deps
 
 * Tue Apr 16 2024 cyqsimon - 18.2.0-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
