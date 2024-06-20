@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           fend
-Version:        1.4.8
-Release:        2%{?dist}
+Version:        1.4.9
+Release:        1%{?dist}
 Summary:        Arbitrary-precision unit-aware calculator
 
 License:        GPLv3+
@@ -67,6 +67,9 @@ install -Dpm 644 documentation/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %endif
 
 %changelog
+* Thu Jun 20 2024 cyqsimon - 1.4.9-1
+- Release 1.4.9
+
 * Mon May 06 2024 Add - 1.4.8-2
 - Add OpenSSL build dep
 
