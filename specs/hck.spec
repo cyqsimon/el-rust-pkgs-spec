@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           hck
-Version:        0.10.0
-Release:        3%{?dist}
+Version:        0.10.1
+Release:        1%{?dist}
 Summary:        A sharp cut(1) clone
 
 License:        MIT OR Unlicense
@@ -51,6 +51,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Sun Jun 23 2024 cyqsimon - 0.10.1-1
+- Release 0.10.1
+
 * Tue Apr 16 2024 cyqsimon - 0.10.0-3
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
