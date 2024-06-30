@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           mprocs
-Version:        0.6.4
+Version:        0.7.1
 Release:        1%{?dist}
 Summary:        Run multiple commands in parallel
 
@@ -51,6 +51,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Mon Jul 01 2024 cyqsimon - 0.7.1-1
+- Release 0.7.1
+
 * Mon May 06 2024 cyqsimon - 0.6.4-1
 - Release 0.6.4
 
