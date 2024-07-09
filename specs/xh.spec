@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           xh
-Version:        0.22.0
-Release:        2%{?dist}
+Version:        0.22.2
+Release:        1%{?dist}
 Summary:        Friendly and fast tool for sending HTTP requests
 
 License:        MIT
@@ -56,6 +56,9 @@ install -Dpm 644 completions/_%{name} %{buildroot}%{_datadir}/zsh/site-functions
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Jul 09 2024 cyqsimon - 0.22.2-1
+- Release 0.22.2
+
 * Tue Apr 16 2024 cyqsimon - 0.22.0-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
