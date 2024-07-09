@@ -2,7 +2,7 @@
 %global _prj_name RustScan
 
 Name:           rustscan
-Version:        2.2.3
+Version:        2.3.0
 Release:        1%{?dist}
 Summary:        The Modern Port Scanner
 
@@ -49,6 +49,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Tue Jul 09 2024 cyqsimon - 2.3.0-1
+- Release 2.3.0
+
 * Thu May 02 2024 cyqsimon - 2.2.3-1
 - Release 2.2.3
 
