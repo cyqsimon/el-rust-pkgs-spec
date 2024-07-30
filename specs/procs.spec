@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           procs
-Version:        0.14.5
-Release:        2%{?dist}
+Version:        0.14.6
+Release:        1%{?dist}
 Summary:        A modern replacement for ps written in Rust
 
 License:        MIT
@@ -63,6 +63,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Jul 30 2024 cyqsimon - 0.14.6-1
+- Release 0.14.6
+
 * Tue Apr 16 2024 cyqsimon - 0.14.5-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
