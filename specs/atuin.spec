@@ -2,7 +2,7 @@
 
 Name:           atuin
 Version:        18.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Magical shell history
 
 License:        MIT
@@ -53,6 +53,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Mon Aug 05 2024 cyqsimon - 18.3.0-2
+- Rebuild excluding EL7 chroot
+
 * Tue Jun 11 2024 cyqsimon - 18.3.0-1
 - Release 18.3.0
 - Add protobuf deps to build deps
