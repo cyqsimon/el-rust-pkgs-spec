@@ -3,7 +3,7 @@
 
 Name:           ouch
 Version:        0.4.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Painless compression and decompression for your terminal
 
 License:        MIT
@@ -17,13 +17,7 @@ BuildRequires:  gcc-toolset-12
 BuildRequires:  gcc
 %endif
 
-BuildRequires:  pkgconfig(liblzma) pkgconfig(libzstd) pkgconfig(zlib)
-# EL7's bzip2-devel does not provide `pkgconfig(bzip2)`
-%if 0%{?el7}
-BuildRequires:  bzip2-devel
-%else
-BuildRequires:  pkgconfig(bzip2)
-%endif
+BuildRequires:  pkgconfig(bzip2) pkgconfig(liblzma) pkgconfig(libzstd) pkgconfig(zlib)
 
 %description
 ouch stands for Obvious Unified Compression Helper and is a CLI tool
@@ -80,6 +74,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Aug 13 2024 cyqsimon - 0.4.2-2
+- Remove provisions for EL7
+
 * Tue Apr 16 2024 cyqsimon - 0.4.2-1
 - Release 0.4.2
 - Fix artifact generation

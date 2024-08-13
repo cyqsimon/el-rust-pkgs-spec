@@ -2,20 +2,14 @@
 
 Name:           miniserve
 Version:        0.27.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        CLI tool to serve files and dirs over HTTP
 
 License:        MIT
 URL:            https://github.com/svenstaro/miniserve
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  gcc systemd-rpm-macros
-# EL7's bzip2-devel does not provide `pkgconfig(bzip2)`
-%if 0%{?el7}
-BuildRequires: bzip2-devel
-%else
-BuildRequires: pkgconfig(bzip2)
-%endif
+BuildRequires:  pkgconfig(bzip2) gcc systemd-rpm-macros
 
 %description
 For when you really just want to serve some files over HTTP right now!
@@ -44,18 +38,7 @@ target/release/%{name} --print-completions zsh > %{name}.zsh
 
 %check
 source ~/.cargo/env
-%if 0%{?el7}
-    # some tests fail on EL7
-    # cant_navigate_up_the_root: EL7 curl lacks `--path-as-is` argument
-    # qrcode_shown_in_tty_when_enabled: `fake-tty` timeout
-    # qrcode_hidden_in_tty_when_disabled: `fake-tty` timeout
-    cargo +stable test -- \
-        --skip cant_navigate_up_the_root \
-        --skip qrcode_shown_in_tty_when_enabled \
-        --skip qrcode_hidden_in_tty_when_disabled
-%else
-    cargo +stable test
-%endif
+cargo +stable test
 
 %install
 # bin
@@ -83,6 +66,9 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Aug 13 2024 cyqsimon - 0.27.1-3
+- Remove provisions for EL7
+
 * Tue Apr 16 2024 cyqsimon - 0.27.1-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 

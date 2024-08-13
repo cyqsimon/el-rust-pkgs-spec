@@ -2,7 +2,7 @@
 
 Name:           fend
 Version:        1.5.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Arbitrary-precision unit-aware calculator
 
 License:        GPLv3+
@@ -10,7 +10,7 @@ URL:            https://github.com/printfn/fend
 Source0:        %{url}/archive/v%{version}.tar.gz
 
 BuildRequires:  gcc pkgconfig(openssl)
-# pandoc shipped by EL7/8 cannot build man page successfully
+# pandoc shipped by EL8 cannot build man page successfully
 %if 0%{?rhel} >= 9
 BuildRequires:  pandoc
 %endif
@@ -67,6 +67,9 @@ install -Dpm 644 documentation/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %endif
 
 %changelog
+* Tue Aug 13 2024 cyqsimon - 1.5.1-2
+- Remove provisions for EL7
+
 * Sun Aug 11 2024 cyqsimon - 1.5.1-1
 - Release 1.5.1
 

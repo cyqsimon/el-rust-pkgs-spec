@@ -3,7 +3,7 @@
 
 Name:           rustscan
 Version:        2.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The Modern Port Scanner
 
 License:        GPLv3+
@@ -11,15 +11,13 @@ URL:            https://github.com/RustScan/RustScan
 Source0:        %{url}/archive/%{version}.tar.gz
 
 Requires:       nmap
-BuildRequires:  gcc
 # python & perl are required to test scripting
-%if 0%{?el7} || 0%{?el9}
-BuildRequires:  python3
-%endif
+BuildRequires:  gcc perl
 %if 0%{?el8}
 BuildRequires:  python39
+%else
+BuildRequires:  python3
 %endif
-BuildRequires:  perl
 
 %description
 The Modern Port Scanner. Find ports quickly (3 seconds at its fastest).
@@ -49,6 +47,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Tue Aug 13 2024 cyqsimon - 2.3.0-2
+- Remove provisions for EL7
+
 * Tue Jul 09 2024 cyqsimon - 2.3.0-1
 - Release 2.3.0
 

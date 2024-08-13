@@ -3,7 +3,7 @@
 
 Name:           ripgrep
 Version:        14.1.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A search tool that combines the usability of ag with the raw speed of grep
 
 License:        MIT or Unlicense
@@ -11,11 +11,7 @@ URL:            https://github.com/BurntSushi/ripgrep
 Source0:        %{url}/archive/%{version}.tar.gz
 
 Requires:       pcre2
-%if 0%{?el7}
-BuildRequires:  devtoolset-11
-%else
 BuildRequires:  gcc
-%endif
 
 %description
 ripgrep is a line-oriented search tool that recursively searches your current
@@ -31,10 +27,6 @@ ack and grep.
 curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
-%if 0%{?el7}
-    source /opt/rh/devtoolset-11/enable
-%endif
-
 source ~/.cargo/env
 cargo +stable build --release --features pcre2
 
@@ -45,10 +37,6 @@ target/release/rg --generate complete-fish > generated/fish
 target/release/rg --generate complete-zsh > generated/zsh
 
 %check
-%if 0%{?el7}
-    source /opt/rh/devtoolset-11/enable
-%endif
-
 source ~/.cargo/env
 cargo +stable test --workspace
 
@@ -74,6 +62,9 @@ install -Dpm 644 generated/zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{_bi
 %{_datadir}/zsh/site-functions/_%{_bin_name}
 
 %changelog
+* Tue Aug 13 2024 cyqsimon - 14.1.0-3
+- Remove provisions for EL7
+
 * Tue Apr 16 2024 cyqsimon - 14.1.0-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 

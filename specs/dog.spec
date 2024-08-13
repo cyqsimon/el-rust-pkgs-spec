@@ -2,7 +2,7 @@
 
 Name:           dog
 Version:        0.1.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A command-line DNS client
 
 License:        EUPL 1.2
@@ -14,8 +14,6 @@ BuildRequires:  gcc git pkgconfig(openssl)
 %if 0%{?rhel} >= 9
 BuildRequires:  rubygem-ronn-ng
 %else
-# rubygem-ronn on EL7 is provided by Springdale Computational
-# this repository is added to the EL7 chroot on Copr
 BuildRequires:  rubygem-ronn
 %endif
 
@@ -65,6 +63,9 @@ install -Dpm 644 completions/%{name}.zsh %{buildroot}%{_datadir}/zsh/site-functi
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Aug 13 2024 cyqsimon - 0.1.0-4
+- Remove provisions for EL7
+
 * Tue Apr 16 2024 cyqsimon - 0.1.0-3
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 

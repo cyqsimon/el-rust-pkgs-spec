@@ -2,7 +2,7 @@
 
 Name:           hck
 Version:        0.10.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A sharp cut(1) clone
 
 License:        MIT OR Unlicense
@@ -33,9 +33,7 @@ curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
 %build
 source ~/.cargo/env
-
-# On EL7 `cmake` links to cmake2
-CMAKE=cmake3 cargo +stable build --release
+cargo +stable build --release
 
 %check
 source ~/.cargo/env
@@ -51,6 +49,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Tue Aug 13 2024 cyqsimon - 0.10.1-2
+- Remove provisions for EL7
+
 * Sun Jun 23 2024 cyqsimon - 0.10.1-1
 - Release 0.10.1
 
