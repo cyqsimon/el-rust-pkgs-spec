@@ -50,6 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.trigger-rebuild-for-modified.outputs.builds != '[]'
     strategy:
+      fail-fast: false
       matrix:
         build_id: ${{ fromJson(needs.trigger-rebuild-for-modified.outputs.builds) }}
     steps:
