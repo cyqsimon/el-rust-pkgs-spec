@@ -2,8 +2,8 @@
 %global _bin_name delta
 
 Name:           git-delta
-Version:        0.17.0
-Release:        2%{?dist}
+Version:        0.18.0
+Release:        1%{?dist}
 Summary:        A syntax-highlighting pager for git, diff, and grep output
 
 License:        MIT
@@ -49,6 +49,9 @@ install -Dpm 644 etc/completion/completion.zsh %{buildroot}%{_datadir}/zsh/site-
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Mon Aug 19 2024 cyqsimon - 0.18.0-1
+- Release 0.18.0
+
 * Tue Apr 16 2024 cyqsimon - 0.17.0-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
