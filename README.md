@@ -24,16 +24,8 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
             <a href="https://github.com/cyqsimon/dog/releases/tag/v0.1.0-patched">patched</a>
             <span>)</span>
         </td>
-        <td align="center">
-            <a href="https://github.com/Canop/dysk">dysk</a>
-            <span>(previously lfs)</span>
-        </td>
-        <td align="center">
-            <a href="https://github.com/eza-community/eza">eza</a>
-            <span>(deprecating </span>
-            <a href="https://github.com/ogham/exa">exa</a>
-            <span>)</span>
-        </td>
+        <td align="center"><a href="https://github.com/Canop/dysk">dysk</a></td>
+        <td align="center"><a href="https://github.com/eza-community/eza">eza</a></td>
         <td align="center"><a href="https://github.com/sharkdp/fd">fd</a></td>
     </tr>
     <tr>
@@ -79,3 +71,8 @@ If you want to have a package added to this list, feel free
 to submit an issue or a PR.
 
 **The package should be reasonably-popular and/or obviously-useful.**
+
+### Removal history
+
+- 2023-07-05: [lfs](https://github.com/Canop/lfs): renamed to `dysk`
+- 2023-09-10: [exa](https://github.com/ogham/exa): deprecated by [eza](https://github.com/eza-community/eza)
