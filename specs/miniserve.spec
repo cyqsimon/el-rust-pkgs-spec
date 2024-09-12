@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           miniserve
-Version:        0.27.1
-Release:        3%{?dist}
+Version:        0.28.0
+Release:        1%{?dist}
 Summary:        CLI tool to serve files and dirs over HTTP
 
 License:        MIT
@@ -66,6 +66,9 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Thu Sep 12 2024 cyqsimon - 0.28.0-1
+- Release 0.28.0
+
 * Tue Aug 13 2024 cyqsimon - 0.27.1-3
 - Remove provisions for EL7
 
