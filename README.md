@@ -36,16 +36,16 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
         <td align="center"><a href="https://github.com/k9withabone/podlet">podlet</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="https://github.com/dalance/procs">procs</a></td>
         <td align="center"><a href="https://github.com/Nukesor/pueue">pueue</a></td>
         <td align="center"><a href="https://github.com/RustScan/RustScan">rustscan</a></td>
         <td align="center"><a href="https://github.com/chmln/sd">sd</a></td>
         <td align="center"><a href="https://github.com/dbrgn/tealdeer">tealdeer</a></td>
+        <td align="center"><a href="https://github.com/XAMPPRocky/tokei">tokei</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="https://github.com/XAMPPRocky/tokei">tokei</a></td>
         <td align="center"><a href="https://github.com/ducaale/xh">xh</a></td>
         <td align="center">More to come</td>
+        <td align="center"></td>
         <td align="center"></td>
         <td align="center"></td>
     </tr>
@@ -74,3 +74,4 @@ to submit an issue or a PR.
 - 2024-09-13: [eza](https://github.com/eza-community/eza): packaged in EPEL as `eza`
 - 2024-09-14: [bat](https://github.com/sharkdp/bat): packaged in EPEL as `bat`
 - 2024-09-14: [git-delta](https://github.com/dandavison/delta): packaged in EPEL as `git-delta`
+- 2024-09-14: [procs](https://github.com/dalance/procs): packaged in EPEL as `procs`
