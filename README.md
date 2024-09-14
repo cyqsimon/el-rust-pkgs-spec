@@ -25,36 +25,29 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
             <span>)</span>
         </td>
         <td align="center"><a href="https://github.com/Canop/dysk">dysk</a></td>
-        <td align="center"><a href="https://github.com/eza-community/eza">eza</a></td>
         <td align="center"><a href="https://github.com/printfn/fend">fend</a></td>
+        <td align="center"><a href="https://git.sr.ht/~mzhang/garbage">garbage</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="https://git.sr.ht/~mzhang/garbage">garbage</a></td>
         <td align="center"><a href="https://github.com/dandavison/delta">git-delta</a></td>
         <td align="center"><a href="https://github.com/sstadick/hck">hck</a></td>
         <td align="center"><a href="https://github.com/thecoshman/http">httplz</a></td>
         <td align="center"><a href="https://github.com/svenstaro/miniserve">miniserve</a></td>
+        <td align="center"><a href="https://github.com/pvolok/mprocs">mprocs</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="https://github.com/pvolok/mprocs">mprocs</a></td>
         <td align="center"><a href="https://github.com/ouch-org/ouch">ouch</a></td>
         <td align="center"><a href="https://github.com/k9withabone/podlet">podlet</a></td>
         <td align="center"><a href="https://github.com/dalance/procs">procs</a></td>
         <td align="center"><a href="https://github.com/Nukesor/pueue">pueue</a></td>
+        <td align="center"><a href="https://github.com/RustScan/RustScan">rustscan</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="https://github.com/RustScan/RustScan">rustscan</a></td>
         <td align="center"><a href="https://github.com/chmln/sd">sd</a></td>
         <td align="center"><a href="https://github.com/dbrgn/tealdeer">tealdeer</a></td>
         <td align="center"><a href="https://github.com/XAMPPRocky/tokei">tokei</a></td>
         <td align="center"><a href="https://github.com/ducaale/xh">xh</a></td>
-    </tr>
-    <tr>
         <td align="center">More to come</td>
-        <td align="center"></td>
-        <td align="center"></td>
-        <td align="center"></td>
-        <td align="center"></td>
     </tr>
     <tr>
         <td align="center"><img width=200/></td>
@@ -78,3 +71,4 @@ to submit an issue or a PR.
 - 2023-09-10: [exa](https://github.com/ogham/exa): deprecated by [eza](https://github.com/eza-community/eza)
 - 2024-08-23: [fd](https://github.com/sharkdp/fd): packaged by EPEL as `fd-find`
 - 2024-08-23: [ripgrep](https://github.com/BurntSushi/ripgrep): packaged in EPEL as `ripgrep`
+- 2024-09-13: [eza](https://github.com/eza-community/eza): packaged in EPEL as `eza`
