@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           fend
-Version:        1.5.1
-Release:        2%{?dist}
+Version:        1.5.2
+Release:        1%{?dist}
 Summary:        Arbitrary-precision unit-aware calculator
 
 License:        GPLv3+
@@ -67,6 +67,9 @@ install -Dpm 644 documentation/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %endif
 
 %changelog
+* Sun Sep 15 2024 cyqsimon - 1.5.2-1
+- Release 1.5.2
+
 * Tue Aug 13 2024 cyqsimon - 1.5.1-2
 - Remove provisions for EL7
 
