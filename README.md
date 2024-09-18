@@ -24,27 +24,27 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
             <span>)</span>
         </td>
         <td align="center"><a href="https://github.com/Canop/dysk">dysk</a></td>
+        <td align="center"><a href="https://github.com/evcxr/evcxr">evcxr-repl</a></td>
         <td align="center"><a href="https://github.com/printfn/fend">fend</a></td>
         <td align="center"><a href="https://git.sr.ht/~mzhang/garbage">garbage</a></td>
-        <td align="center"><a href="https://github.com/sstadick/hck">hck</a></td>
     </tr>
     <tr>
+        <td align="center"><a href="https://github.com/sstadick/hck">hck</a></td>
         <td align="center"><a href="https://github.com/thecoshman/http">httplz</a></td>
         <td align="center"><a href="https://github.com/svenstaro/miniserve">miniserve</a></td>
         <td align="center"><a href="https://github.com/pvolok/mprocs">mprocs</a></td>
         <td align="center"><a href="https://github.com/ouch-org/ouch">ouch</a></td>
-        <td align="center"><a href="https://github.com/k9withabone/podlet">podlet</a></td>
     </tr>
     <tr>
+        <td align="center"><a href="https://github.com/k9withabone/podlet">podlet</a></td>
         <td align="center"><a href="https://github.com/Nukesor/pueue">pueue</a></td>
         <td align="center"><a href="https://github.com/RustScan/RustScan">rustscan</a></td>
         <td align="center"><a href="https://github.com/chmln/sd">sd</a></td>
         <td align="center"><a href="https://github.com/dbrgn/tealdeer">tealdeer</a></td>
-        <td align="center"><a href="https://github.com/ducaale/xh">xh</a></td>
     </tr>
     <tr>
+        <td align="center"><a href="https://github.com/ducaale/xh">xh</a></td>
         <td align="center">More to come</td>
-        <td align="center"></td>
         <td align="center"></td>
         <td align="center"></td>
         <td align="center"></td>
