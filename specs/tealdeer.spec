@@ -2,8 +2,8 @@
 %global _bin_name tldr
 
 Name:           tealdeer
-Version:        1.6.1
-Release:        3%{?dist}
+Version:        1.7.0
+Release:        1%{?dist}
 Summary:        A very fast implementation of tldr in Rust
 
 License:        ASL 2.0 or MIT
@@ -52,6 +52,9 @@ install -Dpm 644 completion/zsh_%{name} %{buildroot}%{_datadir}/zsh/site-functio
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Fri Oct 04 2024 cyqsimon - 1.7.0-1
+- Release 1.7.0
+
 * Tue Apr 16 2024 cyqsimon - 1.6.1-3
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
