@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           fend
-Version:        1.5.2
+Version:        1.5.3
 Release:        1%{?dist}
 Summary:        Arbitrary-precision unit-aware calculator
 
@@ -67,6 +67,9 @@ install -Dpm 644 documentation/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %endif
 
 %changelog
+* Sun Oct 06 2024 cyqsimon - 1.5.3-1
+- Release 1.5.3
+
 * Sun Sep 15 2024 cyqsimon - 1.5.2-1
 - Release 1.5.2
 
