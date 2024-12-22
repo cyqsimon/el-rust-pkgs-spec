@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           hck
-Version:        0.10.1
-Release:        2%{?dist}
+Version:        0.11.0
+Release:        1%{?dist}
 Summary:        A sharp cut(1) clone
 
 License:        MIT OR Unlicense
@@ -49,6 +49,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Sun Dec 22 2024 cyqsimon - 0.11.0-1
+- Release 0.11.0
+
 * Tue Aug 13 2024 cyqsimon - 0.10.1-2
 - Remove provisions for EL7
 
