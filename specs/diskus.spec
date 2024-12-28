@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           diskus
-Version:        0.7.0
-Release:        4%{?dist}
+Version:        0.8.0
+Release:        1%{?dist}
 Summary:        A minimal, fast alternative to 'du -sh'
 
 License:        ASL 2.0 or MIT
@@ -46,6 +46,9 @@ install -Dpm 644 doc/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Sat Dec 28 2024 cyqsimon - 0.8.0-1
+- Release 0.8.0
+
 * Tue Apr 16 2024 cyqsimon - 0.7.0-4
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
