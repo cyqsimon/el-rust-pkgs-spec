@@ -1,13 +1,13 @@
 %global debug_package %{nil}
 
 Name:           eza
-Version:        0.19.3
+Version:        0.20.16
 Release:        1%{?dist}
 Summary:        A modern, maintained replacement for ‘ls’
 Provides:       exa = %{version}-%{release}
 Obsoletes:      exa <= 0.10.1
 
-License:        MIT
+License:        EUPL-1.2
 URL:            https://github.com/eza-community/eza
 Source0:        %{url}/archive/v%{version}.tar.gz
 
@@ -56,7 +56,7 @@ install -Dpm 644 eza_colors-explanation.5 %{buildroot}%{_mandir}/man5/eza_colors
 install -Dpm 644 eza_colors.5 %{buildroot}%{_mandir}/man5/eza_colors.5
 
 # doc
-install -Dpm 644 LICEN?E %{buildroot}%{_docdir}/%{name}/LICENSE
+install -Dpm 644 -t %{buildroot}%{_docdir}/%{name} LICENSE.txt
 
 # completions
 install -Dpm 644 completions/bash/%{name} %{buildroot}%{_datadir}/bash-completion/completions/%{name}
@@ -74,6 +74,10 @@ install -Dpm 644 completions/zsh/_%{name} %{buildroot}%{_datadir}/zsh/site-funct
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Jan 11 2025 cyqsimon - 0.20.16-1
+- Release 0.20.16
+- Relicense to EUPL-1.2
+
 * Thu Sep 12 2024 cyqsimon - 0.19.3-1
 - Release 0.19.3
 
