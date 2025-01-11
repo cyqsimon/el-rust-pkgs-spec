@@ -75,5 +75,5 @@ to submit an issue or a PR.
 - 2024-09-14: Removed [bat](https://github.com/sharkdp/bat): packaged in EPEL as `bat`
 - 2024-09-14: Removed [git-delta](https://github.com/dandavison/delta): packaged in EPEL as `git-delta`
 - 2024-09-14: Removed [procs](https://github.com/dalance/procs): packaged in EPEL as `procs`
-- 2014-09-15: Removed [tokei](https://github.com/XAMPPRocky/tokei): packaged in EPEL as `tokei`
+- 2024-09-15: Removed [tokei](https://github.com/XAMPPRocky/tokei): packaged in EPEL as `tokei`
 - 2025-01-11: Reinstated [eza](https://github.com/eza-community/eza): dropped by EPEL
