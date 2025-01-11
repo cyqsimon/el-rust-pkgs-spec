@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           bandwhich
-Version:        0.22.2
-Release:        2%{?dist}
+Version:        0.23.1
+Release:        1%{?dist}
 Summary:        Terminal bandwidth utilization tool
 
 License:        MIT
@@ -53,6 +53,9 @@ install -Dpm 644 gen/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Sat Jan 11 2025 cyqsimon - 0.23.1-1
+- Release 0.23.1
+
 * Tue Apr 16 2024 cyqsimon - 0.22.2-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 
