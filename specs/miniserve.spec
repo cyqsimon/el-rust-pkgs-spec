@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           miniserve
-Version:        0.28.0
+Version:        0.29.0
 Release:        1%{?dist}
 Summary:        CLI tool to serve files and dirs over HTTP
 
@@ -9,7 +9,7 @@ License:        MIT
 URL:            https://github.com/svenstaro/miniserve
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  pkgconfig(bzip2) gcc systemd-rpm-macros
+BuildRequires:  pkgconfig(bzip2) gcc pkgconfig(openssl) systemd-rpm-macros
 
 %description
 For when you really just want to serve some files over HTTP right now!
@@ -66,6 +66,9 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Fri Feb 07 2025 cyqsimon - 0.29.0-1
+- Release 0.29.0
+
 * Thu Sep 12 2024 cyqsimon - 0.28.0-1
 - Release 0.28.0
 
