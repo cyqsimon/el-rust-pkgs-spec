@@ -2,8 +2,8 @@
 %global _prj_name RustScan
 
 Name:           rustscan
-Version:        2.3.0
-Release:        2%{?dist}
+Version:        2.4.1
+Release:        1%{?dist}
 Summary:        The Modern Port Scanner
 
 License:        GPLv3+
@@ -47,6 +47,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Sun Mar 09 2025 cyqsimon - 2.4.1-1
+- Release 2.4.1
+
 * Tue Aug 13 2024 cyqsimon - 2.3.0-2
 - Remove provisions for EL7
 
