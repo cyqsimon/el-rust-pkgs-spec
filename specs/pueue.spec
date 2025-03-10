@@ -2,10 +2,10 @@
 
 Name:           pueue
 Version:        4.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CLI task manager for long-running tasks
 
-License:        MIT
+License:        Apache-2.0 OR MIT
 URL:            https://github.com/Nukesor/pueue
 Source0:        %{url}/archive/v%{version}.tar.gz
 
@@ -55,7 +55,7 @@ install -Dpm 644 utils/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{n
 install -Dpm 644 utils/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
-%license LICENSE
+%license LICENSE*
 %doc CHANGELOG.md README.md
 %{_bindir}/%{name}
 %{_bindir}/%{name}d
@@ -65,6 +65,9 @@ install -Dpm 644 utils/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{na
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Mon Mar 10 2025 cyqsimon - 4.0.0-2
+- Update upstream license
+
 * Mon Mar 10 2025 cyqsimon - 4.0.0-1
 - Release 4.0.0
 
