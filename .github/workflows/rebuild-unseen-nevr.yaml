@@ -1,0 +1,31 @@
+# This workflow checks if the NEVR (name, epoch, version, release) of each SPEC
+# file exists on COPR, and for the ones that don't exist, triggers a rebuild
+# via webhook.
+
+name: Rebuild packages with unseen NEVR on COPR
+on:
+  push:
+    branches:
+      - master
+      - cicd-testing
+  workflow_dispatch:
+
+jobs:
+  trigger-rebuild-for-unseen-nevr:
+    name: Trigger rebuild for unseen NEVR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install cargo-binstall to get rust-script
+        uses: cargo-bins/cargo-binstall@main
+
+      - name: Install Rust toolchain for rust-script
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install rust-script
+        run: cargo binstall rust-script
+
+      - name: Install rpmspec tool
+        run: sudo apt-get install rpm
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
