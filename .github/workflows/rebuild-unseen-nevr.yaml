@@ -1,0 +1,62 @@
+# This workflow checks if the NEVR (name, epoch, version, release) of each SPEC
+# file exists on COPR, and for the ones that don't exist, triggers a rebuild
+# via webhook.
+
+name: Rebuild packages with unseen NEVR on COPR
+on:
+  push:
+    branches:
+      - master
+      - cicd-testing
+  workflow_dispatch:
+
+jobs:
+  trigger-rebuild-for-unseen-nevr:
+    name: Trigger rebuild for unseen NEVR
+    runs-on: ubuntu-latest
+    outputs:
+      # copr-tool writes to $GITHUB_OUTPUT
+      builds: ${{ steps.trigger-rebuild.outputs.builds }}
+    steps:
+      - name: Install cargo-binstall to get rust-script
+        uses: cargo-bins/cargo-binstall@main
+
+      - name: Install Rust toolchain for rust-script
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install rust-script
+        run: cargo binstall rust-script
+
+      - name: Install rpmspec tool (used to extract information from SPEC files)
+        run: sudo apt-get install rpm
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Trigger rebuild
+        id: trigger-rebuild
+        env:
+          BUILD_REQUEST_ORIGIN_PATH_BASE: ${{ secrets.BUILD_REQUEST_ORIGIN_PATH_BASE }}
+        run: scripts/copr-tool build-unseen
+
+  report-status:
+    name: Report build status
+    needs: trigger-rebuild-for-unseen-nevr
+    runs-on: ubuntu-latest
+    if: needs.trigger-rebuild-for-unseen-nevr.outputs.builds != '[]'
+    strategy:
+      fail-fast: false
+      matrix:
+        build_id: ${{ fromJson(needs.trigger-rebuild-for-unseen-nevr.outputs.builds) }}
+    steps:
+      - name: Install cargo-binstall to get rust-script
+        uses: cargo-bins/cargo-binstall@main
+
+      - name: Install Rust toolchain for rust-script
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install rust-script
+        run: cargo binstall rust-script
+
+      - name: Report status
+        run: scripts/copr-tool monitor ${{ matrix.build_id }}

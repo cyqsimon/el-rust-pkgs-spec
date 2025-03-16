@@ -1,0 +1,425 @@
+#!/usr/bin/env rust-script
+
+//! ```cargo
+//! [dependencies]
+//! eyre = "0.6.12"
+//! regex = "1.11.1"
+//! reqwest = { version = "0.12.12", features = [
+//!     "blocking",
+//!     "gzip",
+//!     "json",
+//!     "rustls-tls",
+//!     "socks",
+//!     "zstd",
+//! ] }
+//! serde = { version = "1.0.217", features = ["derive"] }
+//! serde_json = "1.0.134"
+//! ```
+
+use std::{
+    env, fmt, fs,
+    path::Path,
+    process::Command,
+    sync::{Arc, LazyLock},
+    thread,
+    time::Duration,
+};
+
+use eyre::{bail, eyre, Context};
+use regex::Regex;
+
+use crate::{
+    api_serde::{BuildRecord, ListRecord, PackageRecord},
+    message_serde::BuildDescriptor,
+};
+
+const PACKAGE_LIST_ORIGIN_PATH: &str = "https://copr.fedorainfracloud.org/api_3/package/list";
+const BUILD_LIST_ORIGIN_PATH: &str = "https://copr.fedorainfracloud.org/api_3/build/list";
+const BUILD_GET_ORIGIN_PATH_BASE: &str = "https://copr.fedorainfracloud.org/api_3/build";
+const BUILD_VIEW_ORIGIN_PATH_BASE: &str = "https://copr.fedorainfracloud.org/coprs/build";
+
+const COPR_OWNER: &str = "cyqsimon";
+const COPR_PROJECT: &str = "el-rust-pkgs";
+
+const LOCAL_SPECS_DIR: &str = "specs";
+
+const POLL_INTERVAL: Duration = Duration::from_secs(15);
+
+static HTTP_CLIENT: LazyLock<reqwest::blocking::Client> =
+    LazyLock::new(reqwest::blocking::Client::new);
+
+fn main() -> eyre::Result<()> {
+    let mut args_it = env::args().skip(1); // 0th is the executable path
+
+    let Some(mode) = args_it.next() else {
+        bail!("Please specify a mode: build-unseen | monitor");
+    };
+    match mode.as_str() {
+        "build-unseen" => {
+            if let Some(extra_arg) = args_it.next() {
+                bail!("Unexpected extra argument: {extra_arg}");
+            }
+
+            let message = build_unseen()?;
+            let output = format!("builds={}", serde_json::to_string(&message)?);
+            let output_path = env::var("GITHUB_OUTPUT")
+                .context("Environment variable `GITHUB_OUTPUT` is unset. Is this environment GitHub Actions?")?;
+            println!("Writing `{output}` to $GITHUB_OUTPUT");
+            fs::write(output_path, output)?;
+        }
+        "monitor" => {
+            let Some(build_descriptor) = args_it.next() else {
+                bail!("Missing build descriptor argument");
+            };
+
+            let message = serde_json::from_str::<BuildDescriptor>(&build_descriptor)?;
+            poll_build(message.0, POLL_INTERVAL)?;
+        }
+        other => bail!("Unknown mode: {other}"),
+    };
+
+    Ok(())
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+struct Build {
+    name: Arc<str>,
+    epoch: Option<usize>,
+    version: String,
+    release: usize,
+}
+impl fmt::Display for Build {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let Self { name, epoch, version, release } = self;
+        write!(f, "{name}-")?;
+        if let Some(e) = epoch {
+            write!(f, "{e}:")?;
+        }
+        write!(f, "{version}-{release}")?;
+        Ok(())
+    }
+}
+impl Build {
+    fn from_spec_file(path: impl AsRef<Path>) -> eyre::Result<Self> {
+        macro_rules! run_rpmspec_with_query_format {
+            ($format: expr) => {{
+                let res = Command::new("rpmspec")
+                    .arg("--query")
+                    .arg(path.as_ref())
+                    .arg("--queryformat")
+                    .arg($format)
+                    .output()
+                    .context("Failed to run `rpmspec`")?;
+                if !res.status.success() {
+                    bail!("`rpmspec` failed with exit code {:?}", res.status.code());
+                }
+                String::from_utf8(res.stdout)?
+            }};
+        }
+
+        let name = run_rpmspec_with_query_format!("%{name}");
+        let evr = run_rpmspec_with_query_format!("%{evr}");
+
+        Self::from_copr_nevr(name.into(), &evr)
+    }
+
+    fn from_copr_nevr(name: Arc<str>, evr: &str) -> eyre::Result<Self> {
+        static EVR_REGEX: LazyLock<Regex> = LazyLock::new(|| {
+            // format: [EPOCH:]VERSION-RELEASE[.FEDORA_TAG]
+            // e.g. 1.0.0-1.fc34 or 2:0.69-420
+            // FEDORA_TAG is a legacy leftover which no longer exists for newer builds
+            Regex::new(r"^(?:(?<epoch>\d+):)?(?<version>.+)-(?<release>\d+)(?:\.fc(?:\d+))?$")
+                .unwrap()
+        });
+
+        let captures = EVR_REGEX
+            .captures(&evr)
+            .ok_or_else(|| eyre!("Failed to parse EVR `{evr}` in COPR API format"))?;
+
+        let epoch = captures
+            .name("epoch")
+            .map(|m| m.as_str().parse().context("Failed to parse epoch"))
+            .transpose()?;
+        let version = captures
+            .name("version")
+            .expect("version must exist")
+            .as_str()
+            .to_owned();
+        let release = captures
+            .name("release")
+            .expect("release must exist")
+            .as_str()
+            .parse()
+            .context("Failed to parse release")?;
+
+        Ok(Self {
+            name: Arc::clone(&name),
+            epoch,
+            version,
+            release,
+        })
+    }
+}
+
+/// Find out which packages need to be rebuilt, and rebuild them.
+///
+/// Returns said builds and their build IDs.
+fn build_unseen() -> eyre::Result<Vec<BuildDescriptor>> {
+    let declared = get_locally_declared_builds()?;
+    println!("Parsed all locally declared builds");
+
+    let good_builds = get_all_good_builds()?;
+    println!("Fetched and parsed all good builds using COPR API");
+
+    let unseen_builds = declared
+        .into_iter()
+        .filter(|declared| !good_builds.contains(declared))
+        .collect::<Vec<_>>();
+    if unseen_builds.is_empty() {
+        println!("All declared SPEC files have been built");
+        return Ok(vec![]);
+    }
+
+    println!("Requesting builds for the following unseen builds:");
+    println!(
+        "{}",
+        unseen_builds
+            .iter()
+            .map(ToString::to_string)
+            .collect::<Vec<_>>()
+            .join(", ")
+    );
+
+    let requested_builds = unseen_builds
+        .into_iter()
+        .map(|b| {
+            let build_id = request_build(&b.name)?;
+            println!("{b} -> {BUILD_VIEW_ORIGIN_PATH_BASE}/{build_id}");
+            Ok(BuildDescriptor(build_id))
+        })
+        .collect::<eyre::Result<Vec<_>>>()?;
+
+    Ok(requested_builds)
+}
+
+/// Get all builds declared locally.
+fn get_locally_declared_builds() -> eyre::Result<Vec<Build>> {
+    let spec_files = fs::read_dir(LOCAL_SPECS_DIR)
+        .with_context(|| format!("Failed to read `{LOCAL_SPECS_DIR}`"))?
+        .map(|entry| entry.map(|e| e.path()))
+        .collect::<Result<Vec<_>, _>>()?;
+
+    let builds = spec_files
+        .into_iter()
+        .map(|path| {
+            Build::from_spec_file(&path)
+                .with_context(|| format!("Failed read the declared build of {path:?}"))
+        })
+        .collect::<eyre::Result<Vec<_>>>()?;
+
+    Ok(builds)
+}
+
+/// Get all builds that are either in progress or are successful.
+fn get_all_good_builds() -> eyre::Result<Vec<Build>> {
+    let package_records = HTTP_CLIENT
+        .get(PACKAGE_LIST_ORIGIN_PATH)
+        .query(&[("ownername", COPR_OWNER), ("projectname", COPR_PROJECT)])
+        .send()
+        .context("Failed to fetch package list from COPR API")?
+        .json::<ListRecord<PackageRecord>>()
+        .context("Failed to parse package list from COPR API")?
+        .items;
+
+    // in progress or succeeded builds
+    let build_records = package_records
+        .into_iter()
+        .map(|p| {
+            let builds = HTTP_CLIENT
+                .get(BUILD_LIST_ORIGIN_PATH)
+                .query(&[
+                    ("ownername", COPR_OWNER),
+                    ("projectname", COPR_PROJECT),
+                    ("packagename", &p.name),
+                ])
+                .send()
+                .context(format!(
+                    "Failed to fetch build list for package `{}` from COPR API",
+                    p.name
+                ))?
+                .json::<ListRecord<BuildRecord>>()
+                .context(format!(
+                    "Failed to parse build list for package `{}` from COPR API",
+                    p.name
+                ))?
+                .items
+                .into_iter()
+                .filter(|b| b.status.is_in_progress() || b.status.is_success());
+            Ok((p.name, builds))
+        })
+        .collect::<eyre::Result<Vec<_>>>()
+        .context("Failed to fetch and parse build lists from COPR API")?;
+
+    let built_versions = build_records
+        .into_iter()
+        .flat_map(|(name, builds)| {
+            let name = Arc::<str>::from(name);
+            builds.map(move |b| Build::from_copr_nevr(Arc::clone(&name), &b.srpm.evr))
+        })
+        .collect::<eyre::Result<Vec<_>>>()
+        .context("Failed to transform build records into a list of built versions")?;
+
+    Ok(built_versions)
+}
+
+/// Request a rebuild on COPR and return the build ID.
+fn request_build(package_name: &str) -> eyre::Result<usize> {
+    let build_request_origin_path_base = env::var("BUILD_REQUEST_ORIGIN_PATH_BASE")
+        .context("Required environment variable `BUILD_REQUEST_ORIGIN_PATH_BASE` is unset")?;
+
+    let url = format!("{build_request_origin_path_base}/{package_name}");
+    let build_id = HTTP_CLIENT
+        .post(url)
+        .send()
+        .context("Failed to request build on COPR")?
+        .text()
+        .context("COPR build request API did not return valid UTF-8")?
+        .parse()
+        .context("COPR build request API did not return a valid build ID")?;
+
+    Ok(build_id)
+}
+
+/// Poll a build until it has finished.
+///
+/// Errors if the build failed.
+fn poll_build(build_id: usize, interval: Duration) -> eyre::Result<()> {
+    let url = format!("{BUILD_GET_ORIGIN_PATH_BASE}/{build_id}");
+
+    let mut elapsed_time = Duration::ZERO;
+    loop {
+        let build_info = HTTP_CLIENT
+            .get(&url)
+            .send()
+            .context("Failed to query build status from COPR API")?
+            .json::<BuildRecord>()
+            .context("Failed to parse build status from COPR API")?;
+
+        if build_info.status.is_in_progress() {
+            println!(
+                "{elapsed_time:?}: build {build_id} in progress; polling again in {interval:?}"
+            );
+            elapsed_time += interval;
+            thread::sleep(interval);
+            continue;
+        } else if build_info.status.is_success() {
+            println!("Build {build_id} succeeded");
+            break;
+        } else if build_info.status.is_failure() {
+            bail!("Build {build_id} failed");
+        }
+    }
+    Ok(())
+}
+
+/// Data structures that define messages between steps.
+mod message_serde {
+    use serde::{Deserialize, Serialize};
+
+    #[derive(Copy, Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+    pub struct BuildDescriptor(pub usize);
+}
+
+/// Data structures that model the upstream API.
+mod api_serde {
+    use serde::Deserialize;
+
+    #[derive(Clone, Debug, Deserialize)]
+    pub struct ListRecord<T> {
+        pub items: Vec<T>,
+    }
+
+    #[derive(Clone, Debug, PartialEq, Eq, Deserialize)]
+    pub struct PackageRecord {
+        pub id: usize,
+        pub name: String,
+    }
+
+    #[derive(Clone, Debug, PartialEq, Eq, Deserialize)]
+    pub struct BuildRecord {
+        pub id: usize,
+        #[serde(rename = "state")]
+        pub status: BuildStatus,
+        #[serde(rename = "source_package")]
+        pub srpm: SrpmRecord,
+    }
+
+    #[derive(Copy, Clone, Debug, PartialEq, Eq, Deserialize)]
+    #[serde(rename_all = "lowercase")]
+    pub enum BuildStatus {
+        // in progress
+        Pending,
+        Starting,
+        Importing,
+        Imported,
+        Waiting,
+        Running,
+
+        // success
+        Succeeded,
+        Forked,
+
+        // failure
+        Failed,
+        Canceled,
+        Skipped,
+    }
+    #[allow(dead_code)]
+    impl BuildStatus {
+        pub fn is_in_progress(&self) -> bool {
+            use BuildStatus as S;
+            match self {
+                S::Pending | S::Starting | S::Importing | S::Imported | S::Waiting | S::Running => {
+                    true
+                }
+                S::Succeeded | S::Forked | S::Failed | S::Canceled | S::Skipped => false,
+            }
+        }
+        pub fn is_success(&self) -> bool {
+            use BuildStatus as S;
+            match self {
+                S::Succeeded | S::Forked => true,
+                S::Pending
+                | S::Starting
+                | S::Importing
+                | S::Imported
+                | S::Waiting
+                | S::Running
+                | S::Failed
+                | S::Canceled
+                | S::Skipped => false,
+            }
+        }
+        pub fn is_failure(&self) -> bool {
+            use BuildStatus as S;
+            match self {
+                S::Failed | S::Canceled | S::Skipped => true,
+                S::Pending
+                | S::Starting
+                | S::Importing
+                | S::Imported
+                | S::Waiting
+                | S::Running
+                | S::Succeeded
+                | S::Forked => false,
+            }
+        }
+    }
+
+    #[derive(Clone, Debug, PartialEq, Eq, Deserialize)]
+    pub struct SrpmRecord {
+        pub name: String,
+        #[serde(rename = "version")]
+        pub evr: String,
+    }
+}
