@@ -284,6 +284,7 @@ fn request_build(package_name: &str) -> eyre::Result<usize> {
         .context("Failed to request build on COPR")?
         .text()
         .context("COPR build request API did not return valid UTF-8")?
+        .trim()
         .parse()
         .context("COPR build request API did not return a valid build ID")?;
 
