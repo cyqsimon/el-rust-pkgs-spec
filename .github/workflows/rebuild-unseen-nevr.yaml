@@ -58,5 +58,8 @@ jobs:
       - name: Install rust-script
         run: cargo binstall rust-script
 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Report status
         run: scripts/copr-tool monitor ${{ matrix.build_id }}
