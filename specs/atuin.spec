@@ -1,13 +1,13 @@
 %global debug_package %{nil}
 
 Name:           atuin
-Version:        18.5.0
+Version:        18.6.0
 Release:        1%{?dist}
 Summary:        Magical shell history
 
 License:        MIT
-URL:            https://github.com/ellie/atuin
-Source0:        %{url}/archive/v%{version}.tar.gz
+URL:            https://github.com/atuinsh/atuin
+Source0:        %{url}/archive/%{version}.tar.gz
 
 BuildRequires:  gcc pkgconfig(protobuf) protobuf-compiler
 
@@ -53,6 +53,11 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Thu May 08 2025 cyqsimon - 18.6.0-1
+- Release 18.6.0
+- Update upstream URL namespace
+- Temporarily use tags without leading `v`; see https://github.com/atuinsh/atuin/issues/2743
+
 * Fri Apr 11 2025 cyqsimon - 18.5.0-1
 - Release 18.5.0
 
