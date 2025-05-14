@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           dysk
-Version:        2.10.0
+Version:        2.10.1
 Release:        1%{?dist}
 Summary:        A linux utility listing your filesystems (previously lfs)
 Provides:       lfs = %{version}-%{release}
@@ -64,6 +64,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_data
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed May 14 2025 cyqsimon - 2.10.1-1
+- Release 2.10.1
+
 * Sun Dec 22 2024 cyqsimon - 2.10.0-1
 - Release 2.10.0
 
