@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           atuin
-Version:        18.6.1
+Version:        18.8.0
 Release:        1%{?dist}
 Summary:        Magical shell history
 
@@ -53,6 +53,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Aug 05 2025 cyqsimon - 18.8.0-1
+- Release 18.8.0
+
 * Fri May 09 2025 cyqsimon - 18.6.1-1
 - Release 18.6.1
 - Revert back to `vM.m.p` tag format
