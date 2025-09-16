@@ -27,6 +27,7 @@ use std::{
 
 use eyre::{bail, eyre, Context};
 use regex::Regex;
+use reqwest::blocking::Response;
 
 use crate::{
     api_serde::{BuildRecord, ListRecord, PackageRecord},
@@ -226,6 +227,7 @@ fn get_all_good_builds() -> eyre::Result<Vec<Build>> {
         .get(PACKAGE_LIST_ORIGIN_PATH)
         .query(&[("ownername", COPR_OWNER), ("projectname", COPR_PROJECT)])
         .send()
+        .and_then(Response::error_for_status)
         .context("Failed to fetch package list from COPR API")?
         .json::<ListRecord<PackageRecord>>()
         .context("Failed to parse package list from COPR API")?
@@ -243,6 +245,7 @@ fn get_all_good_builds() -> eyre::Result<Vec<Build>> {
                     ("packagename", &p.name),
                 ])
                 .send()
+                .and_then(Response::error_for_status)
                 .context(format!(
                     "Failed to fetch build list for package `{}` from COPR API",
                     p.name
@@ -281,6 +284,7 @@ fn request_build(package_name: &str) -> eyre::Result<usize> {
     let build_id = HTTP_CLIENT
         .post(url)
         .send()
+        .and_then(Response::error_for_status)
         .context("Failed to request build on COPR")?
         .text()
         .context("COPR build request API did not return valid UTF-8")?
@@ -302,6 +306,7 @@ fn poll_build(build_id: usize, interval: Duration) -> eyre::Result<()> {
         let build_info = HTTP_CLIENT
             .get(&url)
             .send()
+            .and_then(Response::error_for_status)
             .context("Failed to query build status from COPR API")?
             .json::<BuildRecord>()
             .context("Failed to parse build status from COPR API")?;
