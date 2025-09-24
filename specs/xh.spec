@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           xh
-Version:        0.24.1
-Release:        2%{?dist}
+Version:        0.25.0
+Release:        1%{?dist}
 Summary:        Friendly and fast tool for sending HTTP requests
 
 License:        MIT
@@ -56,6 +56,9 @@ install -Dpm 644 completions/_%{name} %{buildroot}%{_datadir}/zsh/site-functions
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Sep 24 2025 cyqsimon - 0.25.0-1
+- Release 0.25.0
+
 * Wed Sep 24 2025 cyqsimon - 0.24.1-2
 - Mass rebuild
 
