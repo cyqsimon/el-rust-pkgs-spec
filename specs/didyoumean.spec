@@ -3,7 +3,7 @@
 
 Name:           didyoumean
 Version:        1.1.4
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A CLI spelling corrector for when you're unsure
 
 License:        GPLv3
@@ -55,6 +55,9 @@ install -Dpm 644 completions/_%{bin_name} %{buildroot}%{_datadir}/zsh/site-funct
 %{_datadir}/zsh/site-functions/_%{bin_name}
 
 %changelog
+* Wed Sep 24 2025 cyqsimon - 1.1.4-3
+- Mass rebuild
+
 * Tue Apr 16 2024 cyqsimon - 1.1.4-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 

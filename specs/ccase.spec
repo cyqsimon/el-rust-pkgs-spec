@@ -2,7 +2,7 @@
 
 Name:           ccase
 Version:        0.4.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A command line utility for converting between string cases
 
 License:        MIT
@@ -41,6 +41,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Wed Sep 24 2025 cyqsimon - 0.4.1-3
+- Mass rebuild
+
 * Tue Apr 16 2024 cyqsimon - 0.4.1-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 

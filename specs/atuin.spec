@@ -2,7 +2,7 @@
 
 Name:           atuin
 Version:        18.8.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Magical shell history
 
 License:        MIT
@@ -53,6 +53,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Sep 24 2025 cyqsimon - 18.8.0-2
+- Mass rebuild
+
 * Tue Aug 05 2025 cyqsimon - 18.8.0-1
 - Release 18.8.0
 

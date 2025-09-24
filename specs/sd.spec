@@ -2,7 +2,7 @@
 
 Name:           sd
 Version:        1.0.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Intuitive find & replace CLI (sed alternative)
 
 License:        MIT
@@ -51,6 +51,9 @@ install -Dpm 644 gen/completions/_%{name} %{buildroot}%{_datadir}/zsh/site-funct
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Sep 24 2025 cyqsimon - 1.0.0-3
+- Mass rebuild
+
 * Tue Apr 16 2024 cyqsimon - 1.0.0-2
 - Remove explicit stripping (strip enabled by default since 1.77.0)
 

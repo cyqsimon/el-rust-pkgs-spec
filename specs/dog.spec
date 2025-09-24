@@ -2,7 +2,7 @@
 
 Name:           dog
 Version:        0.1.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        A command-line DNS client
 
 License:        EUPL 1.2
@@ -63,6 +63,9 @@ install -Dpm 644 completions/%{name}.zsh %{buildroot}%{_datadir}/zsh/site-functi
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Sep 24 2025 cyqsimon - 0.1.0-5
+- Mass rebuild
+
 * Tue Aug 13 2024 cyqsimon - 0.1.0-4
 - Remove provisions for EL7
 

@@ -2,7 +2,7 @@
 
 Name:           pueue
 Version:        4.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CLI task manager for long-running tasks
 
 License:        Apache-2.0 OR MIT
@@ -65,6 +65,9 @@ install -Dpm 644 utils/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{na
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Sep 24 2025 cyqsimon - 4.0.1-2
+- Mass rebuild
+
 * Wed Jul 09 2025 cyqsimon - 4.0.1-1
 - Release 4.0.1
 

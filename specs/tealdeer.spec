@@ -3,7 +3,7 @@
 
 Name:           tealdeer
 Version:        1.7.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A very fast implementation of tldr in Rust
 
 License:        ASL 2.0 or MIT
@@ -52,6 +52,9 @@ install -Dpm 644 completion/zsh_%{name} %{buildroot}%{_datadir}/zsh/site-functio
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Sep 24 2025 cyqsimon - 1.7.2-2
+- Mass rebuild
+
 * Wed Mar 19 2025 cyqsimon - 1.7.2-1
 - Release 1.7.2
 

@@ -2,7 +2,7 @@
 
 Name:           bandwhich
 Version:        0.23.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Terminal bandwidth utilization tool
 
 License:        MIT
@@ -53,6 +53,9 @@ install -Dpm 644 gen/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Sep 24 2025 cyqsimon - 0.23.1-2
+- Mass rebuild
+
 * Sat Jan 11 2025 cyqsimon - 0.23.1-1
 - Release 0.23.1
 

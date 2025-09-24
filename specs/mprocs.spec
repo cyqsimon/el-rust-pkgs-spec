@@ -2,7 +2,7 @@
 
 Name:           mprocs
 Version:        0.7.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Run multiple commands in parallel
 
 License:        MIT
@@ -51,6 +51,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Wed Sep 24 2025 cyqsimon - 0.7.3-2
+- Mass rebuild
+
 * Fri May 23 2025 cyqsimon - 0.7.3-1
 - Release 0.7.3
 

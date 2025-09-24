@@ -2,7 +2,7 @@
 
 Name:           hck
 Version:        0.11.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A sharp cut(1) clone
 
 License:        MIT OR Unlicense
@@ -49,6 +49,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Wed Sep 24 2025 cyqsimon - 0.11.4-2
+- Mass rebuild
+
 * Sat Mar 15 2025 cyqsimon - 0.11.4-1
 - Release 0.11.4
 

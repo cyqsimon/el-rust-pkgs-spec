@@ -3,7 +3,7 @@
 
 Name:           ouch
 Version:        0.4.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Painless compression and decompression for your terminal
 
 License:        MIT
@@ -74,6 +74,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Wed Sep 24 2025 cyqsimon - 0.4.2-3
+- Mass rebuild
+
 * Tue Aug 13 2024 cyqsimon - 0.4.2-2
 - Remove provisions for EL7
 
