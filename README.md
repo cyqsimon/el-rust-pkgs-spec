@@ -10,42 +10,42 @@ You can install the built packages from [COPR](https://copr.fedorainfracloud.org
 
 <table>
     <tr>
-        <td align="center"><a href="https://github.com/ellie/atuin">atuin</a></td>
         <td align="center"><a href="https://github.com/imsnif/bandwhich">bandwhich</a></td>
         <td align="center"><a href="https://github.com/rutrum/ccase">ccase</a></td>
         <td align="center"><a href="https://github.com/hisbaan/didyoumean">didyoumean</a></td>
         <td align="center"><a href="https://github.com/sharkdp/diskus">diskus</a></td>
-    </tr>
-    <tr>
         <td align="center">
             <a href="https://github.com/ogham/dog">dog</a>
             <span>(</span>
             <a href="https://github.com/cyqsimon/dog/releases/tag/v0.1.0-patched">patched</a>
             <span>)</span>
         </td>
+    </tr>
+    <tr>
         <td align="center"><a href="https://github.com/Canop/dysk">dysk</a></td>
         <td align="center"><a href="https://github.com/evcxr/evcxr">evcxr-repl</a></td>
         <td align="center"><a href="https://github.com/eza-community/eza">eza</a></td>
         <td align="center"><a href="https://github.com/printfn/fend">fend</a></td>
+        <td align="center"><a href="https://git.sr.ht/~mzhang/garbage">garbage</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="https://git.sr.ht/~mzhang/garbage">garbage</a></td>
         <td align="center"><a href="https://github.com/sstadick/hck">hck</a></td>
         <td align="center"><a href="https://github.com/thecoshman/http">httplz</a></td>
         <td align="center"><a href="https://github.com/svenstaro/miniserve">miniserve</a></td>
         <td align="center"><a href="https://github.com/pvolok/mprocs">mprocs</a></td>
+        <td align="center"><a href="https://github.com/ouch-org/ouch">ouch</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="https://github.com/ouch-org/ouch">ouch</a></td>
         <td align="center"><a href="https://github.com/k9withabone/podlet">podlet</a></td>
         <td align="center"><a href="https://github.com/Nukesor/pueue">pueue</a></td>
         <td align="center"><a href="https://github.com/RustScan/RustScan">rustscan</a></td>
         <td align="center"><a href="https://github.com/chmln/sd">sd</a></td>
+        <td align="center"><a href="https://github.com/dbrgn/tealdeer">tealdeer</a></td>
     </tr>
     <tr>
-        <td align="center"><a href="https://github.com/dbrgn/tealdeer">tealdeer</a></td>
         <td align="center"><a href="https://github.com/ducaale/xh">xh</a></td>
         <td align="center">More to come</td>
+        <td align="center"></td>
         <td align="center"></td>
         <td align="center"></td>
     </tr>
@@ -77,3 +77,4 @@ to submit an issue or a PR.
 - 2024-09-14: Removed [procs](https://github.com/dalance/procs): packaged in EPEL as `procs`
 - 2024-09-15: Removed [tokei](https://github.com/XAMPPRocky/tokei): packaged in EPEL as `tokei`
 - 2025-01-11: Reinstated [eza](https://github.com/eza-community/eza): dropped by EPEL
+- 2025-10-04: Removed [atuin](https://github.com/ellie/atuin): packaged in EPEL as `atuin`
