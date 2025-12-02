@@ -2,14 +2,14 @@
 
 Name:           hck
 Version:        0.11.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A sharp cut(1) clone
 
 License:        MIT OR Unlicense
 URL:            https://github.com/sstadick/hck
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  cmake3 gcc
+BuildRequires:  cmake3 gcc gcc-c++
 
 %description
 hck is a shortening of hack, a rougher form of cut.
@@ -49,6 +49,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Tue Dec 02 2025 cyqsimon - 0.11.5-2
+- Add `gcc-c++` to build deps, as required by `libz-ng-sys`
+
 * Tue Dec 02 2025 cyqsimon - 0.11.5-1
 - Release 0.11.5
 
