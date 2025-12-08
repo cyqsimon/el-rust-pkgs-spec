@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           diskus
-Version:        0.8.0
-Release:        2%{?dist}
+Version:        0.9.0
+Release:        1%{?dist}
 Summary:        A minimal, fast alternative to 'du -sh'
 
 License:        ASL 2.0 or MIT
@@ -46,6 +46,9 @@ install -Dpm 644 doc/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Mon Dec 08 2025 cyqsimon - 0.9.0-1
+- Release 0.9.0
+
 * Wed Sep 24 2025 cyqsimon - 0.8.0-2
 - Mass rebuild
 
