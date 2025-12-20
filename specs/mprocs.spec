@@ -2,7 +2,7 @@
 
 Name:           mprocs
 Version:        0.8.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Run multiple commands in parallel
 
 License:        MIT
@@ -37,9 +37,7 @@ cargo +stable build --release
 
 %check
 source ~/.cargo/env
-# see https://github.com/pvolok/mprocs/issues/50
-#cargo +stable test --workspace
-cargo +stable test --workspace --exclude mprocs-pty --exclude mprocs-vt100
+cargo +stable test --workspace
 
 %install
 # bin
@@ -51,6 +49,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Sat Dec 20 2025 cyqsimon - 0.8.1-2
+- Restore full test suite
+
 * Sat Dec 20 2025 cyqsimon - 0.8.1-1
 - Release 0.8.1
 
