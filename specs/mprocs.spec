@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           mprocs
-Version:        0.8.1
-Release:        2%{?dist}
+Version:        0.8.2
+Release:        1%{?dist}
 Summary:        Run multiple commands in parallel
 
 License:        MIT
@@ -49,6 +49,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Thu Dec 25 2025 cyqsimon - 0.8.2-1
+- Release 0.8.2
+
 * Sat Dec 20 2025 cyqsimon - 0.8.1-2
 - Restore full test suite
 
