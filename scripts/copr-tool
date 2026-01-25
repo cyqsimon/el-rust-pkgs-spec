@@ -261,7 +261,7 @@ fn get_all_good_builds() -> eyre::Result<Vec<Build>> {
                 let evr = b
                     .srpm
                     .evr
-                    .clone()
+                    .as_deref()
                     .expect("In-progress or succeeded builds should not have null EVR");
                 Build::from_copr_nevr(name.clone(), evr)
             })
