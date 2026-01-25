@@ -257,7 +257,14 @@ fn get_all_good_builds() -> eyre::Result<Vec<Build>> {
     let built_versions = build_records
         .into_iter()
         .flat_map(|(name, builds)| {
-            builds.map(move |b| Build::from_copr_nevr(name.clone(), b.srpm.evr))
+            builds.map(move |b| {
+                let evr = b
+                    .srpm
+                    .evr
+                    .clone()
+                    .expect("In-progress or succeeded builds should not have null EVR");
+                Build::from_copr_nevr(name.clone(), evr)
+            })
         })
         .collect::<eyre::Result<Vec<_>>>()
         .context("Failed to transform build records into a list of built versions")?;
@@ -415,7 +422,10 @@ mod api_serde {
     #[derive(Clone, Debug, PartialEq, Eq, Deserialize)]
     pub struct SrpmRecord {
         pub name: String,
+        /// Epoch, version, release.
+        ///
+        /// Could be `null` if SRPM build fails.
         #[serde(rename = "version")]
-        pub evr: String,
+        pub evr: Option<String>,
     }
 }
