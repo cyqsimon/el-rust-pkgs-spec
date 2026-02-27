@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           miniserve
-Version:        0.32.0
-Release:        2%{?dist}
+Version:        0.33.0
+Release:        1%{?dist}
 Summary:        CLI tool to serve files and dirs over HTTP
 
 License:        MIT
@@ -66,6 +66,9 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Fri Feb 27 2026 cyqsimon - 0.33.0-1
+- Release 0.33.0
+
 * Wed Sep 24 2025 cyqsimon - 0.32.0-2
 - Mass rebuild
 
