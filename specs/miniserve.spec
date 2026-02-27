@@ -2,7 +2,7 @@
 
 Name:           miniserve
 Version:        0.33.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CLI tool to serve files and dirs over HTTP
 
 License:        MIT
@@ -38,7 +38,7 @@ target/release/%{name} --print-completions zsh > %{name}.zsh
 
 %check
 source ~/.cargo/env
-cargo +stable test
+cargo +stable test -- --test-threads 1
 
 %install
 # bin
@@ -66,6 +66,9 @@ install -Dpm 644 %{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Fri Feb 27 2026 cyqsimon - 0.33.0-2
+- Run tests single-threaded (see 35b3405)
+
 * Fri Feb 27 2026 cyqsimon - 0.33.0-1
 - Release 0.33.0
 
