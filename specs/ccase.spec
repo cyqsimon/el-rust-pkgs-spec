@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           ccase
-Version:        0.4.1
-Release:        3%{?dist}
+Version:        0.5.0
+Release:        1%{?dist}
 Summary:        A command line utility for converting between string cases
 
 License:        MIT
@@ -41,6 +41,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Sun Mar 08 2026 cyqsimon - 0.5.0-1
+- Release 0.5.0
+
 * Wed Sep 24 2025 cyqsimon - 0.4.1-3
 - Mass rebuild
 
