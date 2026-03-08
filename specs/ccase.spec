@@ -2,12 +2,12 @@
 
 Name:           ccase
 Version:        0.5.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A command line utility for converting between string cases
 
 License:        MIT
 URL:            https://github.com/rutrum/ccase
-Source0:        %{url}/archive/v%{version}.tar.gz
+Source0:        https://static.crates.io/crates/%{name}/%{name}-%{version}.crate
 
 BuildRequires:  gcc
 
@@ -41,6 +41,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Sun Mar 08 2026 cyqsimon - 0.5.0-2
+- Switch to crates.io source
+
 * Sun Mar 08 2026 cyqsimon - 0.5.0-1
 - Release 0.5.0
 
