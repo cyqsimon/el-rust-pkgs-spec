@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           ccase
-Version:        0.5.0
-Release:        2%{?dist}
+Version:        0.5.1
+Release:        1%{?dist}
 Summary:        A command line utility for converting between string cases
 
 License:        MIT
@@ -41,6 +41,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Mon Mar 16 2026 cyqsimon - 0.5.1-1
+- Release 0.5.1
+
 * Sun Mar 08 2026 cyqsimon - 0.5.0-2
 - Switch to crates.io source
 
