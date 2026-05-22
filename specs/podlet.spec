@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           podlet
-Version:        0.3.1
+Version:        0.3.2
 Release:        1%{?dist}
 Summary:        Generate podman quadlet (systemd-like) files from a podman command
 
@@ -38,6 +38,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Fri May 22 2026 cyqsimon - 0.3.2-1
+- Release 0.3.2
+
 * Wed Feb 04 2026 cyqsimon - 0.3.1-1
 - Release 0.3.1
 
