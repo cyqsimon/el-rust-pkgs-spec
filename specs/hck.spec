@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           hck
-Version:        0.11.5
-Release:        2%{?dist}
+Version:        0.11.6
+Release:        1%{?dist}
 Summary:        A sharp cut(1) clone
 
 License:        MIT OR Unlicense
@@ -49,6 +49,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Wed Jun 17 2026 cyqsimon - 0.11.6-1
+- Release 0.11.6
+
 * Tue Dec 02 2025 cyqsimon - 0.11.5-2
 - Add `gcc-c++` to build deps, as required by `libz-ng-sys`
 
