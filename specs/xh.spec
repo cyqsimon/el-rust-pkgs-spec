@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           xh
-Version:        0.26.1
+Version:        0.26.2
 Release:        1%{?dist}
 Summary:        Friendly and fast tool for sending HTTP requests
 
@@ -56,6 +56,9 @@ install -Dpm 644 completions/_%{name} %{buildroot}%{_datadir}/zsh/site-functions
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Thu Jul 30 2026 cyqsimon - 0.26.2-1
+- Release 0.26.2
+
 * Mon Jun 22 2026 cyqsimon - 0.26.1-1
 - Release 0.26.1
 
