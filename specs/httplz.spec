@@ -2,7 +2,7 @@
 %global _prj_name http
 
 Name:           httplz
-Version:        2.5.0
+Version:        2.6.0
 Release:        1%{?dist}
 Summary:        A basic HTTP server for hosting a folder fast and simply
 
@@ -62,6 +62,9 @@ install -Dpm 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Sun Aug 09 2026 cyqsimon - 2.6.0-1
+- Release 2.6.0
+
 * Sun Nov 23 2025 cyqsimon - 2.5.0-1
 - Release 2.5.0
 
