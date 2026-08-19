@@ -2,8 +2,8 @@
 %global _bin_name evcxr
 
 Name:           evcxr-repl
-Version:        0.21.1
-Release:        2%{?dist}
+Version:        0.22.0
+Release:        1%{?dist}
 Summary:        A Rust REPL
 
 License:        MIT AND Apache-2.0
@@ -40,6 +40,9 @@ install -Dpm 755 -t %{buildroot}%{_bindir} target/release/%{_bin_name}
 %{_bindir}/%{_bin_name}
 
 %changelog
+* Wed Aug 19 2026 cyqsimon - 0.22.0-1
+- Release 0.22.0
+
 * Wed Sep 24 2025 cyqsimon - 0.21.1-2
 - Run tests single-threaded for now
   - See https://github.com/evcxr/evcxr/issues/425
