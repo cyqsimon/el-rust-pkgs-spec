@@ -1,23 +1,20 @@
 %global debug_package %{nil}
 %global artifact_dir artifacts
+# disable `unrar` feature due to non-compliant license
+%global feature_flag --no-default-features --features=use_zlib,use_zstd_thin,bzip3
 
 Name:           ouch
-Version:        0.4.2
-Release:        3%{?dist}
+Version:        0.8.2
+Release:        1%{?dist}
 Summary:        Painless compression and decompression for your terminal
 
 License:        MIT
 URL:            https://github.com/ouch-org/ouch
 Source0:        %{url}/archive/%{version}.tar.gz
 
-# See https://github.com/ouch-org/ouch/issues/256
-%if 0%{?el8}
-BuildRequires:  gcc-toolset-12
-%else
-BuildRequires:  gcc
-%endif
-
-BuildRequires:  pkgconfig(bzip2) pkgconfig(liblzma) pkgconfig(libzstd) pkgconfig(zlib)
+BuildRequires:  clang pkgconfig(bzip2) pkgconfig(bzip3) pkgconfig(liblzma) pkgconfig(libzstd) pkgconfig(zlib)
+# Git required for some tests
+BuildRequires:  git
 
 %description
 ouch stands for Obvious Unified Compression Helper and is a CLI tool
@@ -29,24 +26,13 @@ to help you compress and decompress files of several formats.
 # use latest stable version from rustup
 curl -Lf "https://sh.rustup.rs" | sh -s -- --profile minimal -y
 
-# remove toolchain override (use stable)
-rm -f rust-toolchain
-
 %build
-%if 0%{?el8}
-    source /opt/rh/gcc-toolset-12/enable
-%endif
-
 source ~/.cargo/env
-OUCH_ARTIFACTS_FOLDER=%{artifact_dir} cargo +stable build --release
+OUCH_ARTIFACTS_FOLDER=%{artifact_dir} cargo +stable build --release %{feature_flag}
 
 %check
-%if 0%{?el8}
-    source /opt/rh/gcc-toolset-12/enable
-%endif
-
 source ~/.cargo/env
-cargo +stable test
+cargo +stable test %{feature_flag}
 
 %install
 # bin
@@ -74,6 +60,10 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Sep 01 2026 cyqsimon - 0.8.2-1
+- Release 0.8.2
+- Remove GCC12 workaround for EL8: no longer appears necessary
+
 * Wed Sep 24 2025 cyqsimon - 0.4.2-3
 - Mass rebuild
 
