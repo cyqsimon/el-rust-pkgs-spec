@@ -4,7 +4,7 @@
 %global feature_flag --no-default-features --features=use_zlib,use_zstd_thin,bzip3
 
 Name:           ouch
-Version:        0.8.2
+Version:        0.8.3
 Release:        1%{?dist}
 Summary:        Painless compression and decompression for your terminal
 
@@ -60,6 +60,9 @@ install -Dpm 644 _%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Sep 15 2026 cyqsimon - 0.8.3-1
+- Release 0.8.3
+
 * Tue Sep 01 2026 cyqsimon - 0.8.2-1
 - Release 0.8.2
 - Remove GCC12 workaround for EL8: no longer appears necessary
