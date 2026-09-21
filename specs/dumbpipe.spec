@@ -2,7 +2,7 @@
 
 Name:           dumbpipe
 Version:        0.39.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Unix pipes between devices
 
 License:        Apache-2.0 OR MIT
@@ -27,7 +27,7 @@ cargo +stable build --release
 
 %check
 source ~/.cargo/env
-cargo +stable test
+cargo +stable test -- --skip connect_tcp_happy
 
 %install
 # bin
@@ -39,6 +39,9 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 %{_bindir}/%{name}
 
 %changelog
+* Mon Sep 21 2026 cyqsimon - 0.39.0-2
+- Disable flaky test `connect_tcp_happy` for now
+  - Using sleep to wait for listener is inherently unreliable
+
 * Sun Sep 20 2026 cyqsimon - 0.39.0-1
 - Release 0.39.0
-
