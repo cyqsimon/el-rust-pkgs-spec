@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           sd
-Version:        1.0.0
-Release:        3%{?dist}
+Version:        1.1.0
+Release:        1%{?dist}
 Summary:        Intuitive find & replace CLI (sed alternative)
 
 License:        MIT
@@ -51,6 +51,9 @@ install -Dpm 644 gen/completions/_%{name} %{buildroot}%{_datadir}/zsh/site-funct
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Oct 27 2026 cyqsimon - 1.1.0-1
+- Release 1.1.0
+
 * Wed Sep 24 2025 cyqsimon - 1.0.0-3
 - Mass rebuild
 
