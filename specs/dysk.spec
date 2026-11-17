@@ -2,7 +2,7 @@
 
 Name:           dysk
 Version:        3.8.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A linux utility listing your filesystems (previously lfs)
 Provides:       lfs = %{version}-%{release}
 Obsoletes:      lfs <= 2.6.0
@@ -47,12 +47,12 @@ install -Dpm 755 target/release/%{name} %{buildroot}%{_bindir}/%{name}
 install -Dpm 755 lfs %{buildroot}%{_bindir}/lfs
 
 # manpage
-install -Dpm 644 target/release/build/%{name}-*/out/%{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
+install -Dpm 644 $(find target/release/build/%{name}* -name %{name}.1) %{buildroot}%{_mandir}/man1/%{name}.1
 
 # completions
-install -Dpm 644 target/release/build/%{name}-*/out/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dpm 644 target/release/build/%{name}-*/out/%{name}.fish %{buildroot}%{_datadir}/fish/completions/%{name}.fish
-install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
+install -Dpm 644 $(find target/release/build/%{name}* -name %{name}.bash) %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dpm 644 $(find target/release/build/%{name}* -name %{name}.fish) %{buildroot}%{_datadir}/fish/completions/%{name}.fish
+install -Dpm 644 $(find target/release/build/%{name}* -name _%{name}) %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
 %license LICENSE
@@ -64,6 +64,9 @@ install -Dpm 644 target/release/build/%{name}-*/out/_%{name} %{buildroot}%{_data
 %{_datadir}/zsh/site-functions/_%{name}
 
 %changelog
+* Tue Nov 17 2026 cyqsimon - 3.8.2-2
+- Support rust-1.100 OUTDIR paths
+
 * Tue Nov 17 2026 cyqsimon - 3.8.2-1
 - Release 3.8.2
 
